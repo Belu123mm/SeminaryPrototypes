@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBrain : MonoBehaviour {
-    public bool ground;
-    public float speed 
-        , acceleration
-        , jumpForce
-        , currentSpeed
-        //No se que nombre ponerle esta variable, hace -speed o speed segun la orientacion
-        , playerSpeed;
-    void FixedUpdate () {
-        playerSpeed = Input.GetAxisRaw("Horizontal") * speed;
+    public float xInput;
+    public float zInput;
+    public Movement mvComp;
+    public void Start() {
+        mvComp = GetComponent<Movement>();
+    }
+    public void Update() {
+        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
+        xInput = Input.GetAxis("Horizontal");
+        zInput = Input.GetAxis("Vertical");
+        mvComp.Move(new Vector3(xInput, 0, zInput));
 
+        }
     }
 }
