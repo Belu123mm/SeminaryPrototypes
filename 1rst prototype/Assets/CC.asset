@@ -121,13 +121,13 @@ MonoBehaviour:
         neutralWhiteClip: 10
       basic:
         postExposure: 0.43
-        temperature: 9.3
+        temperature: 6.7
         tint: 0
         hueShift: 0
         saturation: 1.127
         contrast: 0.941
       channelMixer:
-        red: {x: 1, y: -0, z: 0}
+        red: {x: 1.02, y: -0, z: 0}
         green: {x: 0, y: 1, z: 0}
         blue: {x: 0, y: 0, z: 1}
         currentEditingChannel: 0
@@ -293,7 +293,7 @@ MonoBehaviour:
       size: 1
       luminanceContribution: 0.8
   vignette:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
