@@ -7,10 +7,15 @@ public class PlayerBrain : MonoBehaviour {
     public float xInput;
     public float zInput;
     public Movement mvComp;
+    public Camera cam;
+
     public void Start() {
         mvComp = GetComponent<Movement>();
+        cam = FindObjectOfType<Camera>();
+
     }
-    public void FixedUpdate() { 
+    public void FixedUpdate() {
+        /*
         if (Input.GetButton("Horizontal")) {
             xInput = Input.GetAxis("Horizontal");
             zInput = Input.GetAxis("Vertical");
@@ -20,6 +25,30 @@ public class PlayerBrain : MonoBehaviour {
             xInput = Input.GetAxis("Vertical");
             mvComp.Move(xInput);
         }
+        */
+        if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
+            xInput = Input.GetAxis("Horizontal");
+            zInput = Input.GetAxis("Vertical");
+            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+            mvComp.TestMoving(forw * zInput + rght * xInput);
+        }
+        /*
+        _inputX = Input.GetAxis("Horizontal");
+        _inputZ = Input.GetAxis("Vertical");
+
+        var forward = _cam.transform.forward;
+        var right = _cam.transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        var desiredMoveDirection = forward * _inputZ + right * _inputX;
+
+    */
 
 
     }

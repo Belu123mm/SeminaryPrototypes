@@ -8,10 +8,8 @@ public class Movement : MonoBehaviour {
     public float movementSpeed;
     public float rotationSpeed;
     public Rigidbody rb;
-    public Camera cam;
     public void Start() {
         rb = GetComponent<Rigidbody>();
-        cam = FindObjectOfType<Camera>();
     }
     public void Move( float direc ) {
         rb.MovePosition(Vector3.Lerp(this.transform.position, this.transform.position + this.transform.forward   * direc, 0.5f) * movementSpeed);
@@ -27,6 +25,21 @@ public class Movement : MonoBehaviour {
         print(rotation);
         rb.MoveRotation(rotation );
         */
+    }
+    /*
+     public void Moving(float forw, float right) {
+        Vector3 _inputs = new Vector3(forw, 0, right);
+        if (_inputs != Vector3.zero)
+            transform.forward = _inputs;
+        rb.MovePosition(this.transform.position + _inputs + cam.transform.forward + this.transform.right * movementSpeed * Time.fixedDeltaTime);
+        if ( right != 0 )
+            cam.transform.position += _inputs;
+    }
+    */
+    public void TestMoving(Vector3 direc) {
+        print(direc);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed);
+        rb.MovePosition(this.transform.position + direc * movementSpeed * Time.fixedDeltaTime);
     }
 
 }
