@@ -14,7 +14,7 @@ public class PlayerBrain : MonoBehaviour {
         if (Input.GetButton("Horizontal")) {
             xInput = Input.GetAxis("Horizontal");
             zInput = Input.GetAxis("Vertical");
-            mvComp.Rotate(new Vector3(0, 0, zInput));
+            mvComp.Rotate(zInput);
         }
         if (Input.GetButton("Vertical") ) {
             xInput = Input.GetAxis("Vertical");

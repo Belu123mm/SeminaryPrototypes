@@ -16,15 +16,19 @@ public class Movement : MonoBehaviour {
     public void Move( float direc ) {
         rb.MovePosition(Vector3.Lerp(this.transform.position, this.transform.position + this.transform.forward   * direc, 0.5f) * movementSpeed);
     }
-    public void Rotate(Vector3 direc) {
+    public void Rotate(float direc) {
 
         //Aca es la rotacion. usar el transform.rotate y pasarlo en el rb.moverotation. Cualquier cosa mandarle mail a alan, para que mande el ejemplo que me dio en clase. 
         //rb.MovePosition(Vector3.Lerp(this.transform.position, this.transform.position + direc, 0.5f) * rotationSpeed);
 
-        Quaternion rotation = Quaternion.LookRotation(direc);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation((this.transform.right * direc)), rotationSpeed);
+
+      /*  Quaternion rotation = Quaternion.LookRotation(this.transform.right * direc * (rotationSpeed / 10));
         print(rotation);
         rb.MoveRotation(rotation );
+        */
     }
+
 }
 
 
