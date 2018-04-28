@@ -31,6 +31,7 @@ public class PlayerBrain : MonoBehaviour {
             zInput = Input.GetAxis("Vertical");
             Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
             Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+            //mvComp.TestMoving(forw * zInput + rght * xInput);
             mvComp.TestMoving(forw * zInput + rght * xInput);
         }
         /*

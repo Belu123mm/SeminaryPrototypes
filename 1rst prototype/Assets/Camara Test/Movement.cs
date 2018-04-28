@@ -37,9 +37,9 @@ public class Movement : MonoBehaviour {
     }
     */
     public void TestMoving(Vector3 direc) {
-        print(direc);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed);
-        rb.MovePosition(this.transform.position + direc * movementSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+        print( direc * movementSpeed * Time.fixedDeltaTime);
+       // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed);     //Increible que esta cosa arruinara todo muy fuerte 
     }
 
 }
