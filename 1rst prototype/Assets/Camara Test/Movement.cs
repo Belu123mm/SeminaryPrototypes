@@ -6,7 +6,13 @@ using Cinemachine;
 public class Movement : MonoBehaviour {
     //Aca se colocan todas las funciones de movimiento que ejecuta el brain. 
     public float movementSpeed;
-    public float rotationSpeed;
+    public float rotationSpeed;     //No se usa
+    public float rollForce;
+    public float jumpForce;
+    public float dashDistance;
+    public bool ground;
+    public bool spammingSpace;
+
     public Rigidbody rb;
     public void Start() {
         rb = GetComponent<Rigidbody>();
@@ -41,7 +47,29 @@ public class Movement : MonoBehaviour {
         print( direc * movementSpeed * Time.fixedDeltaTime);
        // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed);     //Increible que esta cosa arruinara todo muy fuerte 
     }
+    public void Jump() {
+        float _tempJumpForce = jumpForce;
+        rb.AddForce(Vector3.up * jumpForce);
+        spammingSpace = true;
 
+        if ( spammingSpace ) {
+            _tempJumpForce -= 1;
+        }
+        if ( ground ) {
+            ground = false;
+        }
+    }
+    public void Roll() {
+        Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime)));
+        rb.AddForce(dashVelocity, ForceMode.VelocityChange);
+    }
+    public void OnCollisionEnter( Collision collision ) {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Level") && !ground ) {
+            ground = true;
+            spammingSpace = false;
+
+        }
+    }
 }
 
 

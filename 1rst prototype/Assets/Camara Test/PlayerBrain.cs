@@ -8,13 +8,12 @@ public class PlayerBrain : MonoBehaviour {
     public float zInput;
     public Movement mvComp;
     public Camera cam;
-
     public void Start() {
         mvComp = GetComponent<Movement>();
         cam = FindObjectOfType<Camera>();
 
     }
-    public void FixedUpdate() {
+    public void FixedUpdate() { //Input Actions
         /*
         if (Input.GetButton("Horizontal")) {
             xInput = Input.GetAxis("Horizontal");
@@ -33,6 +32,16 @@ public class PlayerBrain : MonoBehaviour {
             Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
             //mvComp.TestMoving(forw * zInput + rght * xInput);
             mvComp.TestMoving(forw * zInput + rght * xInput);
+        }
+    }
+    public void Update() {  //Triggered actions 
+        
+    
+        if (Input.GetButton("Jump") && !mvComp.spammingSpace ) {
+            mvComp.Jump();
+        }
+        if ( Input.GetButton("Fire1") ) {
+            mvComp.Roll();
         }
         /*
         _inputX = Input.GetAxis("Horizontal");
