@@ -20,8 +20,26 @@ public class Movement : MonoBehaviour {
         rb.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
     }
     public void Jump() {
+        float _tempJumpForce = jumpForce;
+        rb.AddForce(Vector3.up * jumpForce);
+        spammingSpace = true;
 
+        if ( spammingSpace ) {
+            _tempJumpForce -= 1;
+        }
+        if ( ground ) {
+            ground = false;
+        }
     }
     public void Roll() {
+        Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime)));
+        rb.AddForce(dashVelocity, ForceMode.VelocityChange);
+    }
+    public void OnCollisionEnter( Collision collision ) {
+        if ( collision.gameObject.layer == LayerMask.NameToLayer("Level") && !ground ) {
+            ground = true;
+            spammingSpace = false;
+
+        }
     }
 }

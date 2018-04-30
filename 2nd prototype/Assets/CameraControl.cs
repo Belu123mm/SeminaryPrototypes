@@ -5,29 +5,32 @@ using Cinemachine;
 
 public class CameraControl : MonoBehaviour {
 
-    public float angleYMin = 0.0f;
-    public float angleYMax = 50.0f;
+    public float angleYMin;
+    public float angleYMax;
 
-    public float distance = 5.0f;
+    public float distance;
 
-    public float currentX = 0.0f;
-    public float currentY = 45.0f;
+    public float startX;
+    public float startY;
+
+    [HideInInspector]
+    public float currentX;
+    [HideInInspector]
+    public float currentY;
+
     public float cameraSpeedX;
     public float cameraSpeedY;
 
     public CinemachineVirtualCamera cam;
+
     public void Start() {
         cam = GetComponent<CinemachineVirtualCamera>();
-    }
-
-    private void Update() {
-        currentX += Input.GetAxis("Mouse X");
-        currentY += Input.GetAxis("Mouse Y");
-        currentY = Mathf.Clamp(currentY, angleYMin, angleYMax);
-
+        currentX = startX;
+        currentY = startY;
     }
 
     private void LateUpdate() {
+        currentY = Mathf.Clamp(currentY, angleYMin, angleYMax);
         Vector3 dir = new Vector3(0, 0, distance);
         Quaternion rotation = Quaternion.Euler(currentY * cameraSpeedY , currentX * cameraSpeedX, 0);
         cam.transform.position = cam.LookAt.position + rotation * dir;
