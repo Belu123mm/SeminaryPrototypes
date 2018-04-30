@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlayerBrain : MonoBehaviour {
     //Aca se colocan los inputs y se llama a movement (mvcomp) y se ejecutan esas cosas. 
+    [Header("Entradas")]
     public float xInput;
     public float zInput;
     public float mouseX;
     public float mouseY;
+    [Header("Componentes")]
     public Movement mvComp;
     public CameraControl cam;
+    public AllThings temp;
     public void Start() {
         mvComp = GetComponent<Movement>();
         cam = FindObjectOfType<CameraControl>();
@@ -22,7 +25,7 @@ public class PlayerBrain : MonoBehaviour {
             zInput = Input.GetAxis("Vertical");
             Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
-            mvComp.Move(forw * zInput + rght * xInput);            
+            mvComp.Move(forw * zInput + rght * xInput);
         }
 
     }
@@ -43,6 +46,18 @@ public class PlayerBrain : MonoBehaviour {
         if ( Input.GetButton("Fire1") ) {
             mvComp.Roll();
         }
+        if ( Input.GetButton("Fire2") ) {
+            temp.Attack();
+        }
+        if ( Input.GetButton("Fire3") ) {
+            xInput = Input.GetAxis("Horizontal");
+            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
+            zInput = Input.GetAxis("Vertical");
+            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+
+
+            mvComp.Running(forw * zInput + rght * xInput);
+        }
     }
 }

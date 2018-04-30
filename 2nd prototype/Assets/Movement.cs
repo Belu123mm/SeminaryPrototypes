@@ -2,44 +2,52 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+
 public class Movement : MonoBehaviour {
+    public Rigidbody Rigidbody;
+    [Header("Velocidades")]
     public float movementSpeed;
-    public float rotationSpeed;     //No se usa
+    [Range(1f, 3f)]
+    public float runningSpeed;
+    [Range(0f, 1f)]
+    public float rotationSpeed;
+    [Header("Fuerzas")]
     public float rollForce;
     public float jumpForce;
-    public float dashDistance;
+    public float rollDistance;
+    [Header("Datos Binarios")]
     public bool ground;
     public bool spammingSpace;
 
-    public Rigidbody rb;
     public void Start() {
-        rb = GetComponent<Rigidbody>();
+        Rigidbody = GetComponent<Rigidbody>();
     }
     public void Move( Vector3 direc ) {
-        rb.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
-        rb.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+        Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
+        Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
     }
     public void Jump() {
-        float _tempJumpForce = jumpForce;
-        rb.AddForce(Vector3.up * jumpForce);
+        Rigidbody.AddForce(Vector3.up * jumpForce);
         spammingSpace = true;
 
-        if ( spammingSpace ) {
-            _tempJumpForce -= 1;
-        }
         if ( ground ) {
             ground = false;
         }
     }
-    public void Roll() {
-        Vector3 dashVelocity = Vector3.Scale(transform.forward, dashDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * rb.drag + 1)) / -Time.deltaTime)));
-        rb.AddForce(dashVelocity, ForceMode.VelocityChange);
+    public void Roll() { //Esto lo hace una vez asi que no hace falta que se guarde en variablez
+        Vector3 _rollVelocity = Vector3.Scale(transform.forward, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
+        Rigidbody.AddForce(_rollVelocity, ForceMode.VelocityChange);
+    }
+    public void Running( Vector3 direc ) {
+        Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
+        Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * runningSpeed * Time.fixedDeltaTime));
+
     }
     public void OnCollisionEnter( Collision collision ) {
         if ( collision.gameObject.layer == LayerMask.NameToLayer("Level") && !ground ) {
             ground = true;
             spammingSpace = false;
-
         }
     }
 }

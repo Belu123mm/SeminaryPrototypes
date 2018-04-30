@@ -4,24 +4,20 @@ using UnityEngine;
 using Cinemachine;
 
 public class CameraControl : MonoBehaviour {
-
+    public float distance;
+    public CinemachineVirtualCamera cam;
+    [Header("Rangos")]
     public float angleYMin;
     public float angleYMax;
-
-    public float distance;
-
     public float startX;
     public float startY;
+    public float cameraSpeedX;
+    public float cameraSpeedY;
 
     [HideInInspector]
     public float currentX;
     [HideInInspector]
     public float currentY;
-
-    public float cameraSpeedX;
-    public float cameraSpeedY;
-
-    public CinemachineVirtualCamera cam;
 
     public void Start() {
         cam = GetComponent<CinemachineVirtualCamera>();
