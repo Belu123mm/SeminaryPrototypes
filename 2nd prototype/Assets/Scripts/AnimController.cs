@@ -23,8 +23,7 @@ public class AnimController : MonoBehaviour {
         character.SetBool("attack",attack);
         character.SetBool("roll", roll);
         character.SetBool("hit", getHit);
-        if(death)
-        character.SetTrigger("death");
+        character.SetBool("death",death);
         if ( run )
             character.speed = 1.5f;
         else
