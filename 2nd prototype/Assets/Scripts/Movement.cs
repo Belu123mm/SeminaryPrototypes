@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour {
     public void Move( Vector3 direc ) {
         Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+
     }
     public void Jump() {
         Rigidbody.AddForce(Vector3.up * jumpForce);
@@ -49,5 +50,8 @@ public class Movement : MonoBehaviour {
             ground = true;
             spammingSpace = false;
         }
+    }
+    public void Stop() {
+        Rigidbody.velocity = Vector3.zero;
     }
 }

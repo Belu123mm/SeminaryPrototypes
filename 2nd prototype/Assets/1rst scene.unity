@@ -1187,6 +1187,10 @@ Prefab:
       propertyPath: m_Name
       value: AllAnimations (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 224f0439cebf95f4cb8c955324fc09ce, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 9cffd055abeb3754389071fedaa97be2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 224f0439cebf95f4cb8c955324fc09ce, type: 3}
   m_IsPrefabParent: 0
@@ -1204,6 +1208,7 @@ GameObject:
   - component: {fileID: 2050712260}
   - component: {fileID: 2050712265}
   - component: {fileID: 2050712266}
+  - component: {fileID: 2050712267}
   m_Layer: 0
   m_Name: Avatar
   m_TagString: Untagged
@@ -1249,6 +1254,7 @@ MonoBehaviour:
   mvComp: {fileID: 0}
   cam: {fileID: 0}
   temp: {fileID: 0}
+  animC: {fileID: 0}
 --- !u!65 &2050712262
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1315,4 +1321,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: addc03dcc1c5cd342aa5d0c82c9367f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 0
+  animC: {fileID: 0}
+  life: 10
+--- !u!114 &2050712267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2050712259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58385052eff1ea3438938a1340d91df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 0}
+  walk: 0
+  jump: 0
+  run: 0
+  attack: 0
+  roll: 0
+  death: 0
+  getHit: 0
