@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class AllThings : MonoBehaviour {
     public AnimController animC;
+    public ISpell spells;
     public int life;
 	// Use this for initialization
 	void Start () {
         animC = GetComponent<AnimController>();
+        spells = new SpringSpell(); //Asi seteo el default
 
     }
 
@@ -25,6 +27,6 @@ public class AllThings : MonoBehaviour {
         }
     }
     public void Attack() {
-        print("ATTACK >:C");
+        spells.Shoot();
     }
 }

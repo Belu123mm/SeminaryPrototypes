@@ -12,12 +12,12 @@ public class PlayerBrain : MonoBehaviour {
     [Header("Componentes")]
     public Movement mvComp;
     public CameraControl cam;
-    public AllThings temp;
+    public Powers pow;
     public AnimController animC;
     public void Start() {
         mvComp = GetComponent<Movement>();
         cam = FindObjectOfType<CameraControl>();
-        temp = GetComponent<AllThings>();
+        pow = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
     }
     public void FixedUpdate() { //Input Actions
@@ -37,6 +37,7 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( Input.GetButton("Fire2") ) {
             mvComp.Stop();
+            pow.Shoot();
             animC.attack = true;
             //wait until end animation 
         }
@@ -75,5 +76,18 @@ public class PlayerBrain : MonoBehaviour {
             animC.run = true;
         } else
             animC.run = false;
+        if (Input.GetButton("one")) {
+            pow.SetPowerType("spring");
+        }
+        if ( Input.GetButton("two") ) {
+            pow.SetPowerType("summer");
+        }
+        if ( Input.GetButton("three") ) {
+            pow.SetPowerType("fall");
+        }
+        if ( Input.GetButton("four") ) {
+            pow.SetPowerType("winter");
+        }
+
     }
 }
