@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBrain : MonoBehaviour {
+public class PlayerBrain : MonoBehaviour, IObserver {
     //Aca se colocan los inputs y se llama a movement (mvcomp) y se ejecutan esas cosas. 
     [Header("Entradas")]
     public float xInput;
@@ -11,22 +11,27 @@ public class PlayerBrain : MonoBehaviour {
     public float mouseY;
     [Header("Componentes")]
     public Movement mvComp;
-    public CameraControl cam;
-    public Powers pow;
+    public CameraControl currentCam;
+    public NormalCamera normalCamera;
+    public CombatCamera CombatCamera;
+    public Powers powComp;
     public AnimController animC;
-    public void Start() {
+    public bool isCombat;
+    public Aim aimComp;
+    public void Awake() {
         mvComp = GetComponent<Movement>();
-        cam = FindObjectOfType<CameraControl>();
-        pow = GetComponent<Powers>();
+        powComp = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
+        aimComp = GetComponent<Aim>();
+        aimComp.Subscribe(this);
     }
     public void FixedUpdate() { //Input Actions
         if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
             xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+            Vector3 forw = new Vector3(currentCam.transform.forward.x, 0, currentCam.transform.forward.z);
 
             zInput = Input.GetAxis("Vertical");
-            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+            Vector3 rght = new Vector3(currentCam.transform.right.x, 0, currentCam.transform.right.z);
 
             mvComp.Move(forw * zInput + rght * xInput);
             animC.walk = true;
@@ -37,7 +42,7 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( Input.GetButton("Fire2") ) {
             mvComp.Stop();
-            pow.Shoot();
+            powComp.Shoot();
             animC.attack = true;
             //wait until end animation 
         }
@@ -46,11 +51,13 @@ public class PlayerBrain : MonoBehaviour {
         }
         if ( Input.GetAxis("Mouse X") != 0 ) {
             mouseX = Input.GetAxis("Mouse X");
-            cam.currentX += mouseX;
+            currentCam.currentX += mouseX;
+
+
         }
         if ( Input.GetAxis("Mouse Y") != 0 ) {
             mouseY = Input.GetAxis("Mouse Y");
-            cam.currentY += mouseY;
+            currentCam.currentY += mouseY;
         }
 
         if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
@@ -66,10 +73,10 @@ public class PlayerBrain : MonoBehaviour {
             animC.roll = false;
         if ( Input.GetButton("Fire3") ) {
             xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+            Vector3 forw = new Vector3(currentCam.transform.forward.x, 0, currentCam.transform.forward.z);
 
             zInput = Input.GetAxis("Vertical");
-            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+            Vector3 rght = new Vector3(currentCam.transform.right.x, 0, currentCam.transform.right.z);
 
 
             mvComp.Running(forw * zInput + rght * xInput);
@@ -77,17 +84,31 @@ public class PlayerBrain : MonoBehaviour {
         } else
             animC.run = false;
         if (Input.GetButton("one")) {
-            pow.SetPowerType("spring");
+            powComp.SetPowerType("spring");
         }
         if ( Input.GetButton("two") ) {
-            pow.SetPowerType("summer");
+            powComp.SetPowerType("summer");
         }
         if ( Input.GetButton("three") ) {
-            pow.SetPowerType("fall");
+            powComp.SetPowerType("fall");
         }
         if ( Input.GetButton("four") ) {
-            pow.SetPowerType("winter");
+            powComp.SetPowerType("winter");
         }
-
+        if ( Input.GetButtonDown("E") ) {
+            isCombat = !isCombat;
+            if ( isCombat )
+                aimComp.Combat();
+            if ( !isCombat )
+                aimComp.Normal();
+        }
+    }
+    public void OnNotify(string str) {
+        if (str == "normal" ) {
+            currentCam = normalCamera;
+        }
+        if (str == "combat" ) {
+            currentCam = CombatCamera;
+        }
     }
 }

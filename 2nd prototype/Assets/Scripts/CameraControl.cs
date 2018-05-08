@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraControl : MonoBehaviour {
+public class CameraControl : MonoBehaviour, IObserver{
     public float distance;
     public CinemachineVirtualCamera cam;
+    public Aim aimCont;
     [Header("Rangos")]
     public float angleYMin;
     public float angleYMax;
@@ -13,22 +14,20 @@ public class CameraControl : MonoBehaviour {
     public float startY;
     public float cameraSpeedX;
     public float cameraSpeedY;
+    public string state;
+    public int value;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float currentX;
-    [HideInInspector]
+    //[HideInInspector]
     public float currentY;
 
-    public void Start() {
+    public virtual void Start() {        
         cam = GetComponent<CinemachineVirtualCamera>();
-        currentX = startX;
-        currentY = startY;
+        aimCont = FindObjectOfType<Aim>();
+        aimCont.Subscribe(this);
     }
-
-    private void LateUpdate() {
-        currentY = Mathf.Clamp(currentY, angleYMin, angleYMax);
-        Vector3 dir = new Vector3(0, 0, distance);
-        Quaternion rotation = Quaternion.Euler(currentY * cameraSpeedY , currentX * cameraSpeedX, 0);
-        cam.transform.position = cam.LookAt.position + rotation * dir;
+    public void OnNotify(string st) {
+        state = st;
     }
 }
