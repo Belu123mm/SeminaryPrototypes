@@ -13,7 +13,6 @@ public class Movement : MonoBehaviour {
     [Range(0f, 1f)]
     public float rotationSpeed;
     [Header("Fuerzas")]
-    public float rollForce;
     public float jumpForce;
     public float rollDistance;
     [Header("Datos Binarios")]
