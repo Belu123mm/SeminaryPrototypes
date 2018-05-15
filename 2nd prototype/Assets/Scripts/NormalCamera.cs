@@ -20,3 +20,4 @@ public class NormalCamera : CameraControl{
         cam.transform.position = cam.LookAt.position + rotation * dir;
     }
 }
+

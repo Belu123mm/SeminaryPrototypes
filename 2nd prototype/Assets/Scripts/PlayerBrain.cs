@@ -34,18 +34,18 @@ public class PlayerBrain : MonoBehaviour, IObserver {
             Vector3 rght = new Vector3(currentCam.transform.right.x, 0, currentCam.transform.right.z);
 
             mvComp.Move(forw * zInput + rght * xInput);
-            //animC.walk = true;
-        } //else            animC.walk = false;
+            animC.walk = true;
+        } else            animC.walk = false;
     }
     public void Update() {  //Triggered actions 
 
         if ( Input.GetButton("Fire2") ) {
             mvComp.Stop();
             powComp.Shoot();
-            //animC.attack = true;
+            animC.attack = true;
             //wait until end animation 
         } else {
-            //animC.attack = false;
+            animC.attack = false;
         }
         if ( Input.GetAxis("Mouse X") != 0 ) {
             mouseX = Input.GetAxis("Mouse X");
@@ -60,15 +60,15 @@ public class PlayerBrain : MonoBehaviour, IObserver {
 
         if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
             mvComp.Jump();
-            //animC.jump = true;
+            animC.jump = true;
         } else {
-            //animC.jump = false;
+            animC.jump = false;
         }
         if ( Input.GetButton("Fire1") ) {
             mvComp.Roll();
-            //animC.roll = true;
+            animC.roll = true;
         } else
-        //animC.roll = false;
+        animC.roll = false;
         if ( Input.GetButton("Fire3") ) {
             xInput = Input.GetAxis("Horizontal");
             Vector3 forw = new Vector3(currentCam.transform.forward.x, 0, currentCam.transform.forward.z);
@@ -78,9 +78,9 @@ public class PlayerBrain : MonoBehaviour, IObserver {
 
 
             mvComp.Running(forw * zInput + rght * xInput);
-            //animC.run = true;
+            animC.run = true;
         } else
-        //animC.run = false;
+        animC.run = false;
         if ( Input.GetButton("one")) {
             powComp.SetPowerType("spring");
         }
