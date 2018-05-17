@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBrain : MonoBehaviour, IObserver {
+public class PlayerBrain : MonoBehaviour { 
     //Aca se colocan los inputs y se llama a movement (mvcomp) y se ejecutan esas cosas. 
     [Header("Entradas")]
     public float xInput;
@@ -11,9 +11,8 @@ public class PlayerBrain : MonoBehaviour, IObserver {
     public float mouseY;
     [Header("Componentes")]
     public Movement mvComp;
-    public CameraControl currentCam;
-    public NormalCamera normalCamera;
-    public CombatCamera CombatCamera;
+    public NewTargetedCamera currentCam;
+    //public CameraControl currentCam;
     public Powers powComp;
     public AnimController animC;
     public bool isCombat;
@@ -23,15 +22,14 @@ public class PlayerBrain : MonoBehaviour, IObserver {
         powComp = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
         aimComp = GetComponent<Aim>();
-        aimComp.Subscribe(this);
+
     }
     public void FixedUpdate() { //Input Actions
         if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
             xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3(currentCam.transform.forward.x, 0, currentCam.transform.forward.z);
-
+            Vector3 forw = new Vector3((currentCam.cam.m_Follow.position - currentCam.transform.position).normalized.x, 0, (currentCam.cam.m_Follow.position - currentCam.transform.position).normalized.z);
             zInput = Input.GetAxis("Vertical");
-            Vector3 rght = new Vector3(currentCam.transform.right.x, 0, currentCam.transform.right.z);
+            Vector3 rght = Vector3.Cross(currentCam.cam.m_Follow.up,(currentCam.cam.m_Follow.position - currentCam.transform.position).normalized);
 
             mvComp.Move(forw * zInput + rght * xInput);
             animC.walk = true;
@@ -47,6 +45,7 @@ public class PlayerBrain : MonoBehaviour, IObserver {
         } else {
             animC.attack = false;
         }
+        /*
         if ( Input.GetAxis("Mouse X") != 0 ) {
             mouseX = Input.GetAxis("Mouse X");
             currentCam.currentX += mouseX;
@@ -57,7 +56,7 @@ public class PlayerBrain : MonoBehaviour, IObserver {
             mouseY = Input.GetAxis("Mouse Y");
             currentCam.currentY += mouseY;
         }
-
+        */
         if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
             mvComp.Jump();
             animC.jump = true;
@@ -100,7 +99,7 @@ public class PlayerBrain : MonoBehaviour, IObserver {
             if ( !isCombat )
                 aimComp.Normal();
         }
-    }
+    }/*
     public void OnNotify(string str) {
         if (str == "normal" ) {
             currentCam = normalCamera;
@@ -109,4 +108,5 @@ public class PlayerBrain : MonoBehaviour, IObserver {
             currentCam = CombatCamera;
         }
     }
+    */
 }
