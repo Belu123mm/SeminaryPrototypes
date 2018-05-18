@@ -12,6 +12,8 @@ public class FreeCamera : ICamera {
     public void LoadData(CinemachineFreeLook fl,Transform f,Transform l) {
         freeLook = fl;
         follow = f;
+        look = l;
+        Debug.Log(look);
         freeLook.m_Follow = follow;
         freeLook.m_LookAt = look;
     }

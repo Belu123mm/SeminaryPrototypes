@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4451208, g: 0.49472457, b: 0.57379854, a: 1}
+  m_IndirectSpecularColor: {r: 0.44512075, g: 0.4947238, b: 0.5737974, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1095,7 +1095,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 993017424}
-  m_LocalRotation: {x: 0.16037503, y: 0.00000026977878, z: -0.00000004383315, w: 0.9870562}
+  m_LocalRotation: {x: 0.16037513, y: 0.00000026977915, z: -0.00000004383326, w: 0.98705614}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1209,7 +1209,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1066601255}
-  m_LocalRotation: {x: 0.17237824, y: 0.0000002692257, z: -0.000000047113684, w: 0.9850309}
+  m_LocalRotation: {x: 0.17237858, y: 0.0000002692259, z: -0.00000004711379, w: 0.9850308}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1294,8 +1294,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1097771420}
-  m_LocalRotation: {x: 0.19611613, y: 0, z: 0, w: 0.9805807}
-  m_LocalPosition: {x: 19.26, y: 4.386, z: 20.51}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2080,7 +2080,7 @@ MonoBehaviour:
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
   m_Priority: 15
-  m_LookAt: {fileID: 2050712264}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_CommonLens: 1
   m_Lens:
@@ -2140,13 +2140,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b341b548d04821848ac5ba7816fb29d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  follow: {fileID: 2050712264}
+  look: {fileID: 2050712264}
+  cam: {fileID: 1801569808}
   aimCont: {fileID: 0}
   startX: 0
   startY: 0
   middlePoint: {fileID: 0}
   avatar: {fileID: 2050712264}
   lookTargets: []
+  UIContr: {fileID: 0}
+  actualSeason: 
 --- !u!4 &1801569810
 Transform:
   m_ObjectHideFlags: 0

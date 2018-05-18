@@ -29,6 +29,8 @@ public class NewTargetedCamera : MonoBehaviour {
 
     public void Start()
     {
+        freeCamera = new FreeCamera();
+        targetCamera = new TargetCamera();
         freeCamera.LoadData(cam, follow, look);
 
 
