@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CameraControl : MonoBehaviour, IObserver{
+public class CameraControl : MonoBehaviour{
     public float distance;
     public CinemachineVirtualCamera cam;
     public Aim aimCont;
@@ -25,7 +25,7 @@ public class CameraControl : MonoBehaviour, IObserver{
     public virtual void Start() {        
         cam = GetComponent<CinemachineVirtualCamera>();
         aimCont = FindObjectOfType<Aim>();
-        aimCont.Subscribe(this);
+
     }
     public void OnNotify(string st) {
         state = st;

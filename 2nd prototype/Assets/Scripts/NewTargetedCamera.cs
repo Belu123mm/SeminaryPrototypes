@@ -7,75 +7,98 @@ using Cinemachine;
 public class NewTargetedCamera : MonoBehaviour {
 
     public ICamera currentCamera;
-    public ICamera freeCamera,targetCamera;
-    public Transform follow, look;
-
+    public ICamera freeCamera, targetCamera;
+    public Transform follow, look, target;
     public CinemachineFreeLook cam;
-    public Aim aimCont;
-    [Header("Rangos")]
-    public float startX;
-    public float startY;
-    //public float cameraSpeedX;
-    //public float cameraSpeedY;
-    public Transform middlePoint;
-    public Transform avatar;
+    public bool free;
 
-    //[HideInInspector]
-    //public float currentX;
-    //[HideInInspector]
-    //public float currentY;
-    public List<Transform> lookTargets = new List<Transform>();
+    public Vector3 _dirToTarget;
+    private float _angleToTarget;
+    private float _distanceToTarget;
+    public float viewAngle;
+    public float viewDistance;
 
 
-    public void Start()
-    {
+
+
+    public void Start() {
+        cam = GetComponent<CinemachineFreeLook>();
+
         freeCamera = new FreeCamera();
         targetCamera = new TargetCamera();
-        freeCamera.LoadData(cam, follow, look);
 
-
-        //cam.m_Follow = follow;
-        cam = GetComponent<CinemachineFreeLook>();
-        aimCont = FindObjectOfType<Aim>();
-        //currentX = startX;
-        //currentY = startY;
-        Debug.Log(cam.GetRig(0).GetCinemachineComponent<CinemachineComposer>().m_SoftZoneHeight);
-
-
-
-
-        //AddTarget(avatar);
-        cam.m_Follow = avatar;
+        CallTargetedCamera(follow);
     }
-    private void LateUpdate()
-    {
-        //cam.m_LookAt = lookTarget();
+    private void LateUpdate() {
+        Aim();
+        currentCamera.OnLateUpdate();
     }
 
-    public ISpell spells;
-    public UIController UIContr;
-    public string actualSeason;
-    public Dictionary<string, ISpell> spellInterface;
-    public void Starter() {
-        spells = new FallSpell(); //Asi seteo el default
-        spellInterface = new Dictionary<string, ISpell>();
-        UIContr = FindObjectOfType<UIController>();
-        spellInterface.Add("spring", new SpringSpell());
-        spellInterface.Add("summer", new SummerSpell());
-        spellInterface.Add("fall", new FallSpell());
-        spellInterface.Add("winter", new WinterSpell());
+    public void CallTargetedCamera( Transform l ) {
+        currentCamera = targetCamera;
+        currentCamera.LoadData(cam, follow, l);
+        currentCamera.LoadTop(4.5f, 4.5f, 0.35f, 0.9f, 0.7f);
+        currentCamera.LoadMid(2.5f, 5, 0.3f, 0.1f, 0.7f);
+        currentCamera.LoadBottom(1.5f,6,0.28f,0.9f,0.7f);
+
     }
-    public void Shoot() {
-        spells.Shoot();
+    public void CallFreeCamera() {
+        currentCamera = freeCamera;
+        print(look);
+        currentCamera.LoadData(cam, follow, look);
+        currentCamera.LoadTop(0.5f, 6, 0.5f, 0.026f, 0.04f);
+        currentCamera.LoadMid(2.5f, 6, 0.56f, 0.023f, 0.036f);
+        currentCamera.LoadBottom(0.46f, 6, 0.6f, 0.023f, 0.040f);
+
     }
-    public void PowerShoot() {
-        spells.PowerShoot();
+
+    public void Aim() {
+        _dirToTarget = (target.position - follow.transform.position).normalized;
+        _angleToTarget = Vector3.Angle(follow.transform.forward, _dirToTarget);
+        _distanceToTarget = Vector3.Distance(follow.transform.position, target.transform.position);
+        if ( _angleToTarget <= viewAngle && _distanceToTarget <= viewDistance ) {
+            free = true;
+        } else
+        free = false;
     }
-    public void SetPowerType( string newSeason ) {
-        actualSeason = newSeason;
-        spells = spellInterface [ actualSeason ];
-        UIContr.SetUI(spells.ReturnSeasonID());
+
+
+    //La dirección desde un punto a otro es: Posición Final - Posición Inicial NORMALIZADA
+
+    //Vector3.Angle nos da el ángulo entre dos direcciones
+
+    //Vector3.Distance nos da la distancia entre dos posiciones
+    //Es lo mismo que hacer: Posición Final - Posición Inicial y sacar la magnitud del vector
+    //_distanceToTarget = (target.transform.position - transform.position).magnitude;
+
+
+    //Si entra en el angulo y en el rango de vision 
+
+    void OnDrawGizmos() {
+        /*
+        Dibujamos una línea desde el NPC hasta el enemigo.
+        Va a ser de color verde si lo esta viendo, roja sino.
+        */
+        Gizmos.DrawLine(transform.position, target.transform.position);
+
+        /*
+        Dibujamos los límites del campo de visión.
+        */
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, viewDistance);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawLine(transform.position, transform.position + (transform.forward * viewDistance));
+
+        Vector3 rightLimit = Quaternion.AngleAxis(viewAngle, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (rightLimit * viewDistance));
+
+        Vector3 leftLimit = Quaternion.AngleAxis(-viewAngle, transform.up) * transform.forward;
+        Gizmos.DrawLine(transform.position, transform.position + (leftLimit * viewDistance));
     }
+
+
+
 
 }
 

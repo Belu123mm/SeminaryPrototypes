@@ -92,13 +92,6 @@ public class PlayerBrain : MonoBehaviour {
         if ( Input.GetButton("four") ) {
             powComp.SetPowerType("winter");
         }
-        if ( Input.GetButtonDown("E") ) {
-            isCombat = !isCombat;
-            if ( isCombat )
-                aimComp.Combat();
-            if ( !isCombat )
-                aimComp.Normal();
-        }
     }/*
     public void OnNotify(string str) {
         if (str == "normal" ) {

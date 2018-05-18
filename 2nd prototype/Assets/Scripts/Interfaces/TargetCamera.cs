@@ -12,6 +12,7 @@ public class TargetCamera : ICamera {
     public void LoadData( CinemachineFreeLook fl, Transform f, Transform l ) {
         freeLook = fl;
         follow = f;
+        look = l;
         freeLook.m_Follow = follow;
         freeLook.m_LookAt = look;
         cTop = freeLook.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
@@ -49,6 +50,7 @@ public class TargetCamera : ICamera {
 
     }
     public void OnLateUpdate() {
+        Debug.Log("target");
         //Clamp, y cosas
     }
 
