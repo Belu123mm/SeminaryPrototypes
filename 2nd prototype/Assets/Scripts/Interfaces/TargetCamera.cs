@@ -8,8 +8,10 @@ public class TargetCamera : ICamera {
     public Transform follow;
     public Transform look;
     public CinemachineComposer cTop, cMid, cBottom;
+    public float maxDistance;
 
     public void LoadData( CinemachineFreeLook fl, Transform f, Transform l ) {
+        Debug.Log("target");
         freeLook = fl;
         follow = f;
         look = l;
@@ -18,6 +20,8 @@ public class TargetCamera : ICamera {
         cTop = freeLook.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
         cMid = freeLook.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
         cBottom = freeLook.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
+        freeLook.m_XAxis.m_InputAxisName = "";
+        freeLook.m_YAxis.m_InputAxisName = "";
 
         //freeLook.GetRig(0).GetCinemachineComponent<CinemachineComposer>().m_SoftZoneHeight;
     }
@@ -50,7 +54,8 @@ public class TargetCamera : ICamera {
 
     }
     public void OnLateUpdate() {
-        Debug.Log("target");
+        freeLook.m_XAxis.Value = Vector3.Angle(follow.position,look.position); //angulo
+        freeLook.m_YAxis.Value = Vector3.Distance(look.position,follow.position) / maxDistance;
         //Clamp, y cosas
     }
 

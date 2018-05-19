@@ -27,10 +27,24 @@ public class NewTargetedCamera : MonoBehaviour {
         freeCamera = new FreeCamera();
         targetCamera = new TargetCamera();
 
-        CallTargetedCamera(follow);
+        CallFreeCamera(); 
     }
     private void LateUpdate() {
-        Aim();
+        _angleToTarget = Vector3.Angle(follow.transform.forward, _dirToTarget);
+        _distanceToTarget = Vector3.Distance(follow.transform.position, target.transform.position);
+        if (_angleToTarget <= viewAngle && _distanceToTarget <= viewDistance && !free)
+        {
+            print("trueaim");
+            CallTargetedCamera(target);
+            free = true;
+        }
+        else if (_angleToTarget >= viewAngle && _distanceToTarget >= viewDistance && free)
+        {
+            print("falseaim");
+            CallFreeCamera();
+            free = false;
+
+        }
         currentCamera.OnLateUpdate();
     }
 
@@ -40,26 +54,33 @@ public class NewTargetedCamera : MonoBehaviour {
         currentCamera.LoadTop(4.5f, 4.5f, 0.35f, 0.9f, 0.7f);
         currentCamera.LoadMid(2.5f, 5, 0.3f, 0.1f, 0.7f);
         currentCamera.LoadBottom(1.5f,6,0.28f,0.9f,0.7f);
+        
 
     }
     public void CallFreeCamera() {
         currentCamera = freeCamera;
-        print(look);
         currentCamera.LoadData(cam, follow, look);
-        currentCamera.LoadTop(0.5f, 6, 0.5f, 0.026f, 0.04f);
+        currentCamera.LoadTop(4.5f, 6, 0.5f, 0.026f, 0.04f);
         currentCamera.LoadMid(2.5f, 6, 0.56f, 0.023f, 0.036f);
         currentCamera.LoadBottom(0.46f, 6, 0.6f, 0.023f, 0.040f);
-
     }
 
     public void Aim() {
-        _dirToTarget = (target.position - follow.transform.position).normalized;
         _angleToTarget = Vector3.Angle(follow.transform.forward, _dirToTarget);
         _distanceToTarget = Vector3.Distance(follow.transform.position, target.transform.position);
-        if ( _angleToTarget <= viewAngle && _distanceToTarget <= viewDistance ) {
+        if (_angleToTarget <= viewAngle && _distanceToTarget <= viewDistance && !free)
+        {
+            print("trueaim");
+            CallTargetedCamera(target);
             free = true;
-        } else
+        }
+        else if (_angleToTarget >= viewAngle && _distanceToTarget >= viewDistance && free)
+        {
+            print("falseaim");
+            CallFreeCamera();
         free = false;
+
+        }
     }
 
 

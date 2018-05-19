@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class FreeCamera : ICamera {
+public class FreeCamera : ICamera  {
     public CinemachineFreeLook freeLook;
     public Transform follow;
     public Transform look;
     public CinemachineComposer top, mid, bottom;
 
     public void LoadData(CinemachineFreeLook fl,Transform f,Transform l) {
+        Debug.Log("frie");
         freeLook = fl;
         follow = f;
         look = l;
-        Debug.Log(look);
         freeLook.m_Follow = follow;
         freeLook.m_LookAt = look;
         top = freeLook.GetRig(0).AddCinemachineComponent<CinemachineComposer>();
