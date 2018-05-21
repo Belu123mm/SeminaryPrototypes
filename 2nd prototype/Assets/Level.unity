@@ -1230,7 +1230,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 452378412}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.17, y: 16.7, z: 26.63}
+  m_LocalPosition: {x: -20.17, y: 1.547, z: 26.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1745183668}
@@ -1269,7 +1269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ccfdf3593a4644baa6889629255441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: 
 --- !u!114 &452378416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,15 +2753,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   follow: {fileID: 452378413}
   look: {fileID: 452378413}
+  target: {fileID: 0}
   cam: {fileID: 885345724}
-  aimCont: {fileID: 0}
-  startX: 0
-  startY: 0
-  middlePoint: {fileID: 0}
-  avatar: {fileID: 452378413}
-  lookTargets: []
-  UIContr: {fileID: 0}
-  actualSeason: 
+  free: 0
+  _dirToTarget: {x: 0, y: 0, z: 0}
+  viewAngle: 0
+  viewDistance: 0
 --- !u!114 &885345724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3645,8 +3641,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1133452155}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.19611612, y: 0.0000000068651578, z: -0.0000000013727864,
+    w: 0.9805807}
+  m_LocalPosition: {x: 19.260002, y: 4.3860016, z: 20.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
