@@ -18,14 +18,14 @@ public class NewTargetedCamera : MonoBehaviour {
     }
     public void Update() {
         if ( active ) {
-            cam.m_XAxis.Value = Vector3.Angle(follow.position, look.position) + 180; //angulo
+            cam.m_XAxis.Value = Vector3.Angle(Vector3.forward,new Vector3 (follow.position.x - look.position.x,0, follow.position.z - look.position.z)) + 180; //angulo
             cam.m_YAxis.Value = Vector3.Distance(look.position, follow.position) / maxDistance;
         }
     }
-    public void SetCamera( Transform _look, float dist ) {
+    public void On( Transform _look, float dist ) {
         follow = cam.Follow;
-        look = cam.LookAt;
         cam.m_LookAt = _look;
+        look = cam.LookAt;
         maxDistance = dist;
         cam.Priority = 15;
         cam.m_XAxis.m_InputAxisName = "";

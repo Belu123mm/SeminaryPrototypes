@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ModelPlayer {
+    //mono
     public Rigidbody Rigidbody;
     public Transform Transform;
     [Header("Velocidades")]
@@ -17,12 +19,14 @@ public class ModelPlayer {
     [Header("Datos Binarios")]
     public bool ground;
     public bool spammingSpace;
+    public TargetedCamera camera;
     public int life;
 
     public ModelPlayer( Rigidbody rb, Transform tr) {
         Rigidbody = rb;
         Transform = tr;
     }
+
     public void Move( Vector3 direc ) {
         Rigidbody.MoveRotation(Quaternion.Slerp(Transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
         Rigidbody.MovePosition(Transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
@@ -44,8 +48,5 @@ public class ModelPlayer {
         Rigidbody.MovePosition(Transform.position + (direc * movementSpeed * runningSpeed * Time.fixedDeltaTime));
 
     }
-
-    //OnCollisionEnter y Stop
-
 
 }
