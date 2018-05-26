@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(SphereCollider))]
 public class Enemy : MonoBehaviour {
 
     public float distance;
@@ -14,13 +13,14 @@ public class Enemy : MonoBehaviour {
     }
     public void Update() {
         float dist = Vector3.Distance(this.transform.position, avatar.transform.position);
+
         if (dist < distance && !added) {
             added = true;
             avatar.AddEnemy(this);
         }else if (dist > distance && added ) {
             added = false;
             avatar.RemoveEnemy(this);
+
         }
     }
-
 }

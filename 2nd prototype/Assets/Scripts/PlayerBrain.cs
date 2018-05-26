@@ -57,6 +57,10 @@ public class PlayerBrain : MonoBehaviour {
             currentCam.currentY += mouseY;
         }
         */
+        if ( Input.GetButtonDown("Click") ) {
+            aimComp.Targeted();
+            print("ray");
+        }
         if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
             mvComp.Jump();
             animC.jump = true;

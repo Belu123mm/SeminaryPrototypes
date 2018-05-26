@@ -33,10 +33,10 @@ public class NewTargetedCamera : MonoBehaviour {
         active = true;
     }
     public void Off() {
-        cam.LookAt = follow;
+        //cam.LookAt = follow;
         cam.Priority = 5;
-        cam.m_XAxis.m_InputAxisName = "Mouse X";
-        cam.m_YAxis.m_InputAxisName = "Mouse Y";
+        //cam.m_XAxis.m_InputAxisName = "Mouse X";
+        //cam.m_YAxis.m_InputAxisName = "Mouse Y";
         active = false;
     }
 }
