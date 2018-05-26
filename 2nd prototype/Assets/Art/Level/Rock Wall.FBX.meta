@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f104623d8d12f8d4782ad958948275c4
-timeCreated: 1526613412
+guid: 57aec87411a16f345927f672aab8fb3a
+timeCreated: 1527295969
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,8 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane001
+    4300000: RockWall
+    7400000: Take 001
     9500000: //RootNode
   externalObjects: {}
   materials:

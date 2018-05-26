@@ -1,16 +1,24 @@
 fileFormatVersion: 2
-guid: 7a9ecd27dbc6d3c4cbf0c3c2b0e9291a
-timeCreated: 1526616682
+guid: 566831c7f20cbdc4b8ebb8c14528bc73
+timeCreated: 1527363588
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: Inf
+    100002: //RootNode
+    100004: Object009
+    400000: Inf
+    400002: //RootNode
+    400004: Object009
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Plane003
+    2300000: Inf
+    2300002: Object009
+    3300000: Inf
+    3300002: Object009
+    4300000: Object009
+    4300002: Inf
+    9500000: //RootNode
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -85,7 +93,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
