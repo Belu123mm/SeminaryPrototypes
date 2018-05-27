@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: aa5134e9a81dc454fa1af71430fd4e69
-timeCreated: 1527392741
+guid: 4a847335b7bfa3344acd2ab7834912c8
+timeCreated: 1527392754
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Terrain
+    4300000: Rock
     9500000: //RootNode
   externalObjects: {}
   materials:
