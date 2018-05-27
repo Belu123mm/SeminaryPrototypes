@@ -12,4 +12,5 @@ public class FallSpell : ISpell {
     public int ReturnSeasonID() {
         return 2;
     }
+
 }
