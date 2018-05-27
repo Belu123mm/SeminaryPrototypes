@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
-public class ModelPlayer {
+public class ModelPlayer  {
     //mono
     public Rigidbody Rigidbody;
     public Transform Transform;
-    [Header("Velocidades")]
     public float movementSpeed;
     [Range(1f, 3f)]
     public float runningSpeed;
@@ -19,15 +19,27 @@ public class ModelPlayer {
     [Header("Datos Binarios")]
     public bool ground;
     public bool spammingSpace;
-    public TargetedCamera camera;
+    public Camera Camera;
     public int life;
 
-    public ModelPlayer( Rigidbody rb, Transform tr) {
+    //Update
+
+    //Model
+    public ModelPlayer( Rigidbody rb, Transform tr,Camera cam,float mspeed) {
         Rigidbody = rb;
         Transform = tr;
+        Camera = cam;
+        movementSpeed = mspeed;
     }
 
-    public void Move( Vector3 direc ) {
+    //Funciones
+    public void Move( float xInput, float zInput ) {
+
+        Vector3 forw = new Vector3((Transform.position - Camera.transform.position).normalized.x, 0, (Transform.position - Camera.transform.position).normalized.z);
+        Vector3 rght = Vector3.Cross(Transform.up, (Transform.position - Camera.transform.position).normalized);
+
+        Vector3 direc = forw * zInput + rght * xInput;
+
         Rigidbody.MoveRotation(Quaternion.Slerp(Transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
         Rigidbody.MovePosition(Transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
     }

@@ -11,7 +11,7 @@ public class PlayerBrain : MonoBehaviour {
     public float mouseY;
     [Header("Componentes")]
     public Movement mvComp;
-    public NewTargetedCamera currentCam;
+    public Camera cam;
     //public CameraControl currentCam;
     public Powers powComp;
     public AnimController animC;
@@ -22,14 +22,15 @@ public class PlayerBrain : MonoBehaviour {
         powComp = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
         aimComp = GetComponent<Aim>();
+        cam = FindObjectOfType<Camera>();
 
     }
     public void FixedUpdate() { //Input Actions
         if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
             xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3((currentCam.cam.m_Follow.position - currentCam.transform.position).normalized.x, 0, (currentCam.cam.m_Follow.position - currentCam.transform.position).normalized.z);
+            Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
             zInput = Input.GetAxis("Vertical");
-            Vector3 rght = Vector3.Cross(currentCam.cam.m_Follow.up,(currentCam.cam.m_Follow.position - currentCam.transform.position).normalized);
+            Vector3 rght = Vector3.Cross(this.transform.up,(this.transform.position - cam.transform.position).normalized);
 
             mvComp.Move(forw * zInput + rght * xInput);
             animC.walk = true;
@@ -74,10 +75,10 @@ public class PlayerBrain : MonoBehaviour {
         animC.roll = false;
         if ( Input.GetButton("Fire3") ) {
             xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3(currentCam.transform.forward.x, 0, currentCam.transform.forward.z);
+            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
             zInput = Input.GetAxis("Vertical");
-            Vector3 rght = new Vector3(currentCam.transform.right.x, 0, currentCam.transform.right.z);
+            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
 
             mvComp.Running(forw * zInput + rght * xInput);
