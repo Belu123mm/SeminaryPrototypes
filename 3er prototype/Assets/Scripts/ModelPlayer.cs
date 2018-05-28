@@ -9,6 +9,10 @@ public class ModelPlayer  {
     public Rigidbody Rigidbody;
     public Transform Transform;
     public float movementSpeed;
+
+
+    public event Action<float> OnMovement = delegate { };
+
     [Range(1f, 3f)]
     public float runningSpeed;
     [Range(0f, 1f)]
@@ -40,8 +44,10 @@ public class ModelPlayer  {
 
         Vector3 direc = forw * zInput + rght * xInput;
 
+        Vector2 vel = new Vector2(xInput, zInput);
         Rigidbody.MoveRotation(Quaternion.Slerp(Transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
-        Rigidbody.MovePosition(Transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+        Rigidbody.MovePosition(Transform.position + (direc * vel.magnitude * movementSpeed * Time.fixedDeltaTime));
+        OnMovement(vel.magnitude / 1.414214f);
     }
     public void Jump() {
         Rigidbody.AddForce(Vector3.up * jumpForce);

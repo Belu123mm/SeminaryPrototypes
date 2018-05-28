@@ -12,10 +12,8 @@ public class ControlMYK : IController {
 
     public override void OnUpdate() {
         //Pongo los inputs
-            if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
             _model.Move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        }
             //_viewPlayer.walk = true;
         //else _viewPlayer.walk = false;
     }
@@ -23,6 +21,7 @@ public class ControlMYK : IController {
     public ControlMYK( ModelPlayer _m, ViewPlayer _v ) {
         _model = _m;//Guardo la referencia del modelo que me llego en mi variable privada
         _viewPlayer = _v; //Guardo la referencia de la vista que me llego en mi variable privada
+        _model.OnMovement += _viewPlayer.SetMovSpeed;
 
         /*
         _viewPlayer.RepaintLife(_model.life);//Le digo cual es mi vida inicial

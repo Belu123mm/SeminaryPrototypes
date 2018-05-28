@@ -10,5 +10,8 @@ public class ViewPlayer : MonoBehaviour{
         animator = GetComponent<Animator>();
     }
 
+    public void SetMovSpeed(float sp ) {
+        animator.SetFloat("movSpeed",sp);
+    }
 
 }
