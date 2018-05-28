@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ViewPlayer {
+public class ViewPlayer : MonoBehaviour{
+    public string animationName;
+    public float animationSpeed;
+    public Animator animator;
+    public void Start() {
+        animator = GetComponent<Animator>();
+    }
+
 
 }

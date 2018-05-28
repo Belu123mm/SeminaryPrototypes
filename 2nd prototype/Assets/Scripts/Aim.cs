@@ -7,10 +7,10 @@ public class Aim : MonoBehaviour {
     public NewTargetedCamera targCam;
     public List<Enemy> enemis = new List<Enemy>();
     public bool aim;
+    public LayerMask mask;
     public void CallRay() {
         RaycastHit hit;
-        if ( Physics.Raycast(cam.transform.position, (cam.transform.forward), out hit, Mathf.Infinity) ) {
-            if ( hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemi") ) {
+        if ( Physics.Raycast(cam.transform.position, (cam.transform.forward), out hit, Mathf.Infinity,mask) ) {
                 Enemy emn = hit.collider.gameObject.GetComponent<Enemy>();
                 if ( enemis.Contains(emn)){
                     print("Hitted");
@@ -18,7 +18,7 @@ public class Aim : MonoBehaviour {
                     targCam.On(emn.transform,emn.distance);
                 }
 
-            }
+            
 
         }
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 10, Color.white, 100);//BLANCO
