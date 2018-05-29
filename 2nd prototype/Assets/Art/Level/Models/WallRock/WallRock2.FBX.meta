@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: cd6582965b2946f468993749e0450e63
-timeCreated: 1527548055
+guid: efa349c50ff863743853532e0aa1a651
+timeCreated: 1527635111
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Rock2
+    4300000: WallRock2
     9500000: //RootNode
   externalObjects: {}
   materials:
