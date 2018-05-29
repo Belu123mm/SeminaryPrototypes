@@ -28,5 +28,4 @@ public abstract class State
     /// Función que se llama constantemente mientras se encuentre en el estado.
     /// </summary>
     public virtual void Execute() { }
-
 }
