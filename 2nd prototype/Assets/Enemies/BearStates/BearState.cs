@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearState : State
 {
-    protected Bear myBear;
+    protected BearGeneric myBear;
 
     protected Movement _target;
     protected float _speed;
@@ -14,7 +14,7 @@ public class BearState : State
     protected Vector3 _predictedPosition = Vector3.zero;
     protected Vector3 _dirToGo;
 
-    public BearState(StateMachine sm, Bear b) : base(sm)
+    public BearState(StateMachine sm, BearGeneric b) : base(sm)
     {
         myBear = b;
         _target = myBear.target;

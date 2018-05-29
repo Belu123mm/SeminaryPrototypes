@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearStateIdle : BearState
 {
-    public BearStateIdle(StateMachine sm, Bear b) : base(sm, b)
+    public BearStateIdle(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
 

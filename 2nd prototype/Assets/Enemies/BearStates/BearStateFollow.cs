@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearStateFollow : BearState
 {
-    public BearStateFollow(StateMachine sm, Bear b) : base(sm, b)
+    public BearStateFollow(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
 
