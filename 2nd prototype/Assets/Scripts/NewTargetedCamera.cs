@@ -18,9 +18,13 @@ public class NewTargetedCamera : MonoBehaviour {
     }
     public void Update() {
         if ( active ) {
-            float angle = Vector3.Angle(Vector3.forward, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
-            cam.m_XAxis.Value = angle + 180; //angulo
-            print(angle);
+            float side = Vector3.Angle(look.transform.forward, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
+            float angle = Vector3.Angle(Vector3.right, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
+            if (side < 90 ) {
+                cam.m_XAxis.Value = -angle -90; //angulo
+            }else if (side > 90 ) {
+            cam.m_XAxis.Value = angle - 90; //angulo
+            }
             cam.m_YAxis.Value = Vector3.Distance(look.position, follow.position) / maxDistance;
         }
     }
