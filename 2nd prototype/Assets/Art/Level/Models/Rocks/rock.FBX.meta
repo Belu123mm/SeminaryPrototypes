@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 54931526e3beaff44be3ee04115fbd42
-timeCreated: 1527552058
+guid: c5a4443f6d82cab43b51f09304e0ec62
+timeCreated: 1527784643
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Standardmaterial
+    2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
     4300000: rock

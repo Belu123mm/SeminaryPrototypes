@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 115a2ae863e071f45a1d1a8f909fda54
-timeCreated: 1527548055
+guid: a24696931f02864488761ad0dc7dfa36
+timeCreated: 1527785062
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -10,7 +10,7 @@ ModelImporter:
     2100000: No Name
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Rock7
+    4300000: s6
     9500000: //RootNode
   externalObjects: {}
   materials:
