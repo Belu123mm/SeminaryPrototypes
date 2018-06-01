@@ -38,7 +38,7 @@ public class PlayerBrain : MonoBehaviour {
                 if ( combat ) {
                     mvComp.MoveOnCombat(forw * zInput + rght * xInput);
                     animC.xMov = xInput;
-                    animC.yMov = zInput;
+                    animC.zMov = zInput;
 
                 }else {
                     mvComp.Move(forw * zInput + rght * xInput);
@@ -50,6 +50,7 @@ public class PlayerBrain : MonoBehaviour {
     public void Update() {  //Triggered actions 
         combat = aimComp.aim;
         death = animC.death;
+        animC.yMov = mvComp.Rigidbody.velocity.y;
         if ( !death ) {
 
             if ( Input.GetButton("Fire2") ) {
@@ -60,21 +61,8 @@ public class PlayerBrain : MonoBehaviour {
             } else {
                 animC.attack = false;
             }
-            /*
-            if ( Input.GetAxis("Mouse X") != 0 ) {
-                mouseX = Input.GetAxis("Mouse X");
-                currentCam.currentX += mouseX;
-
-
-            }
-            if ( Input.GetAxis("Mouse Y") != 0 ) {
-                mouseY = Input.GetAxis("Mouse Y");
-                currentCam.currentY += mouseY;
-            }
-            */
             if ( Input.GetButtonDown("Click") ) {
                 aimComp.Targeted();
-                print("ray");
             }
             if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
                 mvComp.Jump();

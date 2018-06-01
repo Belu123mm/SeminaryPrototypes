@@ -18,6 +18,8 @@ public class AnimController : MonoBehaviour {
     public Aim aim;
     public float xMov;
     public float yMov;
+    public float zMov;
+
     public void Start() {
         aim = GetComponent<Aim>();
         character = transform.GetChild(0).GetComponent<Animator>();
@@ -31,6 +33,7 @@ public class AnimController : MonoBehaviour {
             character.SetFloat("idleTimer", idleTimer);
         }
         combat = aim.aim;
+        character.SetFloat("jumpValue", yMov); 
         character.SetBool("combat", combat);
         character.SetBool("walking", walk);
         character.SetBool("jump", jump);
@@ -41,16 +44,14 @@ public class AnimController : MonoBehaviour {
         character.SetBool("death",death);
         if (run)
         {
-            print("runin");
             character.SetFloat("movCombatHor", xMov);
-        character.SetFloat("movCombatVer", yMov);
+        character.SetFloat("movCombatVer", zMov);
         character.speed = 1.5f;
         }
         else
         {
             character.SetFloat("movCombatHor", xMov /2);
-        character.SetFloat("movCombatVer", yMov /2);
-            print("not runin");
+        character.SetFloat("movCombatVer", zMov /2);
 
         }
 
