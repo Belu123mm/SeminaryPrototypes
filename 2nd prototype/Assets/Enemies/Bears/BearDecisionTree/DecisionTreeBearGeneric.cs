@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeBear : ITree
+public class DecisionTreeBearGeneric : ITree
 {
     BearGeneric b;
 
-    public TreeBear(BearGeneric body)
+    public DecisionTreeBearGeneric(BearGeneric body)
     {
         b = body;
     }

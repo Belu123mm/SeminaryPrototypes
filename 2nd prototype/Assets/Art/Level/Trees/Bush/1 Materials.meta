@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:2nd prototype/Assets/Art/Level/Trees/Bush/1 Materials.meta
+guid: 5e0f622d1dca58c46bdf89893b47f576
+folderAsset: yes
+timeCreated: 1527801837
+=======
 guid: aa8e7e5522eb0654fbf5c3611d7b7132
 folderAsset: yes
 timeCreated: 1526961550
+>>>>>>> 34f8c3d0d0b328022c4daeb87ff68e7772dcc045:2nd prototype/Assets/Art/Level/Trees/Bush/1 Materials.meta
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

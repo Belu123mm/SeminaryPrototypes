@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
-public class SmallBear : BearGeneric
+public class BearMedium : BearGeneric
 {
-
-	void Start () {
+    void Start ()
+    {
         _sm = new StateMachine();
         _sm.AddState(new BearStateIdle(_sm, this));
         _sm.AddState(new BearStatePatrol(_sm, this));
@@ -16,11 +15,13 @@ public class SmallBear : BearGeneric
         _sm.AddState(new BearStateCharge(_sm, this));
         _sm.AddState(new BearStateDie(_sm, this));
 
-        currentTree = new TreeBear(this);
+        currentTree = new DecisionTreeBearGeneric(this);
     }
-
-    void Update()
+	
+	public override void Update ()
     {
+        base.Update();
+
         _sm.Update();
         currentTree.HasHp();
     }
