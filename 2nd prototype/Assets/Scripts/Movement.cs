@@ -27,6 +27,11 @@ public class Movement : MonoBehaviour {
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
 
     }
+    public void MoveOnCombat( Vector3 direc ) {
+        Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+
+    }
+
     public void Jump() {
         Rigidbody.AddForce(Vector3.up * jumpForce);
         spammingSpace = true;
