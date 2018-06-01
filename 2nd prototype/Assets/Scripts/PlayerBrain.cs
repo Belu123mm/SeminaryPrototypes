@@ -19,6 +19,8 @@ public class PlayerBrain : MonoBehaviour {
     public Aim aimComp;
     public bool death;
     public bool combat;
+    public float timer;
+    public float timeToRoll;
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
@@ -51,6 +53,7 @@ public class PlayerBrain : MonoBehaviour {
         combat = aimComp.aim;
         death = animC.death;
         animC.yMov = mvComp.Rigidbody.velocity.y;
+        timer += Time.deltaTime;
         if ( !death ) {
 
             if ( Input.GetButton("Fire2") ) {
@@ -70,11 +73,13 @@ public class PlayerBrain : MonoBehaviour {
             } else {
                 animC.jump = false;
             }
-            if ( Input.GetButton("Fire1") ) {
+            if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
                 mvComp.Roll();
                 animC.roll = true;
-            } else
+            } else if (timer > timeToRoll ) {
                 animC.roll = false;
+                timer = 0;
+            }
             if ( Input.GetButton("Fire3") ) {
                 xInput = Input.GetAxis("Horizontal");
                 Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
