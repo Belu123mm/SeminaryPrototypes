@@ -143,11 +143,11 @@ ModelImporter:
     7400008: Roll
     7400010: Attack
     7400012: GetHit
-    7400014: Idle 1
-    7400016: Breath Idle 1
+    7400014: EnterIdle
+    7400016: Breath Idle
     7400018: Exit Idle 1
     7400020: Breath
-    7400022: Idle to Idle Attack
+    7400022: EnterAttack
     7400024: Breath Idle Attack
     7400026: Walk To Left
     7400028: Run To Left
@@ -385,7 +385,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle 1
+      name: EnterIdle
       takeName: Take 001
       firstFrame: 275
       lastFrame: 309
@@ -413,7 +413,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Breath Idle 1
+      name: Breath Idle
       takeName: Take 001
       firstFrame: 310
       lastFrame: 435
@@ -497,7 +497,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle to Idle Attack
+      name: EnterAttack
       takeName: Take 001
       firstFrame: 575
       lastFrame: 591

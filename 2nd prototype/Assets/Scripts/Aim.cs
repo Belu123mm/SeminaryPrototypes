@@ -17,9 +17,7 @@ public class Aim : MonoBehaviour {
                     aim = true;
                     targCam.On(emn.transform,emn.distance);
                 }
-
-            
-
+                
         }
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 10, Color.white, 100);//BLANCO
     }

@@ -36,10 +36,12 @@ public class PlayerBrain : MonoBehaviour {
             zInput = Input.GetAxis("Vertical");
             Vector3 rght = Vector3.Cross(this.transform.up,(this.transform.position - cam.transform.position).normalized);
                 if ( combat ) {
-            mvComp.Move(forw * zInput + rght * xInput);
+                    mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                    animC.xMov = xInput;
+                    animC.yMov = zInput;
 
                 }else {
-                    mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                    mvComp.Move(forw * zInput + rght * xInput);
                 }
             animC.walk = true;
         } else            animC.walk = false;
