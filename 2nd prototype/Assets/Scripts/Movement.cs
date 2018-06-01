@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour {
     }
     public void MoveOnCombat( Vector3 direc ) {
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
-        //Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(newcam.look.position), rotationSpeed));
+        Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3 (cam.transform.forward.x, this.transform.forward.y, cam.transform.forward.z)), rotationSpeed));
     }
 
     public void Jump() {
