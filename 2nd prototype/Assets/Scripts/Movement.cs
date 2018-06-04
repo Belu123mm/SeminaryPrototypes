@@ -18,15 +18,24 @@ public class Movement : MonoBehaviour {
     [Header("Datos Binarios")]
     public bool ground;
     public bool spammingSpace;
+    public Camera cam;
+    public NewTargetedCamera newcam;
+
 
     public void Start() {
         Rigidbody = GetComponent<Rigidbody>();
+        cam = FindObjectOfType<Camera>();
     }
     public void Move( Vector3 direc ) {
         Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
 
     }
+    public void MoveOnCombat( Vector3 direc ) {
+        Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * Time.fixedDeltaTime));
+        Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3 (cam.transform.forward.x, this.transform.forward.y, cam.transform.forward.z)), rotationSpeed));
+    }
+
     public void Jump() {
         Rigidbody.AddForce(Vector3.up * jumpForce);
         spammingSpace = true;

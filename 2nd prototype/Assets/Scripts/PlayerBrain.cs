@@ -17,6 +17,10 @@ public class PlayerBrain : MonoBehaviour {
     public AnimController animC;
     public bool isCombat;
     public Aim aimComp;
+    public bool death;
+    public bool combat;
+    public float timer;
+    public float timeToRoll;
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
@@ -26,76 +30,80 @@ public class PlayerBrain : MonoBehaviour {
 
     }
     public void FixedUpdate() { //Input Actions
+        if ( !death ) {
+
         if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
             xInput = Input.GetAxis("Horizontal");
             Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
             zInput = Input.GetAxis("Vertical");
             Vector3 rght = Vector3.Cross(this.transform.up,(this.transform.position - cam.transform.position).normalized);
+                if ( combat ) {
+                    mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                    animC.xMov = xInput;
+                    animC.zMov = zInput;
 
-            mvComp.Move(forw * zInput + rght * xInput);
+                }else {
+                    mvComp.Move(forw * zInput + rght * xInput);
+                }
             animC.walk = true;
         } else            animC.walk = false;
+        }
     }
     public void Update() {  //Triggered actions 
+        combat = aimComp.aim;
+        death = animC.death;
+        animC.yMov = mvComp.Rigidbody.velocity.y;
+        timer += Time.deltaTime;
+        if ( !death ) {
 
-        if ( Input.GetButton("Fire2") ) {
-            mvComp.Stop();
-            powComp.Shoot();
-            animC.attack = true;
-            //wait until end animation 
-        } else {
-            animC.attack = false;
-        }
-        /*
-        if ( Input.GetAxis("Mouse X") != 0 ) {
-            mouseX = Input.GetAxis("Mouse X");
-            currentCam.currentX += mouseX;
+            if ( Input.GetButton("Fire2") ) {
+                mvComp.Stop();
+                powComp.Shoot();
+                animC.attack = true;
+                //wait until end animation 
+            } else {
+                animC.attack = false;
+            }
+            if ( Input.GetButtonDown("Click") ) {
+                aimComp.Targeted();
+            }
+            if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
+                mvComp.Jump();
+                animC.jump = true;
+            } else {
+                animC.jump = false;
+            }
+            if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
+                mvComp.Roll();
+                animC.roll = true;
+            } else if (timer > timeToRoll ) {
+                animC.roll = false;
+                timer = 0;
+            }
+            if ( Input.GetButton("Fire3") ) {
+                xInput = Input.GetAxis("Horizontal");
+                Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
-
-        }
-        if ( Input.GetAxis("Mouse Y") != 0 ) {
-            mouseY = Input.GetAxis("Mouse Y");
-            currentCam.currentY += mouseY;
-        }
-        */
-        if ( Input.GetButtonDown("Click") ) {
-            aimComp.Targeted();
-            print("ray");
-        }
-        if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
-            mvComp.Jump();
-            animC.jump = true;
-        } else {
-            animC.jump = false;
-        }
-        if ( Input.GetButton("Fire1") ) {
-            mvComp.Roll();
-            animC.roll = true;
-        } else
-        animC.roll = false;
-        if ( Input.GetButton("Fire3") ) {
-            xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
-
-            zInput = Input.GetAxis("Vertical");
-            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+                zInput = Input.GetAxis("Vertical");
+                Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
 
-            mvComp.Running(forw * zInput + rght * xInput);
-            animC.run = true;
-        } else
-        animC.run = false;
-        if ( Input.GetButton("one")) {
-            powComp.SetPowerType("spring");
-        }
-        if ( Input.GetButton("two") ) {
-            powComp.SetPowerType("summer");
-        }
-        if ( Input.GetButton("three") ) {
-            powComp.SetPowerType("fall");
-        }
-        if ( Input.GetButton("four") ) {
-            powComp.SetPowerType("winter");
+                mvComp.Running(forw * zInput + rght * xInput);
+                animC.run = true;
+            } else
+                animC.run = false;
+            if ( Input.GetButton("one") ) {
+                powComp.SetPowerType("spring");
+            }
+            if ( Input.GetButton("two") ) {
+                powComp.SetPowerType("summer");
+            }
+            if ( Input.GetButton("three") ) {
+                powComp.SetPowerType("fall");
+            }
+            if ( Input.GetButton("four") ) {
+                powComp.SetPowerType("winter");
+            }
         }
     }/*
     public void OnNotify(string str) {
