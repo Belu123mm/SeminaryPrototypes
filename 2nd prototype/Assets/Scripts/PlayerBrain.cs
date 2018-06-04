@@ -104,6 +104,16 @@ public class PlayerBrain : MonoBehaviour {
             if ( Input.GetButton("four") ) {
                 powComp.SetPowerType("winter");
             }
+            if ( Input.GetKeyDown(KeyCode.T) ) {
+                if ( animC.test == true) {
+                    animC.test = false;
+
+                }else
+                if ( animC.test == false) {
+                    animC.test = true;
+
+                }
+            }
         }
     }/*
     public void OnNotify(string str) {

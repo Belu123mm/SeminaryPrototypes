@@ -13,6 +13,7 @@ public class AnimController : MonoBehaviour {
     public bool roll;
     public bool death;
     public bool getHit;
+    public bool test;
     public float idleTimer;
     public bool combat;
     public Aim aim;
