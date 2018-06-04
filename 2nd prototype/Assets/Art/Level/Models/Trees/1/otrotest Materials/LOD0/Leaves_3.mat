@@ -32,8 +32,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _Cull: 0
-    - _Cutoff: 0.33
+    - _Cutoff: 1
     - _WindQuality: 4
     m_Colors:
-    - _Color: {r: 0.6544118, g: 0.40724856, b: 0.18285038, a: 1}
+    - _Color: {r: 0.6544118, g: 0.40724856, b: 0.18285038, a: 0}
     - _HueVariation: {r: 0.44852942, g: 0.44852942, b: 0.44852942, a: 0.1}
