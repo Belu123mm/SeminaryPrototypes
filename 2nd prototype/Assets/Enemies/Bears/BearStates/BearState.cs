@@ -5,6 +5,7 @@ public class BearState : State
 {
     protected BearGeneric myBear;
 
+    protected Rigidbody _rb;
     protected GameObject _target;
     protected float _speed;
     protected float _chargeSpeed;
@@ -17,6 +18,7 @@ public class BearState : State
     public BearState(StateMachine sm, BearGeneric b) : base(sm)
     {
         myBear = b;
+        _rb = myBear.GetComponent<Rigidbody>();
         _target = myBear.target;
         _speed = myBear.speed;
         _chargeSpeed = myBear.chargeSpeed;
