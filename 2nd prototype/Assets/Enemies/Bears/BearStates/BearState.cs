@@ -18,7 +18,7 @@ public class BearState : State
     public BearState(StateMachine sm, BearGeneric b) : base(sm)
     {
         myBear = b;
-        _rb = myBear.GetComponent<Rigidbody>();
+        _rb = myBear.rb;
         _target = myBear.target;
         _speed = myBear.speed;
         _chargeSpeed = myBear.chargeSpeed;

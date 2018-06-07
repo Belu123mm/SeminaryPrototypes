@@ -6,6 +6,8 @@ public abstract class BearGeneric : MonoBehaviour
 {
     public StateMachine _sm;
 
+    public Rigidbody rb;
+
     public GameObject target;
     public float viewDistance;
     public float viewAngle;
@@ -36,6 +38,13 @@ public abstract class BearGeneric : MonoBehaviour
     [HideInInspector]
     public Vector3 dirToGo;
 
+
+
+
+    public void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     public virtual void Update()
     {
