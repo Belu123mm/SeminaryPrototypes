@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2ce1041072c86824e83e76726ed8b8fc
-timeCreated: 1528169101
+guid: 8ec497084227fac4097763602fa7d11d
+timeCreated: 1528337040
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -141,8 +141,8 @@ ModelImporter:
     7400004: Jump
     7400006: Death
     7400008: Roll
-    7400010: Wind Attack
-    7400012: GetHit
+    7400010: Attack Wind
+    7400012: gethit
     7400014: Idle 1
     7400016: Breath Idle 1
     7400018: Exit Idle 1
@@ -150,17 +150,17 @@ ModelImporter:
     7400022: Pushed
     7400024: Idle To Idle Attack
     7400026: Breath Idle Attack
-    7400028: Walk To left
+    7400028: Walk To Left
     7400030: Run To Left
     7400032: Walk To Right
-    7400034: Wun To Right
+    7400034: Run To Right
     7400036: Walk Back
     7400038: Walk Attack
-    7400040: Walk Attack to run attack
+    7400040: Walk Attack To Run Attack
     7400042: Run Attack
     7400044: Idle Attack To Idle
-    7400046: Shield
-    7400048: wood
+    7400046: Attack Shield
+    7400048: Attack Wood
     9500000: //RootNode
     13700000: Avatar
     13700002: Gema
@@ -334,7 +334,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wind Attack
+      name: Attack Wind
       takeName: Take 001
       firstFrame: 208
       lastFrame: 240
@@ -362,7 +362,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: GetHit
+      name: gethit
       takeName: Take 001
       firstFrame: 244
       lastFrame: 265
@@ -586,7 +586,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk To left
+      name: Walk To Left
       takeName: Take 001
       firstFrame: 650
       lastFrame: 680
@@ -670,7 +670,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Wun To Right
+      name: Run To Right
       takeName: Take 001
       firstFrame: 750
       lastFrame: 774
@@ -754,7 +754,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Walk Attack to run attack
+      name: Walk Attack To Run Attack
       takeName: Take 001
       firstFrame: 848
       lastFrame: 854
@@ -838,10 +838,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Shield
+      name: Attack Shield
       takeName: Take 001
-      firstFrame: 815
-      lastFrame: 847
+      firstFrame: 915
+      lastFrame: 950
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -866,10 +866,10 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: wood
+      name: Attack Wood
       takeName: Take 001
-      firstFrame: 960
-      lastFrame: 984
+      firstFrame: 955
+      lastFrame: 983
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
