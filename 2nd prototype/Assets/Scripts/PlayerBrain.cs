@@ -21,13 +21,17 @@ public class PlayerBrain : MonoBehaviour {
     public bool combat;
     public float timer;
     public float timeToRoll;
+    public Collider coll;
+    public float distanceFloor;
+    public Ray ray;
+    public Vector3 hitpoint;
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
         aimComp = GetComponent<Aim>();
         cam = FindObjectOfType<Camera>();
-
+        coll = GetComponent<Collider>();
     }
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
@@ -54,6 +58,15 @@ public class PlayerBrain : MonoBehaviour {
         death = animC.death;
         animC.yMov = mvComp.Rigidbody.velocity.y;
         timer += Time.deltaTime;
+
+        ray = new Ray(this.transform.position + new Vector3(0, -1.459f, 0), Vector3.down);
+        RaycastHit hit;
+        if ( Physics.Raycast(ray, out hit,Mathf.Infinity) ) {
+            distanceFloor = hit.distance;
+            hitpoint = hit.point;
+        }
+
+
         if ( !death ) {
 
             if ( Input.GetButton("Fire2") ) {
@@ -76,7 +89,7 @@ public class PlayerBrain : MonoBehaviour {
             if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
                 mvComp.Roll();
                 animC.roll = true;
-            } else if (timer > timeToRoll ) {
+            } else if ( timer > timeToRoll ) {
                 animC.roll = false;
                 timer = 0;
             }
@@ -93,35 +106,37 @@ public class PlayerBrain : MonoBehaviour {
                 animC.run = false;
             if ( Input.GetButton("one") ) {
                 powComp.SetPowerType("spring");
+                animC.atackvalue = 0;
             }
             if ( Input.GetButton("two") ) {
                 powComp.SetPowerType("summer");
+                animC.atackvalue = 1;
+
             }
             if ( Input.GetButton("three") ) {
                 powComp.SetPowerType("fall");
+                animC.atackvalue = 2;
+
             }
             if ( Input.GetButton("four") ) {
                 powComp.SetPowerType("winter");
+                animC.atackvalue = 3;
+
             }
             if ( Input.GetKeyDown(KeyCode.T) ) {
-                if ( animC.test == true) {
+                if ( animC.test == true ) {
                     animC.test = false;
 
-                }else
-                if ( animC.test == false) {
+                } else
+                if ( animC.test == false ) {
                     animC.test = true;
 
                 }
             }
         }
-    }/*
-    public void OnNotify(string str) {
-        if (str == "normal" ) {
-            currentCam = normalCamera;
-        }
-        if (str == "combat" ) {
-            currentCam = CombatCamera;
-        }
     }
-    */
+    public void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(this.transform.position + new Vector3(0, -1.459f, 0), hitpoint);
+    }
 }

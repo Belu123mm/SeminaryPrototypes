@@ -20,6 +20,7 @@ public class AnimController : MonoBehaviour {
     public float xMov;
     public float yMov;
     public float zMov;
+    public int atackvalue;
 
     public void Start() {
         aim = GetComponent<Aim>();
@@ -43,6 +44,7 @@ public class AnimController : MonoBehaviour {
         character.SetBool("roll", roll);
         character.SetBool("hit", getHit);
         character.SetBool("death",death);
+        character.SetInteger("attackValue", atackvalue);
         if (run)
         {
             character.SetFloat("movCombatHor", xMov);
