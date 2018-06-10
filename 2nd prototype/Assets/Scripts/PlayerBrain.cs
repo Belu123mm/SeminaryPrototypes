@@ -21,36 +21,35 @@ public class PlayerBrain : MonoBehaviour {
     public bool combat;
     public float timer;
     public float timeToRoll;
-    public Collider coll;
-    public float distanceFloor;
-    public Ray ray;
-    public Vector3 hitpoint;
+    public float timeToShoot;
+    public bool attack;
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
         animC = GetComponent<AnimController>();
         aimComp = GetComponent<Aim>();
         cam = FindObjectOfType<Camera>();
-        coll = GetComponent<Collider>();
     }
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
+            if ( !attack ) {
+                print("xd");
+                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
+                    xInput = Input.GetAxis("Horizontal");
+                    Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
+                    zInput = Input.GetAxis("Vertical");
+                    Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
+                    if ( combat ) {
+                        mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                        animC.xMov = xInput;
+                        animC.zMov = zInput;
 
-        if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
-            xInput = Input.GetAxis("Horizontal");
-            Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
-            zInput = Input.GetAxis("Vertical");
-            Vector3 rght = Vector3.Cross(this.transform.up,(this.transform.position - cam.transform.position).normalized);
-                if ( combat ) {
-                    mvComp.MoveOnCombat(forw * zInput + rght * xInput);
-                    animC.xMov = xInput;
-                    animC.zMov = zInput;
-
-                }else {
-                    mvComp.Move(forw * zInput + rght * xInput);
-                }
-            animC.walk = true;
-        } else            animC.walk = false;
+                    } else {
+                        mvComp.Move(forw * zInput + rght * xInput);
+                    }
+                    animC.walk = true;
+                } else animC.walk = false;
+            }
         }
     }
     public void Update() {  //Triggered actions 
@@ -59,22 +58,20 @@ public class PlayerBrain : MonoBehaviour {
         animC.yMov = mvComp.Rigidbody.velocity.y;
         timer += Time.deltaTime;
 
-        ray = new Ray(this.transform.position + new Vector3(0, -1.459f, 0), Vector3.down);
-        RaycastHit hit;
-        if ( Physics.Raycast(ray, out hit,Mathf.Infinity) ) {
-            distanceFloor = hit.distance;
-            hitpoint = hit.point;
+        if (timer >timeToShoot && attack ) {
+            attack = false;
+            timer = 0;
         }
 
 
-        if ( !death ) {
+        if ( !death  ) {
 
-            if ( Input.GetButtonDown("Fire2") ) {
-                mvComp.Stop();
+            if ( Input.GetButtonDown("Fire2") && !attack ) {
                 powComp.Shoot();
                 animC.attack = true;
+                attack = true;
                 //wait until end animation 
-            } else {
+            } else { 
                 animC.attack = false;
             }
             if ( Input.GetButtonDown("Click") ) {
@@ -89,7 +86,7 @@ public class PlayerBrain : MonoBehaviour {
             if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
                 mvComp.Roll();
                 animC.roll = true;
-            } else if ( timer > timeToRoll ) {
+            } else if ( timer > timeToRoll && animC.roll) {
                 animC.roll = false;
                 timer = 0;
             }
@@ -134,9 +131,5 @@ public class PlayerBrain : MonoBehaviour {
                 }
             }
         }
-    }
-    public void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(this.transform.position + new Vector3(0, -1.459f, 0), hitpoint);
     }
 }
