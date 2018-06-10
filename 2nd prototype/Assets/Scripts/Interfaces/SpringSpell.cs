@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpringSpell : ISpell {
 
-    public void Shoot() {
+    public void StartSpell( Powerspell ps ) {
         Debug.Log("spring");
     }
     public void PowerShoot() {
@@ -12,5 +12,12 @@ public class SpringSpell : ISpell {
     }
     public int ReturnSeasonID() {
         return 3;
+    }
+
+    public void SpellUpdate( Powerspell ps ) {
+
+    }
+
+    public void EndSpell( Powerspell ps ) {
     }
 }

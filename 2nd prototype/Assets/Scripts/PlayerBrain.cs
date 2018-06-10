@@ -69,7 +69,7 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( !death ) {
 
-            if ( Input.GetButton("Fire2") ) {
+            if ( Input.GetButtonDown("Fire2") ) {
                 mvComp.Stop();
                 powComp.Shoot();
                 animC.attack = true;

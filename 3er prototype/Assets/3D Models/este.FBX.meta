@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 15fc228742e053b448f86bd90c73652a
-timeCreated: 1527471010
+guid: 3918cfb14eb3ccd42977102133cd12a1
+timeCreated: 1528569941
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -64,10 +64,10 @@ ModelImporter:
     100112: CATRigSpine3
     100114: CATRigSpine4
     100116: CATRigSpine5
-    100118: Gema
-    100120: Hombreras
-    100122: Staff
-    100124: //RootNode
+    100118: //RootNode
+    100120: Gema
+    100122: Hombreras
+    100124: Staff
     400000: Avatar
     400002: CATRigHead
     400004: CATRigHub004
@@ -127,24 +127,16 @@ ModelImporter:
     400112: CATRigSpine3
     400114: CATRigSpine4
     400116: CATRigSpine5
-    400118: Gema
-    400120: Hombreras
-    400122: Staff
-    400124: //RootNode
+    400118: //RootNode
+    400120: Gema
+    400122: Hombreras
+    400124: Staff
     2100000: No Name
-    2300000: Avatar
-    2300002: Gema
-    2300004: Hombreras
-    2300006: Staff
-    3300000: Avatar
-    3300002: Gema
-    3300004: Hombreras
-    3300006: Staff
     4300000: Avatar
     4300002: Hombreras
     4300004: Staff
     4300006: Gema
-    7400000: Walk
+    7400000: Take 001
     9500000: //RootNode
     13700000: Avatar
     13700002: Gema
@@ -169,42 +161,14 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Walk
-      takeName: Take 001
-      firstFrame: 0
-      lastFrame: 32
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -249,7 +213,7 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 1
+    hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
