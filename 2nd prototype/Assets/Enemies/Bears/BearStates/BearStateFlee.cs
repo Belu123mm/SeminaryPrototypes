@@ -22,7 +22,8 @@ public class BearStateFlee : BearState
         //Vamos ajustando el foward
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         //Avanzamos hacia adelante
-        myBear.transform.position += myBear.transform.forward * _speed * Time.deltaTime;
+        float velY = _rb.velocity.y;
+        _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _speed;
     }
 
     public override void Sleep()

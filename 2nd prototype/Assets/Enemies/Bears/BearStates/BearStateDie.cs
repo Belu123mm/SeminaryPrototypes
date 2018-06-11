@@ -23,4 +23,9 @@ public class BearStateDie : BearState
         Debug.Log("Salió de Die");
         base.Sleep();
     }
+
+    void Destroy()
+    {
+
+    }
 }

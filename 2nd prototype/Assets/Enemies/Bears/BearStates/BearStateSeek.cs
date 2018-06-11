@@ -3,9 +3,10 @@ using System.Collections;
 
 public class BearStateSeek : BearState
 {
-    private float _seekRotationSpeed = 50;
+    private float _seekRotationSpeed = 0.2f;
     private float _distanceToLastPosition;
     private float _distanceToLastPositionClamp = 1;
+    private float _time;
 
     private Vector3 _playerLastPosition;
     private Vector3 _lookLeft;
@@ -37,21 +38,38 @@ public class BearStateSeek : BearState
             //Vamos modificando el foward hacia la direccion
             myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _seekRotationSpeed * Time.deltaTime);
             //Hacemos que avance hacia adelante
-            myBear.transform.position += myBear.transform.forward * _speed * Time.deltaTime;
+            float velY = _rb.velocity.y;
+            _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _speed;
 
             _distanceToLastPosition = Vector3.Distance(myBear.transform.position, _playerLastPosition);
+            _time = 0;
         }
         else
         {
+            _time = Time.time;
+            _rb.velocity = Vector3.zero;
+            //myBear.transform.LookAt(_dirToGo);
             //myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, lookLeft, _rotationSpeed * Time.deltaTime);
-            //new WaitForSeconds(3);
+            myBear.transform.rotation = Quaternion.identity;
+
+            // if (_time < Time.time) LookLeft();
+            // else LookRight();
+
+            Debug.Log(_time);
         }
     }
 
-    IEnumerator LookAround()
+    void LookLeft()
     {
+        Debug.Log("HolaLeft");
+        myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, myBear.transform.forward * 2, _seekRotationSpeed * Time.deltaTime);
+        
+    }
 
-        yield return new WaitForSeconds(3);
+    void LookRight()
+    {
+        Debug.Log("HolaRight");
+        myBear.transform.Rotate(myBear.transform.up, 135);
     }
 
     public override void Sleep()

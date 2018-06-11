@@ -11,11 +11,14 @@ public class BearStateIdle : BearState
     {
         Debug.Log("Entró a Idle");
         base.Awake();
+        
     }
 
     public override void Execute()
     {
         base.Execute();
+
+        //myBear.transform.rotation = Quaternion.Euler(new Vector3(0, myBear.transform.forward.z, 0));
     }
 
     public override void Sleep()
