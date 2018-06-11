@@ -34,7 +34,7 @@ public class PlayerBrain : MonoBehaviour {
         if ( !death ) {
             if ( !attack ) {
                 print("xd");
-                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !animC.run) {
+                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running) {
                     xInput = Input.GetAxis("Horizontal");
                     Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
                     zInput = Input.GetAxis("Vertical");
@@ -49,6 +49,24 @@ public class PlayerBrain : MonoBehaviour {
                     }
                     animC.walk = true;
                 } else animC.walk = false;
+                if ( Input.GetButton("Fire3") ) {
+                    mvComp.running = true;
+                    if ( mvComp.runValue < mvComp.currentStamina ) {
+
+                        xInput = Input.GetAxis("Horizontal");
+                        Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+
+                        zInput = Input.GetAxis("Vertical");
+                        Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+
+                        mvComp.Running(forw * zInput + rght * xInput);
+                        animC.run = true;
+                    } else
+                        animC.run = false;
+
+                } else
+                    animC.run = false;
+
             }
         }
     }
@@ -110,24 +128,6 @@ public class PlayerBrain : MonoBehaviour {
 
             }
             //Run
-            if ( Input.GetButton("Fire3") ) {
-                mvComp.running = true;
-                if ( mvComp.runValue < mvComp.currentStamina ) {
-
-                    xInput = Input.GetAxis("Horizontal");
-                    Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
-
-                    zInput = Input.GetAxis("Vertical");
-                    Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
-
-                    mvComp.Running(forw * zInput + rght * xInput);
-                    animC.run = true;
-                }
-                else
-                    animC.run = false;
-
-            } else
-                animC.run = false;
             //SetPowers
             if ( Input.GetButton("one") ) {
                 powComp.SetPowerType("spring");
