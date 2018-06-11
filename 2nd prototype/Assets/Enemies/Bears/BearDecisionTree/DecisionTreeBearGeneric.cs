@@ -20,26 +20,26 @@ public class DecisionTreeBearGeneric : ITree
 
     public void PlayerInSight()
     {
-        if (b.playerInSight) PlayerInRange();
+        if (b.playerInSight) HpToFight();
 
-        else RecentlySeen();
-    }
-
-    public void PlayerInRange()
-    {
-        if (b.playerInRange) HpToFight();
-
-        else ToCharge();
+        else IsPlayerNear();
     }
 
     public void HpToFight()
     {
-        if (b.currentHp > 25)
+        if (b.currentHp > 25) PlayerInRange();
+
+        else if (!b._sm.IsActualState<BearStateFlee>()) b._sm.SetState<BearStateFlee>();
+    }
+
+    public void PlayerInRange()
+    {
+        if (b.playerInRange)
         {
             if (!b._sm.IsActualState<BearStateAttack>()) b._sm.SetState<BearStateAttack>();
         }
 
-        else if (!b._sm.IsActualState<BearStateFlee>()) b._sm.SetState<BearStateFlee>();
+        else ToCharge();
     }
 
     public void ToCharge()
@@ -50,6 +50,15 @@ public class DecisionTreeBearGeneric : ITree
         }
 
         else if (!b._sm.IsActualState<BearStateFollow>()) b._sm.SetState<BearStateFollow>();
+    }
+
+    public void IsPlayerNear()
+    {
+        if(b.playerIsNear && b.currentHp < 25)
+        {
+            if (!b._sm.IsActualState<BearStateFlee>()) b._sm.SetState<BearStateFlee>();
+        }
+        else RecentlySeen();
     }
 
     public void RecentlySeen()

@@ -19,6 +19,7 @@ public abstract class BearGeneric : MonoBehaviour
     public float currentHp;
     public float maxHp;
     public float timeForSeekingPlayer;
+    public float distanceFromPlayerToFlee;
 
 
     public bool playerInSight;
@@ -26,6 +27,7 @@ public abstract class BearGeneric : MonoBehaviour
     public bool toCharge;
     public bool playerRecentlySeen;
     public bool toPatrol;
+    public bool playerIsNear;
     protected ITree currentTree;
 
     protected Vector3 _directionToTarget;
@@ -48,8 +50,15 @@ public abstract class BearGeneric : MonoBehaviour
 
     public virtual void Update()
     {
+        IsPlayerNear();
         LineOfSight();
         PlayerInCombatRange();
+    }
+
+    void IsPlayerNear()
+    {
+        if (_distanceToTarget < distanceFromPlayerToFlee)  playerIsNear = true;
+        else                        playerIsNear = false;
     }
 
     void LineOfSight()

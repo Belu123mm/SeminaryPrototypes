@@ -17,8 +17,6 @@ public class BearStateIdle : BearState
     public override void Execute()
     {
         base.Execute();
-
-        //myBear.transform.rotation = Quaternion.Euler(new Vector3(0, myBear.transform.forward.z, 0));
     }
 
     public override void Sleep()
