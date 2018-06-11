@@ -20,6 +20,7 @@ public class AnimController : MonoBehaviour {
     public float xMov;
     public float yMov;
     public float zMov;
+    public bool push;
     public int atackvalue;
 
     public void Start() {
@@ -44,6 +45,7 @@ public class AnimController : MonoBehaviour {
         character.SetBool("roll", roll);
         character.SetBool("hit", getHit);
         character.SetBool("death",death);
+        character.SetBool("push",push);
         character.SetInteger("attackValue", atackvalue);
         if (run)
         {

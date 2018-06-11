@@ -34,7 +34,7 @@ public class PlayerBrain : MonoBehaviour {
         if ( !death ) {
             if ( !attack ) {
                 print("xd");
-                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
+                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !animC.run) {
                     xInput = Input.GetAxis("Horizontal");
                     Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
                     zInput = Input.GetAxis("Vertical");
@@ -89,6 +89,14 @@ public class PlayerBrain : MonoBehaviour {
             } else if ( timer > timeToRoll && animC.roll) {
                 animC.roll = false;
                 timer = 0;
+            }
+            if ( Input.GetKey(KeyCode.H) ) {
+                mvComp.Push();
+                animC.push = true;
+
+            } else {
+                animC.push = false;
+
             }
             if ( Input.GetButton("Fire3") ) {
                 xInput = Input.GetAxis("Horizontal");
