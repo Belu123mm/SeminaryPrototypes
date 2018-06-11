@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WinterSpell : ISpell {
 
-    public void Shoot() {
+    public void StartSpell( Powerspell ps ) {
         Debug.Log("winter");
     }
     public void PowerShoot() {
@@ -12,5 +12,13 @@ public class WinterSpell : ISpell {
     }
     public int ReturnSeasonID() {
         return 0;
+    }
+
+    public void SpellUpdate( Powerspell ps ) {
+        throw new System.NotImplementedException();
+    }
+
+    public void EndSpell( Powerspell ps ) {
+        throw new System.NotImplementedException();
     }
 }

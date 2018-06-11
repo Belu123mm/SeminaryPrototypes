@@ -3,28 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Powers : MonoBehaviour {
-    public ISpell spells;
     public UIController UIContr;
     public string actualSeason;
-    public Dictionary<string, ISpell> spellInterface;
+    public Dictionary<string, ISpell> spellSwitch;
+    public bool shoot;
+    public float timer;
+    public float spellduration;
+    public Powerspell powerPrefab;
+    ISpell _spellsInterface;
+
+
+
     public void Start() {
-        spells = new FallSpell(); //Asi seteo el default
-        spellInterface = new Dictionary<string, ISpell>();
+        _spellsInterface = new FallSpell(); //Asi seteo el default
+        spellSwitch = new Dictionary<string, ISpell>();
         UIContr = FindObjectOfType<UIController>();
-        spellInterface.Add("spring", new SpringSpell());
-        spellInterface.Add("summer", new SummerSpell());
-        spellInterface.Add("fall", new FallSpell());
-        spellInterface.Add("winter", new WinterSpell());
+        spellSwitch.Add("spring", new SpringSpell());
+        spellSwitch.Add("summer", new SummerSpell());
+        spellSwitch.Add("fall", new FallSpell());
+        spellSwitch.Add("winter", new WinterSpell());
     }
+
+    /*Este señor tiene que instantiar una bala, y el update tiene que tener un delegate pasandole la action
+     * creo
+     */
+
+
+    
+    public void Update() {
+    }
+    
     public void Shoot() {
-        spells.Shoot();
-    }
+        Powerspell newspell = Instantiate(powerPrefab);
+        newspell.spellInterface = _spellsInterface;
+            }
     public void PowerShoot() {
-        spells.PowerShoot();
+        _spellsInterface.PowerShoot();
     }
     public void SetPowerType(string newSeason) {
         actualSeason = newSeason;
-        spells = spellInterface [ actualSeason ];
-        UIContr.SetUI(spells.ReturnSeasonID());
+        _spellsInterface = spellSwitch [ actualSeason ];
+        UIContr.SetUI(_spellsInterface.ReturnSeasonID());
+        
     }
 }
