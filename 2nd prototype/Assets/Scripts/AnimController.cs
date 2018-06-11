@@ -51,7 +51,6 @@ public class AnimController : MonoBehaviour {
         {
             character.SetFloat("movCombatHor", xMov);
         character.SetFloat("movCombatVer", zMov);
-        character.speed = 1.5f;
         }
         else
         {
@@ -60,7 +59,6 @@ public class AnimController : MonoBehaviour {
 
         }
 
-        character.speed = 1;
 
     }
     public void LateUpdate() {

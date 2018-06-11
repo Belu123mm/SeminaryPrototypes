@@ -80,18 +80,18 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( timer > timeToShoot && attack ) {
             attack = false;
-            timer = 0;
+            animC.attack = false; 
         }
 
 
         if ( !death ) {
             //Attack
-            if ( Input.GetButtonDown("Fire2") && !attack ) {
+            if ( Input.GetButtonDown("Fire2") && timer > timeToShoot && !attack) {
                 powComp.Shoot();
                 animC.attack = true;
                 attack = true;
+                timer = 0;
             } else {
-                animC.attack = false;
             }
             //Target
             if ( Input.GetButtonDown("Click") ) {
@@ -127,7 +127,6 @@ public class PlayerBrain : MonoBehaviour {
                 animC.push = false;
 
             }
-            //Run
             //SetPowers
             if ( Input.GetButton("one") ) {
                 powComp.SetPowerType("spring");
