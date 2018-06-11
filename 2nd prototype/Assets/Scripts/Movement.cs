@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour {
     public int fillingValue;
     public bool fillingStamina;
     public bool running;
+    public bool roll;
 
 
     public void Start() {
@@ -74,8 +75,10 @@ public class Movement : MonoBehaviour {
         UIContr.SetStamina(currentStamina);
     }
     public void Roll() { //Esto lo hace una vez asi que no hace falta que se guarde en variablez
-        Vector3 _rollVelocity = Vector3.Scale(transform.forward, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
-        Rigidbody.AddForce(_rollVelocity, ForceMode.VelocityChange);
+        Vector3 _rollVelocity = Vector3.Scale(transform.forward + transform.up, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 1.5f, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
+        print(_rollVelocity);
+        Rigidbody.AddForce(_rollVelocity, ForceMode.Impulse);
+        Rigidbody.velocity = Vector3.zero;
         currentStamina -= rollValue;
         UIContr.SetStamina(currentStamina);
     }

@@ -32,9 +32,9 @@ public class PlayerBrain : MonoBehaviour {
     }
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
-            if ( !attack ) {
+            if ( !attack && !mvComp.roll ) {
                 print("xd");
-                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running) {
+                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
                     xInput = Input.GetAxis("Horizontal");
                     Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
                     zInput = Input.GetAxis("Vertical");
@@ -108,15 +108,16 @@ public class PlayerBrain : MonoBehaviour {
                 animC.jump = false;
             }
             //Roll
-            if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
+            if ( Input.GetButton("Fire1") && !mvComp.roll && mvComp.ground) {
                 if ( mvComp.rollValue < mvComp.currentStamina ) {
-
-                    mvComp.Roll();
+                    mvComp.roll = true;
                     animC.roll = true;
-                }
-            } else if ( timer > timeToRoll && animC.roll) {
-                animC.roll = false;
+                    mvComp.Roll();
                 timer = 0;
+                }
+            } else if ( timer > timeToRoll && mvComp.roll) {
+                mvComp.roll = false;
+                animC.roll = false;
             }
             //TestPush
             if ( Input.GetKey(KeyCode.H) ) {
