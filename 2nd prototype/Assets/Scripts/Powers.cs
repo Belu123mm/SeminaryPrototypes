@@ -11,8 +11,11 @@ public class Powers : MonoBehaviour {
     public float spellduration;
     public Powerspell powerPrefab;
     ISpell _spellsInterface;
-
-
+    public int maxMana;
+    public int currentMana;
+    public int spellValue;
+    public int fillingValue;
+    public bool filling;
 
     public void Start() {
         _spellsInterface = new FallSpell(); //Asi seteo el default
@@ -22,20 +25,31 @@ public class Powers : MonoBehaviour {
         spellSwitch.Add("summer", new SummerSpell());
         spellSwitch.Add("fall", new FallSpell());
         spellSwitch.Add("winter", new WinterSpell());
+        UIContr.SetMaxMana(maxMana);
+        currentMana = maxMana;
+        UIContr.SetMana(currentMana);
     }
-
-    /*Este señor tiene que instantiar una bala, y el update tiene que tener un delegate pasandole la action
-     * creo
-     */
-
-
     
     public void Update() {
+        if ( currentMana < maxMana )
+            filling = true;
+        else
+            filling = false;
+
+        if ( filling ) {
+            currentMana += fillingValue;
+            UIContr.SetMana(currentMana);
+        }
     }
-    
-    public void Shoot() {
+
+
+
+public void Shoot() {
         Powerspell newspell = Instantiate(powerPrefab);
         newspell.spellInterface = _spellsInterface;
+        currentMana -= spellValue;
+        UIContr.SetMana(currentMana);
+        filling = false;
             }
     public void PowerShoot() {
         _spellsInterface.PowerShoot();
@@ -43,7 +57,7 @@ public class Powers : MonoBehaviour {
     public void SetPowerType(string newSeason) {
         actualSeason = newSeason;
         _spellsInterface = spellSwitch [ actualSeason ];
-        UIContr.SetUI(_spellsInterface.ReturnSeasonID());
+        UIContr.SetSeason(_spellsInterface.ReturnSeasonID());
         
     }
 }

@@ -57,39 +57,50 @@ public class PlayerBrain : MonoBehaviour {
         death = animC.death;
         animC.yMov = mvComp.Rigidbody.velocity.y;
         timer += Time.deltaTime;
+        mvComp.running = false;
 
-        if (timer >timeToShoot && attack ) {
+
+        if ( timer > timeToShoot && attack ) {
             attack = false;
             timer = 0;
         }
 
 
-        if ( !death  ) {
-
+        if ( !death ) {
+            //Attack
             if ( Input.GetButtonDown("Fire2") && !attack ) {
                 powComp.Shoot();
                 animC.attack = true;
                 attack = true;
-                //wait until end animation 
-            } else { 
+            } else {
                 animC.attack = false;
             }
+            //Target
             if ( Input.GetButtonDown("Click") ) {
                 aimComp.Targeted();
             }
+            //Jump
             if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
+                if ( mvComp.jumpValue < mvComp.currentStamina) {
+
                 mvComp.Jump();
                 animC.jump = true;
+                }
             } else {
                 animC.jump = false;
             }
+            //Roll
             if ( Input.GetButtonDown("Fire1") && !animC.roll ) {
-                mvComp.Roll();
-                animC.roll = true;
+                if ( mvComp.rollValue < mvComp.currentStamina ) {
+
+                    mvComp.Roll();
+                    animC.roll = true;
+                }
             } else if ( timer > timeToRoll && animC.roll) {
                 animC.roll = false;
                 timer = 0;
             }
+            //TestPush
             if ( Input.GetKey(KeyCode.H) ) {
                 mvComp.Push();
                 animC.push = true;
@@ -98,17 +109,26 @@ public class PlayerBrain : MonoBehaviour {
                 animC.push = false;
 
             }
+            //Run
             if ( Input.GetButton("Fire3") ) {
-                xInput = Input.GetAxis("Horizontal");
-                Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+                mvComp.running = true;
+                if ( mvComp.runValue < mvComp.currentStamina ) {
 
-                zInput = Input.GetAxis("Vertical");
-                Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+                    xInput = Input.GetAxis("Horizontal");
+                    Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
-                mvComp.Running(forw * zInput + rght * xInput);
-                animC.run = true;
+                    zInput = Input.GetAxis("Vertical");
+                    Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+
+                    mvComp.Running(forw * zInput + rght * xInput);
+                    animC.run = true;
+                }
+                else
+                    animC.run = false;
+
             } else
                 animC.run = false;
+            //SetPowers
             if ( Input.GetButton("one") ) {
                 powComp.SetPowerType("spring");
                 animC.atackvalue = 0;
@@ -128,6 +148,8 @@ public class PlayerBrain : MonoBehaviour {
                 animC.atackvalue = 3;
 
             }
+
+            //AnimationTest
             if ( Input.GetKeyDown(KeyCode.T) ) {
                 if ( animC.test == true ) {
                     animC.test = false;

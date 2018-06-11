@@ -21,11 +21,37 @@ public class Movement : MonoBehaviour {
     public bool spammingSpace;
     public Camera cam;
     public NewTargetedCamera newcam;
+    public int maxStamina;
+    public int currentStamina;
+    public UIController UIContr;
+    public int jumpValue;
+    public int runValue;
+    public int rollValue;
+    public int fillingValue;
+    public bool fillingStamina;
+    public bool running;
 
 
     public void Start() {
         Rigidbody = GetComponent<Rigidbody>();
         cam = FindObjectOfType<Camera>();
+        UIContr = FindObjectOfType<UIController>();
+
+        UIContr.SetMaxStamina(maxStamina);
+        currentStamina = maxStamina;
+        UIContr.SetStamina(currentStamina);
+    }
+    public void Update() {
+        if (currentStamina < maxStamina && ground && !running) {
+            fillingStamina = true;
+        }else {
+            fillingStamina = false;
+        }
+        if ( fillingStamina ) {
+            currentStamina += fillingValue;
+            UIContr.SetStamina(currentStamina);
+
+        }
     }
     public void Move( Vector3 direc ) {
         Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
@@ -44,27 +70,31 @@ public class Movement : MonoBehaviour {
         if ( ground ) {
             ground = false;
         }
+        currentStamina -= jumpValue;
+        UIContr.SetStamina(currentStamina);
     }
     public void Roll() { //Esto lo hace una vez asi que no hace falta que se guarde en variablez
         Vector3 _rollVelocity = Vector3.Scale(transform.forward, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 0, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
         Rigidbody.AddForce(_rollVelocity, ForceMode.VelocityChange);
+        currentStamina -= rollValue;
+        UIContr.SetStamina(currentStamina);
     }
     public void Push() {
         Vector3 _rollVelocity = Vector3.Scale(-transform.forward + transform.up , pushDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 1, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
         Rigidbody.AddForce(_rollVelocity, ForceMode.Impulse);
     }
     public void Running( Vector3 direc ) {
+
         Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * runningSpeed * Time.fixedDeltaTime));
-
+        currentStamina -= runValue;
+        UIContr.SetStamina(currentStamina);
     }
     public void OnCollisionEnter( Collision collision ) {
         if ( collision.gameObject.layer == LayerMask.NameToLayer("Level") && !ground ) {
             ground = true;
             spammingSpace = false;
         }
-    }
-    public void Stop() {
-        Rigidbody.velocity = Vector3.zero;
+
     }
 }
