@@ -22,7 +22,7 @@ public class DecisionTreeBearGeneric : ITree
     {
         if (b.playerInSight) HpToFight();
 
-        else IsPlayerNear();
+        else IsFleing();
     }
 
     public void HpToFight()
@@ -52,13 +52,11 @@ public class DecisionTreeBearGeneric : ITree
         else if (!b._sm.IsActualState<BearStateFollow>()) b._sm.SetState<BearStateFollow>();
     }
 
-    public void IsPlayerNear()
+    public void IsFleing()
     {
-        if(b.playerIsNear && b.currentHp < 25)
-        {
-            if (!b._sm.IsActualState<BearStateFlee>()) b._sm.SetState<BearStateFlee>();
-        }
-        else RecentlySeen();
+        if (!b._sm.IsActualState<BearStateFlee>()) RecentlySeen();
+
+        else if (!b.playerIsNear) ToPatrol();
     }
 
     public void RecentlySeen()

@@ -403,7 +403,7 @@ ModelImporter:
     - serializedVersion: 16
       name: AttackWind
       takeName: Take 001
-      firstFrame: 208
+      firstFrame: 214
       lastFrame: 240
       wrapMode: 0
       orientationOffsetY: 0

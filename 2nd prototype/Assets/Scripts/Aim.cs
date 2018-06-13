@@ -5,17 +5,17 @@ using UnityEngine;
 public class Aim : MonoBehaviour {
     public Camera cam;
     public NewTargetedCamera targCam;
-    public List<Enemy> enemis = new List<Enemy>();
+    public List<BearGeneric> enemis = new List<BearGeneric>();
     public bool aim;
     public LayerMask mask;
     public void CallRay() {
         RaycastHit hit;
         if ( Physics.Raycast(cam.transform.position, (cam.transform.forward), out hit, Mathf.Infinity,mask) ) {
-                Enemy emn = hit.collider.gameObject.GetComponent<Enemy>();
-                if ( enemis.Contains(emn)){
+                BearGeneric bear = hit.collider.gameObject.GetComponent<BearGeneric>();
+                if ( enemis.Contains(bear)){
                     print("Hitted");
                     aim = true;
-                    targCam.On(emn.transform,emn.distance);
+                    targCam.On(bear.transform,bear.viewDistance);
                 }
                 
         }
@@ -29,10 +29,10 @@ public class Aim : MonoBehaviour {
             aim = false;
         }
     }
-    public void AddEnemy( Enemy enm ) {
+    public void AddEnemy( BearGeneric enm ) {
         enemis.Add(enm);
     }
-    public void RemoveEnemy( Enemy enm ) {
+    public void RemoveEnemy( BearGeneric enm ) {
         if ( enemis.Contains(enm) ) {
             enemis.Remove(enm);
         }

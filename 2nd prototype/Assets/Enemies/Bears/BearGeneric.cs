@@ -34,6 +34,8 @@ public abstract class BearGeneric : MonoBehaviour
     protected float _angleToTarget;
     protected float _distanceToTarget;
 
+    protected Aim targetSystem;
+
     [HideInInspector]
     public Vector3 predictedPosition = Vector3.zero;
 
@@ -51,6 +53,7 @@ public abstract class BearGeneric : MonoBehaviour
     public virtual void Update()
     {
         IsPlayerNear();
+        IsPlayerInLOS();
         LineOfSight();
         PlayerInCombatRange();
     }
@@ -59,6 +62,12 @@ public abstract class BearGeneric : MonoBehaviour
     {
         if (_distanceToTarget < distanceFromPlayerToFlee)  playerIsNear = true;
         else                        playerIsNear = false;
+    }
+
+    void IsPlayerInLOS()
+    {
+        if (playerInSight) targetSystem.AddEnemy(this);
+        else targetSystem.RemoveEnemy(this);
     }
 
     void LineOfSight()
