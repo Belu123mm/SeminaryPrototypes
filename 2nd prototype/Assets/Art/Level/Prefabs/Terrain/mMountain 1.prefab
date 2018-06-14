@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33766708802756924}
   - component: {fileID: 23906788540169736}
   - component: {fileID: 95837616428981158}
+  - component: {fileID: 64898390541529738}
   m_Layer: 0
   m_Name: mMountain 1
   m_TagString: Untagged
@@ -82,6 +83,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1108759589091176}
+  m_Mesh: {fileID: 4300000, guid: 348d087b2d7815542af0a9524fa93985, type: 3}
+--- !u!64 &64898390541529738
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1108759589091176}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 348d087b2d7815542af0a9524fa93985, type: 3}
 --- !u!95 &95837616428981158
 Animator:
