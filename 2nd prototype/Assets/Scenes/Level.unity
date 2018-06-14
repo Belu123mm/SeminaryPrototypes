@@ -236,10 +236,14 @@ Prefab:
       propertyPath: m_LocalRotation.x
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0.20047152
 =======
       value: 0.20047145
 >>>>>>> 858bc18242f54fa82451ea0d97d1a0ef2a46b03b
+=======
+      value: 0.20047161
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: 0.20047161
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -252,10 +256,14 @@ Prefab:
       propertyPath: m_LocalRotation.z
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: -0.0000060989214
 =======
       value: -0.0000060991497
 >>>>>>> 858bc18242f54fa82451ea0d97d1a0ef2a46b03b
+=======
+      value: -0.000006099007
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: -0.000006099007
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -268,7 +276,11 @@ Prefab:
       propertyPath: m_LocalRotation.x
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0.1935019
+=======
+      value: 0.19350193
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: 0.19350193
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -279,6 +291,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4835469563109396, guid: 561b6a015d08b9345b074f6c2fc619fd, type: 2}
       propertyPath: m_LocalRotation.z
+<<<<<<< HEAD
 <<<<<<< HEAD
       value: -0.000000008505891
 =======
@@ -292,6 +305,9 @@ Prefab:
       propertyPath: m_LocalRotation.z
       value: -0.000000008506854
 >>>>>>> 858bc18242f54fa82451ea0d97d1a0ef2a46b03b
+=======
+      value: -0.0000000085062375
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: -0.0000000085062375
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -5775,7 +5791,11 @@ Prefab:
       propertyPath: m_LocalRotation.z
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 0.000000008155738
+=======
+      value: 0.000000008154979
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: 0.000000008154979
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -5790,6 +5810,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4824578725579526, guid: a01a0d7ceaf37804484083c72cb1535b, type: 2}
       propertyPath: m_LocalRotation.z
+<<<<<<< HEAD
 <<<<<<< HEAD
       value: 0.0000000018378855
 =======
@@ -5810,6 +5831,9 @@ Prefab:
 =======
       value: 0.0000000018378856
 >>>>>>> parent of 3747f9f... Rock Fixes
+=======
+      value: 0.0000000018378856
+>>>>>>> parent of 3747f9f... Rock Fixes
       objectReference: {fileID: 0}
     - target: {fileID: 4824578725579526, guid: a01a0d7ceaf37804484083c72cb1535b, type: 2}
       propertyPath: m_LocalRotation.w
@@ -5819,10 +5843,14 @@ Prefab:
       propertyPath: m_LocalRotation.y
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: -0.0000000065821353
 =======
       value: -0.00000000658319
 >>>>>>> 858bc18242f54fa82451ea0d97d1a0ef2a46b03b
+=======
+      value: -0.000000006582515
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: -0.000000006582515
 >>>>>>> parent of 3747f9f... Rock Fixes
@@ -12558,10 +12586,14 @@ Prefab:
       propertyPath: m_LocalPosition.y
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 8.6479025
 =======
       value: 9.34
 >>>>>>> 858bc18242f54fa82451ea0d97d1a0ef2a46b03b
+=======
+      value: 8.65
+>>>>>>> parent of 3747f9f... Rock Fixes
 =======
       value: 8.65
 >>>>>>> parent of 3747f9f... Rock Fixes
