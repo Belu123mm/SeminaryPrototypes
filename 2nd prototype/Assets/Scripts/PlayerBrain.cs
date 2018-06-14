@@ -20,7 +20,6 @@ public class PlayerBrain : MonoBehaviour {
     public bool death;
     public bool combat;
     public float timer;
-    public float timeToRoll;
     public float timeToShoot;
     public bool attack;
     public void Awake() {
@@ -32,7 +31,7 @@ public class PlayerBrain : MonoBehaviour {
     }
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
-            if ( !attack && !mvComp.roll ) {
+            if ( !attack && !mvComp.rolling ) {
                 print("xd");
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
                     xInput = Input.GetAxis("Horizontal");
@@ -108,15 +107,13 @@ public class PlayerBrain : MonoBehaviour {
                 animC.jump = false;
             }
             //Roll
-            if ( Input.GetButton("Fire1") && !mvComp.roll && mvComp.ground) {
+            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground) {
                 if ( mvComp.rollValue < mvComp.currentStamina ) {
-                    mvComp.roll = true;
+                    mvComp.rolling = true;
                     animC.roll = true;
                     mvComp.Roll();
-                timer = 0;
                 }
-            } else if ( timer > timeToRoll && mvComp.roll) {
-                mvComp.roll = false;
+            } else  {
                 animC.roll = false;
             }
             //TestPush

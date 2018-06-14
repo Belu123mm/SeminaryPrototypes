@@ -16,10 +16,10 @@ public class Enemy : MonoBehaviour {
 
         if (dist < distance && !added) {
             added = true;
-            avatar.AddEnemy(this);
+           // avatar.AddEnemy(this);
         }else if (dist > distance && added ) {
             added = false;
-            avatar.RemoveEnemy(this);
+           // avatar.RemoveEnemy(this);
 
         }
     }
