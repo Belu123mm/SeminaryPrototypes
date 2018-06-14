@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33280237750728872}
   - component: {fileID: 23514195899938900}
   - component: {fileID: 95271962229349808}
+  - component: {fileID: 64600281986769904}
   m_Layer: 0
   m_Name: WallRock
   m_TagString: Untagged
@@ -82,6 +83,20 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015769731054026}
+  m_Mesh: {fileID: 4300000, guid: 511382d9a34910345a58da8e90117932, type: 3}
+--- !u!64 &64600281986769904
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015769731054026}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 511382d9a34910345a58da8e90117932, type: 3}
 --- !u!95 &95271962229349808
 Animator:

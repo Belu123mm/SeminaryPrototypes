@@ -208,7 +208,7 @@ ModelImporter:
       name: Walk
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 32
+      lastFrame: 33
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -292,7 +292,7 @@ ModelImporter:
       name: JumpAir
       takeName: Take 001
       firstFrame: 96
-      lastFrame: 97
+      lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -627,7 +627,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Breath
       takeName: Take 001
-      firstFrame: 464
+      firstFrame: 470
       lastFrame: 539
       wrapMode: 0
       orientationOffsetY: 0

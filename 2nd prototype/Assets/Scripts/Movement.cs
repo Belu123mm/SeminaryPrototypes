@@ -30,9 +30,9 @@ public class Movement : MonoBehaviour {
     public int fillingValue;
     public bool fillingStamina;
     public bool running;
-    public bool roll;
-
-
+    public bool rolling;
+    public float timeToRoll;
+    public float timer;
     public void Start() {
         Rigidbody = GetComponent<Rigidbody>();
         cam = FindObjectOfType<Camera>();
@@ -43,6 +43,7 @@ public class Movement : MonoBehaviour {
         UIContr.SetStamina(currentStamina);
     }
     public void Update() {
+        timer += Time.deltaTime;
         if (currentStamina < maxStamina && ground && !running) {
             fillingStamina = true;
         }else {
@@ -51,7 +52,9 @@ public class Movement : MonoBehaviour {
         if ( fillingStamina ) {
             currentStamina += fillingValue;
             UIContr.SetStamina(currentStamina);
-
+        }
+        if (timeToRoll < timer ) {
+            rolling = false;
         }
     }
     public void Move( Vector3 direc ) {
