@@ -15,10 +15,9 @@ public class WinterSpell : ISpell {
     }
 
     public void SpellUpdate( Powerspell ps ) {
-        throw new System.NotImplementedException();
+
     }
 
     public void EndSpell( Powerspell ps ) {
-        throw new System.NotImplementedException();
     }
 }

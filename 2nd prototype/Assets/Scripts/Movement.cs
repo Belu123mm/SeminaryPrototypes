@@ -54,7 +54,6 @@ public class Movement : MonoBehaviour {
             UIContr.SetStamina(currentStamina);
         }
         if (timeToRoll < timer ) {
-            timer = 0;
             rolling = false;
         }
     }

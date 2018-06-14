@@ -19,9 +19,6 @@ public class PlayerBrain : MonoBehaviour {
     public Aim aimComp;
     public bool death;
     public bool combat;
-    public float timer;
-    public float timeToShoot;
-    public bool attack;
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
@@ -31,7 +28,7 @@ public class PlayerBrain : MonoBehaviour {
     }
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
-            if ( !attack && !mvComp.rolling ) {
+            if ( !powComp.shoot && !mvComp.rolling ) {
                 print("xd");
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
                     xInput = Input.GetAxis("Horizontal");
@@ -73,24 +70,18 @@ public class PlayerBrain : MonoBehaviour {
         combat = aimComp.aim;
         death = animC.death;
         animC.yMov = mvComp.Rigidbody.velocity.y;
-        timer += Time.deltaTime;
         mvComp.running = false;
-
-
-        if ( timer > timeToShoot && attack ) {
-            attack = false;
-            animC.attack = false; 
-        }
-
 
         if ( !death ) {
             //Attack
-            if ( Input.GetButtonDown("Fire2") && timer > timeToShoot && !attack) {
+            if ( Input.GetButtonDown("Fire2") && !powComp.shoot) {
+                powComp.timer = 0;
+
                 powComp.Shoot();
+                powComp.shoot = true;
                 animC.attack = true;
-                attack = true;
-                timer = 0;
             } else {
+                animC.attack = false;
             }
             //Target
             if ( Input.GetButtonDown("Click") ) {
@@ -109,6 +100,7 @@ public class PlayerBrain : MonoBehaviour {
             //Roll
             if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground) {
                 if ( mvComp.rollValue < mvComp.currentStamina ) {
+                    mvComp.timer = 0;
                     mvComp.rolling = true;
                     animC.roll = true;
                     mvComp.Roll();

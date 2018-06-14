@@ -16,6 +16,7 @@ public class Powers : MonoBehaviour {
     public int spellValue;
     public int fillingValue;
     public bool filling;
+    public float timeToPow;
 
     public void Start() {
         _spellsInterface = new FallSpell(); //Asi seteo el default
@@ -40,11 +41,17 @@ public class Powers : MonoBehaviour {
             currentMana += fillingValue;
             UIContr.SetMana(currentMana);
         }
+        timer += Time.deltaTime;
+        if ( timeToPow < timer ) {
+            shoot = false;
+        }
+        
+
     }
 
 
 
-public void Shoot() {
+    public void Shoot() {
         Powerspell newspell = Instantiate(powerPrefab);
         newspell.spellInterface = _spellsInterface;
         currentMana -= spellValue;
