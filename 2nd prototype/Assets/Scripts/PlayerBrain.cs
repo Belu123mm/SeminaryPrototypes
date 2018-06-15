@@ -74,7 +74,7 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( !death ) {
             //Attack
-            if ( Input.GetButtonDown("Fire2") && !powComp.shoot) {
+            if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.rolling) {
                 powComp.timer = 0;
 
                 powComp.Shoot();
@@ -88,7 +88,7 @@ public class PlayerBrain : MonoBehaviour {
                 aimComp.Targeted();
             }
             //Jump
-            if ( Input.GetButton("Jump") && !mvComp.spammingSpace ) {
+            if ( Input.GetButton("Jump") && !mvComp.spammingSpace  && !mvComp.rolling) {
                 if ( mvComp.jumpValue < mvComp.currentStamina) {
 
                 mvComp.Jump();
@@ -98,7 +98,7 @@ public class PlayerBrain : MonoBehaviour {
                 animC.jump = false;
             }
             //Roll
-            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground) {
+            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot) {
                 if ( mvComp.rollValue < mvComp.currentStamina ) {
                     mvComp.timer = 0;
                     mvComp.rolling = true;
