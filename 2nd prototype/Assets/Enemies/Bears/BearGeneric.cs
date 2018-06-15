@@ -70,7 +70,6 @@ public abstract class BearGeneric : MonoBehaviour
     {
         if (playerInSight && !targetAdded)
         {
-            //Debug.Log("Target true");
             targetAdded = true;
             targetSystem.AddEnemy(this);
         }
