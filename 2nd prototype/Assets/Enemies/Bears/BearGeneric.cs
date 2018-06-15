@@ -28,13 +28,14 @@ public abstract class BearGeneric : MonoBehaviour
     public bool playerRecentlySeen;
     public bool toPatrol;
     public bool playerIsNear;
+    public bool targetAdded;
     protected ITree currentTree;
 
     protected Vector3 _directionToTarget;
     protected float _angleToTarget;
     protected float _distanceToTarget;
 
-    protected Aim targetSystem;
+    public Aim targetSystem;
 
     [HideInInspector]
     public Vector3 predictedPosition = Vector3.zero;
@@ -48,6 +49,7 @@ public abstract class BearGeneric : MonoBehaviour
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
+        //targetSystem = FindObjectOfType<Aim>();
     }
 
     public virtual void Update()
@@ -66,8 +68,18 @@ public abstract class BearGeneric : MonoBehaviour
 
     void IsPlayerInLOS()
     {
-        if (playerInSight) targetSystem.AddEnemy(this);
-        else targetSystem.RemoveEnemy(this);
+        if (playerInSight && !targetAdded)
+        {
+            //Debug.Log("Target true");
+            targetAdded = true;
+            targetSystem.AddEnemy(this);
+        }
+        else if (!playerInSight && targetAdded)
+        {
+            //Debug.Log("Target false");
+            targetAdded = false;
+            targetSystem.RemoveEnemy(this);
+        }
     }
 
     void LineOfSight()
