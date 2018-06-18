@@ -55,7 +55,7 @@ public class AnimController : MonoBehaviour {
         else
         {
             character.SetFloat("movCombatHor", xMov /2);
-        character.SetFloat("movCombatVer", zMov /2);
+            character.SetFloat("movCombatVer", zMov /2);
 
         }
 

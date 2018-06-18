@@ -37,14 +37,21 @@ public class PlayerBrain : MonoBehaviour {
                     Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
                     if ( combat ) {
                         mvComp.MoveOnCombat(forw * zInput + rght * xInput);
-                        animC.xMov = xInput;
-                        animC.zMov = zInput;
-
                     } else {
                         mvComp.Move(forw * zInput + rght * xInput);
                     }
                     animC.walk = true;
-                } else animC.walk = false;
+                } else 
+                 {
+                    animC.walk = false;
+                }
+                if ( combat ) {
+                    animC.xMov = Input.GetAxis("Horizontal");
+                    animC.zMov = Input.GetAxis("Vertical");
+                }
+
+
+
                 if ( Input.GetButton("Fire3") ) {
                     mvComp.running = true;
                     if ( mvComp.runValue < mvComp.currentStamina ) {
