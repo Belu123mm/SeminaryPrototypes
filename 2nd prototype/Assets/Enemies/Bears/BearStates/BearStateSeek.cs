@@ -3,7 +3,7 @@ using System.Collections;
 
 public class BearStateSeek : BearState
 {
-    private float _seekRotationSpeed = 0.2f;
+    private float _seekRotationSpeed = 20f;
     private float _distanceToLastPosition;
     private float _distanceToLastPositionClamp = 1;
     private float _time;
@@ -35,7 +35,7 @@ public class BearStateSeek : BearState
         if (_distanceToLastPosition > _distanceToLastPositionClamp)
         {
             myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _seekRotationSpeed * Time.deltaTime);
-            float velY = _rb.velocity.y;
+            float velY = 0;
             _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _speed;
 
             _distanceToLastPosition = Vector3.Distance(myBear.transform.position, _playerLastPosition);
