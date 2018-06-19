@@ -29,7 +29,6 @@ public class PlayerBrain : MonoBehaviour {
     public void FixedUpdate() { //Input Actions
         if ( !death ) {
             if ( !powComp.shoot && !mvComp.rolling ) {
-                print("xd");
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
                     xInput = Input.GetAxis("Horizontal");
                     Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);

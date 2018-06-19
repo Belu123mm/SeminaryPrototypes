@@ -14,7 +14,7 @@ public class WinterSpell : ISpell {
         return 0;
     }
 
-    public void SpellUpdate( Powerspell ps ) {
+    public void SpellUpdate( GameObject ps ) {
 
     }
 

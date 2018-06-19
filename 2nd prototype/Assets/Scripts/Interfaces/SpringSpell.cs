@@ -14,7 +14,7 @@ public class SpringSpell : ISpell {
         return 3;
     }
 
-    public void SpellUpdate( Powerspell ps ) {
+    public void SpellUpdate( GameObject ps ) {
 
     }
 

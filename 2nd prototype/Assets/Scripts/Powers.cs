@@ -5,27 +5,38 @@ using UnityEngine;
 public class Powers : MonoBehaviour {
     public UIController UIContr;
     public string actualSeason;
-    public Dictionary<string, ISpell> spellSwitch;
+    public Powerspell powerPrefab;
+    public List<vSpell> visual;
+    ISpell _spellsInterface;
+    vSpell _spellView;
+    Dictionary<string, ISpell> behaviourSpells;
+    Dictionary<string, vSpell> viewSpells;
     public bool shoot;
     public float timer;
     public float spellduration;
-    public Powerspell powerPrefab;
-    ISpell _spellsInterface;
     public int maxMana;
     public int currentMana;
     public int spellValue;
     public int fillingValue;
     public bool filling;
+    //Este valor es el que tard en redisparar, que no varia segun el hechizo. Lo que los limita son el mana asi que :3
     public float timeToPow;
 
     public void Start() {
-        _spellsInterface = new FallSpell(); //Asi seteo el default
-        spellSwitch = new Dictionary<string, ISpell>();
         UIContr = FindObjectOfType<UIController>();
-        spellSwitch.Add("spring", new SpringSpell());
-        spellSwitch.Add("summer", new SummerSpell());
-        spellSwitch.Add("fall", new FallSpell());
-        spellSwitch.Add("winter", new WinterSpell());
+        behaviourSpells = new Dictionary<string, ISpell>();
+        viewSpells = new Dictionary<string, vSpell>();
+        behaviourSpells.Add("spring", new SpringSpell());
+        behaviourSpells.Add("summer", new SummerSpell());
+        behaviourSpells.Add("fall", new FallSpell());
+        behaviourSpells.Add("winter", new WinterSpell());
+
+        for ( int i = 0; i < visual.Count; i++ ) {
+            viewSpells.Add(visual [ i ].spellName, visual [ i ]);
+        }
+
+        SetPowerType("fall");   //Default
+
         UIContr.SetMaxMana(maxMana);
         currentMana = maxMana;
         UIContr.SetMana(currentMana);
@@ -46,25 +57,24 @@ public class Powers : MonoBehaviour {
             shoot = false;
         }
         
-
     }
-
-
 
     public void Shoot() {
         Powerspell newspell = Instantiate(powerPrefab);
         newspell.spellInterface = _spellsInterface;
-        currentMana -= spellValue;
+        newspell.spellView = _spellView;
+
+        currentMana -= newspell.spellView.mana;
         UIContr.SetMana(currentMana);
         filling = false;
-            }
+    }
     public void PowerShoot() {
         _spellsInterface.PowerShoot();
     }
     public void SetPowerType(string newSeason) {
         actualSeason = newSeason;
-        _spellsInterface = spellSwitch [ actualSeason ];
+        _spellsInterface = behaviourSpells [ actualSeason ];
+        _spellView = viewSpells [ actualSeason ];
         UIContr.SetSeason(_spellsInterface.ReturnSeasonID());
-        
     }
 }

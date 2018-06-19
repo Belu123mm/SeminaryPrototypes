@@ -13,7 +13,7 @@ public class SummerSpell : ISpell {
         return 1;
     }
 
-    public void SpellUpdate( Powerspell ps ) {
+    public void SpellUpdate( GameObject ps ) {
     }
 
     public void EndSpell( Powerspell ps ) {
