@@ -36,7 +36,7 @@ public class BearStateSeek : BearState
         {
             myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _seekRotationSpeed * Time.deltaTime);
             float velY = 0;
-            _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _speed;
+            _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z).normalized * _speed;
 
             _distanceToLastPosition = Vector3.Distance(myBear.transform.position, _playerLastPosition);
             _time = Time.time;

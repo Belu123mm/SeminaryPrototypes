@@ -10,8 +10,10 @@ public class Powerspell : MonoBehaviour {
 	void Start () {
         spellInterface.StartSpell(this);
         spellView.StartVisual(this);
+        
         print(spellInterface);
         print(spellView.spellName);
+        
 	}
 	
 	// Update is called once per frame

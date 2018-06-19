@@ -19,6 +19,8 @@ public class BearStateFollow : BearState
 
         //Calculamos hacia donde deberia estar mirando
         _dirToGo = (_target.transform.position - myBear.transform.position).normalized;
+        _dirToGo.y = 0;
+        
         //Vamos modificando el foward hacia la direccion
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         //Hacemos que avance hacia adelante
