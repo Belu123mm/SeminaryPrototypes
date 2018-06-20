@@ -9,46 +9,46 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1438320502309340}
+  m_RootGameObject: {fileID: 1568735289700076}
   m_IsPrefabParent: 1
---- !u!1 &1438320502309340
+--- !u!1 &1568735289700076
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4843305135817472}
-  - component: {fileID: 33356694195352446}
-  - component: {fileID: 23457834476258140}
-  - component: {fileID: 95380570620655792}
-  - component: {fileID: 64604608955216226}
+  - component: {fileID: 4275229183371532}
+  - component: {fileID: 33673072756866944}
+  - component: {fileID: 23164098352457874}
+  - component: {fileID: 95912605347806256}
+  - component: {fileID: 64786826416428974}
   m_Layer: 8
-  m_Name: Platform2
+  m_Name: WallRock2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!4 &4843305135817472
+--- !u!4 &4275229183371532
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1438320502309340}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -40.231457, y: 41.65249, z: 22.64805}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 1568735289700076}
+  m_LocalRotation: {x: 0.27868846, y: -0.6405586, z: 0.6605155, w: 0.27520314}
+  m_LocalPosition: {x: -38.329914, y: 8.901979, z: 26.594637}
+  m_LocalScale: {x: -0.5129551, y: -0.91863394, z: -1.2706174}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23457834476258140
+  m_LocalEulerAnglesHint: {x: 88.358, y: 32.967003, z: 166.84601}
+--- !u!23 &23164098352457874
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1438320502309340}
+  m_GameObject: {fileID: 1568735289700076}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 583c75442b9a71f4289fda50c6db07ea, type: 2}
+  - {fileID: 2100000, guid: 1a9d8528a4d7cdb46bb99f3548e7d243, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,19 +77,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33356694195352446
+--- !u!33 &33673072756866944
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1438320502309340}
-  m_Mesh: {fileID: 4300000, guid: ac98e341ca7bda84e80b3eaaab2de894, type: 3}
---- !u!64 &64604608955216226
+  m_GameObject: {fileID: 1568735289700076}
+  m_Mesh: {fileID: 4300000, guid: efa349c50ff863743853532e0aa1a651, type: 3}
+--- !u!64 &64786826416428974
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1438320502309340}
+  m_GameObject: {fileID: 1568735289700076}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -97,16 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: ac98e341ca7bda84e80b3eaaab2de894, type: 3}
---- !u!95 &95380570620655792
+  m_Mesh: {fileID: 4300000, guid: efa349c50ff863743853532e0aa1a651, type: 3}
+--- !u!95 &95912605347806256
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1438320502309340}
+  m_GameObject: {fileID: 1568735289700076}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: ac98e341ca7bda84e80b3eaaab2de894, type: 3}
+  m_Avatar: {fileID: 9000000, guid: efa349c50ff863743853532e0aa1a651, type: 3}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
