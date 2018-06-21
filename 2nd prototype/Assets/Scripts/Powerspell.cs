@@ -12,6 +12,7 @@ public class Powerspell : MonoBehaviour {
     public float timer;
         
 	void Start () {
+        transform.forward = avatar.forward;
         spellInterface.AvatarTransform(avatar);
         StartCollider();
         StartAnimations();

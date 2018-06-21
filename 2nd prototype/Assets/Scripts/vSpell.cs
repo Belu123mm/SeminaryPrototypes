@@ -17,6 +17,8 @@ public class vSpell : ScriptableObject {
 	public void StartVisual (Powerspell pw) {
         if ( mesh ) {
             GameObject m = Instantiate(mesh, pw.transform.position, Quaternion.identity, pw.transform);
+            if ( spellID == 3 ) m.transform.forward = pw.transform.right;
+            else m.transform.forward = pw.transform.forward;//Hay algo raro en esto 
             pw.animMesh = m.GetComponent<Animator>();
         }
         if ( particle ) {

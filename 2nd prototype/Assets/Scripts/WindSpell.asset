@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Name: WindSpell
   m_EditorClassIdentifier: 
   spellName: wind
-  particle: {fileID: 0}
-  mesh: {fileID: 0}
+  particle: {fileID: 198945709234854470, guid: 8bfc35534bbc19049b34bd4bc3b1cff5, type: 2}
+  mesh: {fileID: 1540384045942172, guid: bbfe586e1e3d05b4c8376105c0ef1d28, type: 2}
   triggered: 0
   damage: 50
   mana: 50
   spellID: 2
-  spellcd: 5
+  spellcd: 2

@@ -19,7 +19,7 @@ public class Powers : MonoBehaviour {
     public int spellValue;
     public int fillingValue;
     public bool filling;
-    //Este valor es el que tard en redisparar, que no varia segun el hechizo. Lo que los limita son el mana asi que :3
+    //Este valor es el que tard en redisparar, que no varia segun el hechizo. Lo que los limita es el mana asi que :3
     public float timeToPow;
 
     public void Start() {

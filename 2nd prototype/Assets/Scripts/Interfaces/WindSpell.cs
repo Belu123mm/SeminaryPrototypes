@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WindSpell : ISpell {
+    Transform avatar;
+    Powerspell ps;
 
-    public void StartSpell( Powerspell ps ) {
-        Debug.Log("winter");
+    public void StartSpell( Powerspell _ps ) {
+        ps = _ps;
+        ps.transform.position = avatar.position + avatar.forward * 2 + avatar.up * -0.5f;
+
     }
+
     public void PowerShoot() {
         Debug.Log("superwinter");
     }
@@ -14,7 +19,8 @@ public class WindSpell : ISpell {
         return 2;
     }
 
-    public void SpellUpdate( GameObject ps ) {
+    public void SpellUpdate( GameObject go ) {
+        go.transform.position += go.transform.forward * 0.5f;
 
     }
 
@@ -23,6 +29,6 @@ public class WindSpell : ISpell {
     }
 
     public void AvatarTransform( Transform tr ) {
-        throw new System.NotImplementedException();
+        avatar = tr;
     }
 }
