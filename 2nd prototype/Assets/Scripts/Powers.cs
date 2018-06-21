@@ -26,16 +26,16 @@ public class Powers : MonoBehaviour {
         UIContr = FindObjectOfType<UIController>();
         behaviourSpells = new Dictionary<string, ISpell>();
         viewSpells = new Dictionary<string, vSpell>();
-        behaviourSpells.Add("spring", new SpringSpell());
-        behaviourSpells.Add("summer", new SummerSpell());
-        behaviourSpells.Add("fall", new FallSpell());
-        behaviourSpells.Add("winter", new WinterSpell());
+        behaviourSpells.Add("shield", new ShieldSpell());
+        behaviourSpells.Add("rock", new  RockSpell());
+        behaviourSpells.Add("wind", new WindSpell());
+        behaviourSpells.Add("plant", new PlantSpell());
 
         for ( int i = 0; i < visual.Count; i++ ) {
             viewSpells.Add(visual [ i ].spellName, visual [ i ]);
         }
 
-        SetPowerType("fall");   //Default
+        SetPowerType("shield");   //Default
 
         UIContr.SetMaxMana(maxMana);
         currentMana = maxMana;
@@ -61,6 +61,7 @@ public class Powers : MonoBehaviour {
 
     public void Shoot() {
         Powerspell newspell = Instantiate(powerPrefab);
+        newspell.avatar = this.transform;
         newspell.spellInterface = _spellsInterface;
         newspell.spellView = _spellView;
 

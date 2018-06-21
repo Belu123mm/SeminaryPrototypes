@@ -9,13 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b4f3c365e910bb488a0518a7ea6e6a7, type: 3}
-  m_Name: ShieldSpell
+  m_Name: rockSpell
   m_EditorClassIdentifier: 
-  spellName: shield
-  particle: {fileID: 198820513502517008, guid: 66ae0d20b1a31da4487a4784d826f4c5, type: 2}
-  mesh: {fileID: 0}
+  spellName: rock
+  particle: {fileID: 0}
+  mesh: {fileID: 100000, guid: 15ab7f05ca951e6469ece0571657f670, type: 3}
   triggered: 0
   damage: 50
-  mana: 100
-  spellID: 0
-  spellcd: 3
+  mana: 50
+  spellID: 1
+  spellcd: 5

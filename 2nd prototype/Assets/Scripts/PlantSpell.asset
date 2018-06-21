@@ -9,11 +9,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b4f3c365e910bb488a0518a7ea6e6a7, type: 3}
-  m_Name: smashSpell
+  m_Name: PlantSpell
   m_EditorClassIdentifier: 
-  spellName: fall
+  spellName: plant
   particle: {fileID: 198389366301025074, guid: b21bd6d08d5ac2e4c9754469ab80d353, type: 2}
-  mesh: {fileID: 4300000, guid: 5123aeebac49dc84686f92ccd4a75613, type: 3}
+  mesh: {fileID: 4300006, guid: 513d4f508e6d279498031b7aebe8789e, type: 3}
   triggered: 0
   damage: 20
   mana: 200
+  spellID: 3
+  spellcd: 5

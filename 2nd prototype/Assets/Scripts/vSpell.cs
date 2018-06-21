@@ -5,16 +5,19 @@ using UnityEngine;
 public class vSpell : ScriptableObject {
     public string spellName;
     public ParticleSystem particle;
-    public Mesh mesh;
+    public GameObject mesh;
     public bool triggered;
     public int damage;
     public int mana;
+    public int spellID;
     //En teoria habria un time, pero no se por que lo puse      Ya se por que xd
+    //Este time es cuanto tarda el hechizo en morir
     public int spellcd;
 	// Use this for initialization
 	public void StartVisual (Powerspell pw) {
-		if ( mesh ) {
-            pw.GetComponent<MeshFilter>().sharedMesh = mesh;
+        if ( mesh ) {
+            GameObject m = Instantiate(mesh, pw.transform.position, Quaternion.identity, pw.transform);
+            pw.animMesh = m.GetComponent<Animator>();
         }
         if ( particle ) {
             Instantiate(particle,pw.transform.position,Quaternion.identity,pw.transform);

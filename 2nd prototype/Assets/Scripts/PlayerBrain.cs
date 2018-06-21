@@ -125,21 +125,21 @@ public class PlayerBrain : MonoBehaviour {
             }
             //SetPowers
             if ( Input.GetButton("one") ) {
-                powComp.SetPowerType("spring");
+                powComp.SetPowerType("shield");
                 animC.atackvalue = 0;
             }
             if ( Input.GetButton("two") ) {
-                powComp.SetPowerType("summer");
+                powComp.SetPowerType("rock");
                 animC.atackvalue = 1;
 
             }
             if ( Input.GetButton("three") ) {
-                powComp.SetPowerType("fall");
+                powComp.SetPowerType("wind");
                 animC.atackvalue = 2;
 
             }
             if ( Input.GetButton("four") ) {
-                powComp.SetPowerType("winter");
+                powComp.SetPowerType("plant");
                 animC.atackvalue = 3;
 
             }

@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: afa36114a28570e489bf6eaf6f884e9e
-timeCreated: 1525363819
+guid: 97c75e43725332f4a8e89dc7035340ed
+timeCreated: 1529544825
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: icons_0
     21300002: icons_1
-    21300004: icons_3
-    21300006: icons_2
+    21300004: icons_2
+    21300006: icons_3
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -35,7 +35,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: -1
+    filterMode: 0
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -88,9 +88,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 4
-        width: 73
-        height: 73
+        y: 0
+        width: 79.5
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,23 +102,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 79
-        y: 6
-        width: 70
-        height: 70
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: icons_3
-      rect:
-        serializedVersion: 2
-        x: 236
-        y: 2
-        width: 82
-        height: 79
+        y: 0
+        width: 79.5
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,10 +115,24 @@ TextureImporter:
       name: icons_2
       rect:
         serializedVersion: 2
-        x: 153
-        y: 1
-        width: 81
-        height: 81
+        x: 158
+        y: 0
+        width: 79.5
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: icons_3
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 0
+        width: 79.5
+        height: 82
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

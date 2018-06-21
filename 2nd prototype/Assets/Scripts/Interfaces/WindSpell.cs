@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WinterSpell : ISpell {
+public class WindSpell : ISpell {
 
     public void StartSpell( Powerspell ps ) {
         Debug.Log("winter");
@@ -11,13 +11,18 @@ public class WinterSpell : ISpell {
         Debug.Log("superwinter");
     }
     public int ReturnSeasonID() {
-        return 0;
+        return 2;
     }
 
     public void SpellUpdate( GameObject ps ) {
 
     }
 
-    public void EndSpell( Powerspell ps ) {
+    public IEnumerator EndSpell( float time ) {
+        yield return new WaitForSeconds(time);
+    }
+
+    public void AvatarTransform( Transform tr ) {
+        throw new System.NotImplementedException();
     }
 }

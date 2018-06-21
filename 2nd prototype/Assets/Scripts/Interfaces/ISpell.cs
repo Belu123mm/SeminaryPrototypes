@@ -7,6 +7,7 @@ public interface ISpell {
     void SpellUpdate( GameObject ps);
     void PowerShoot();
     int ReturnSeasonID();
-    void EndSpell( Powerspell ps);
+    IEnumerator EndSpell( float time);
+    void AvatarTransform(Transform tr );
 
 }
