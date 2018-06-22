@@ -1,16 +1,53 @@
 fileFormatVersion: 2
-guid: 2fc4917c7dbfa8842bc5782e47e1fcd2
-timeCreated: 1527634334
+guid: 268ffe61e86e63a47bc4ec1210e7c8ab
+timeCreated: 1529639602
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Object023
+    100004: Object024
+    100006: Object025
+    100008: Object028
+    100010: Object029
+    100012: Object030
+    100014: Object031
+    100016: Object032
     400000: //RootNode
-    2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Terrain
+    400002: Object023
+    400004: Object024
+    400006: Object025
+    400008: Object028
+    400010: Object029
+    400012: Object030
+    400014: Object031
+    400016: Object032
+    2100000: 03 - Default
+    2300000: Object023
+    2300002: Object024
+    2300004: Object025
+    2300006: Object028
+    2300008: Object029
+    2300010: Object030
+    2300012: Object031
+    2300014: Object032
+    3300000: Object023
+    3300002: Object024
+    3300004: Object025
+    3300006: Object028
+    3300008: Object029
+    3300010: Object030
+    3300012: Object031
+    3300014: Object032
+    4300000: Object029
+    4300002: Object030
+    4300004: Object031
+    4300006: Object032
+    4300008: Object025
+    4300010: Object023
+    4300012: Object028
+    4300014: Object024
     9500000: //RootNode
   externalObjects: {}
   materials:
@@ -63,8 +100,8 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 35
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
   importAnimation: 1
