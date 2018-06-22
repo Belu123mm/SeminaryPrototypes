@@ -44,12 +44,9 @@ public abstract class BearGeneric : MonoBehaviour
     public Vector3 dirToGo;
 
 
-
-
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //targetSystem = FindObjectOfType<Aim>();
     }
 
     public virtual void Update()
@@ -128,16 +125,29 @@ public abstract class BearGeneric : MonoBehaviour
             playerInRange = false;
     }
 
+    public void DealDamage(int damage)
+    {
+        RaycastHit raycastInfo;
+        Lives player;
+
+        if (Physics.Raycast(transform.position, target.transform.position - transform.position, out raycastInfo, 5, Layers.PLAYER))
+        {
+                Debug.Log("hola");
+                player = raycastInfo.collider.gameObject.GetComponent<Lives>();
+                player.TakeDamage(damage);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+    }
+
     IEnumerator PlayerRecentlySeen()
     {
         playerRecentlySeen = true;
         yield return new WaitForSeconds(timeForSeekingPlayer);
         playerRecentlySeen = false;
-    }
-
-    public virtual void AlternateIdleAndPatrol()
-    {
-
     }
 
     void OnDrawGizmos()

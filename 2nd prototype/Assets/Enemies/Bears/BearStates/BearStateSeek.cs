@@ -45,9 +45,10 @@ public class BearStateSeek : BearState
         {
             _rb.velocity = Vector3.zero;
             _rb.freezeRotation = true;
-            
+
             if (Time.time < _time + 3) LookLeft();
-            else LookRight();
+            else if (Time.time < _time + 6) LookRight();
+            else myBear.playerRecentlySeen = false;
         }
     }
 

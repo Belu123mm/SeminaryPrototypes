@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23958336119698074}
   - component: {fileID: 54094368928728076}
   - component: {fileID: 114349820123750094}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bear Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,13 +37,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431899768583788}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.9, y: 2, z: 4.34}
+  m_LocalRotation: {x: -0, y: -0.4577678, z: -0, w: 0.8890719}
+  m_LocalPosition: {x: -42.76, y: 7.8, z: 87.07}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -54.486004, z: 0}
 --- !u!23 &23958336119698074
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -98,7 +98,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &65642809551163556
 BoxCollider:
@@ -123,21 +123,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e63797411aa39c841b89ef7eda5c1855, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 54094368928728076}
   target: {fileID: 0}
   viewDistance: 15
-  viewAngle: 60
+  viewAngle: 80
   combatRange: 2
-  speed: 4
+  speed: 3
   chargeSpeed: 1
-  rotationSpeed: 2
+  rotationSpeed: 3
   timeOfPrediction: 0
-  currentHp: 100
+  currentHp: 50
   maxHp: 100
-  timeForSeekingPlayer: 5
+  timeForSeekingPlayer: 100
+  distanceFromPlayerToFlee: 20
   playerInSight: 0
   playerInRange: 0
   toCharge: 0
   playerRecentlySeen: 0
   toPatrol: 0
+  playerIsNear: 0
+  targetAdded: 0
+  targetSystem: {fileID: 0}
   predictedPosition: {x: 0, y: 0, z: 0}
   dirToGo: {x: 0, y: 0, z: 0}
