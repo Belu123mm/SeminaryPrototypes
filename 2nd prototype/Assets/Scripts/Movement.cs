@@ -97,7 +97,7 @@ public class Movement : MonoBehaviour {
         UIContr.SetStamina(currentStamina);
     }
     public void OnCollisionEnter( Collision collision ) {
-        if ( collision.gameObject.layer == LayerMask.NameToLayer("Level") && !ground ) {
+        if ( collision.gameObject.layer == Layers.WORLD && !ground ) {
             ground = true;
             spammingSpace = false;
         }

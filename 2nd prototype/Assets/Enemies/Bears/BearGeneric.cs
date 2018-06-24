@@ -36,6 +36,7 @@ public abstract class BearGeneric : MonoBehaviour
     protected float _distanceToTarget;
 
     public Aim targetSystem;
+    public Lives playerLives;
 
     [HideInInspector]
     public Vector3 predictedPosition = Vector3.zero;
@@ -128,13 +129,11 @@ public abstract class BearGeneric : MonoBehaviour
     public void DealDamage(int damage)
     {
         RaycastHit raycastInfo;
-        Lives player;
 
         if (Physics.Raycast(transform.position, target.transform.position - transform.position, out raycastInfo, 5, Layers.PLAYER))
         {
                 Debug.Log("hola");
-                player = raycastInfo.collider.gameObject.GetComponent<Lives>();
-                player.TakeDamage(damage);
+                playerLives.TakeDamage(damage);
         }
     }
 
