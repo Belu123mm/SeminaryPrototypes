@@ -4,6 +4,7 @@ using System.Collections;
 public class BearStateAttack : BearState
 {
     private int _typeOfAttackRandomChance;
+    private int _timeBetweenAttacksRandomChance = 2;
 
     public BearStateAttack(StateMachine sm, BearGeneric b) : base(sm, b)
     {
@@ -27,7 +28,7 @@ public class BearStateAttack : BearState
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         _rb.velocity = Vector3.zero;
 
-        if (Time.time > _time + Random.Range(2, 4))
+        if (Time.time > _time + _timeBetweenAttacksRandomChance)
         {
             _typeOfAttackRandomChance = Random.Range(0, 4);
 
@@ -47,31 +48,35 @@ public class BearStateAttack : BearState
 
     void LightAttack()
     {
-        myBear.damage = 10;
+        myBear.AssignCurrentDamageToDeal(_lightAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("LightAttack1");
         myBear.GetComponent<Renderer>().material.color = Color.blue;
+        _timeBetweenAttacksRandomChance = Random.Range(2, 5);
         _time = Time.time;
     }
 
     void LightAttackCombo()
     {
-        myBear.damage = 10;
+        myBear.AssignCurrentDamageToDeal(_lightAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("LightAttack1Combo");
         myBear.GetComponent<Renderer>().material.color = Color.blue;
+        _timeBetweenAttacksRandomChance = Random.Range(3, 6);
         _time = Time.time;
     }
 
     void HeavyAttack()
     {
-        myBear.damage = 25;
+        myBear.AssignCurrentDamageToDeal(_heavyAttackDamage);
         myBear.GetComponent<Renderer>().material.color = Color.yellow;
+        _timeBetweenAttacksRandomChance = Random.Range(3, 5);
         _time = Time.time;
     }
 
     void HeavyAttackCombo()
     {
-        myBear.damage = 25;
+        myBear.AssignCurrentDamageToDeal(_heavyAttackDamage);
         myBear.GetComponent<Renderer>().material.color = Color.yellow;
+        _timeBetweenAttacksRandomChance = Random.Range(4, 7);
         _time = Time.time;
     }
 }

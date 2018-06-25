@@ -27,7 +27,9 @@ public abstract class BearGeneric : MonoBehaviour
     public float knockbackBackForce;
     public float knockbackUpForce;
 
-    public int damage;
+    private int _damage;
+    public int lightAttackDamage;
+    public int heavyAttackDamage;
 
 
     [HideInInspector]
@@ -147,9 +149,14 @@ public abstract class BearGeneric : MonoBehaviour
             playerInRange = false;
     }
 
+    public void AssignCurrentDamageToDeal(int damage)
+    {
+        _damage = damage;
+    }
+
     public void DealDamage()
     {
-        playerLives.TakeDamage(damage);
+        playerLives.TakeDamage(_damage);
     }
 
     public void TakeDamage(int damage)

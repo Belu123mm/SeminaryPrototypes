@@ -18,6 +18,8 @@ public class BearState : State
     protected float _stunTime;
     protected float _knockbackBackForce;
     protected float _knockbackUpForce;
+    protected int _lightAttackDamage;
+    protected int _heavyAttackDamage;
 
     protected Vector3 _predictedPosition = Vector3.zero;
     protected Vector3 _dirToGo;
@@ -37,6 +39,8 @@ public class BearState : State
         _stunTime = myBear.stunTime;
         _knockbackBackForce = myBear.knockbackBackForce;
         _knockbackUpForce = myBear.knockbackUpForce;
+        _lightAttackDamage = myBear.lightAttackDamage;
+        _heavyAttackDamage = myBear.heavyAttackDamage;
         _predictedPosition = myBear.predictedPosition;
         _dirToGo = myBear.dirToGo;
     }
