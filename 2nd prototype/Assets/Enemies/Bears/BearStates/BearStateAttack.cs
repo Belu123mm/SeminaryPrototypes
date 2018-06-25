@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BearStateAttack : BearState
 {
+    private int _typeOfAttackRandomChance;
+
     public BearStateAttack(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
@@ -25,9 +27,15 @@ public class BearStateAttack : BearState
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         _rb.velocity = Vector3.zero;
 
-        if (Time.time > _time + Random.Range(1, 3))
-            if (Random.Range(0, 9) < 6) BasicAttack();
-            else HeavyAttack();
+        if (Time.time > _time + Random.Range(2, 4))
+        {
+            _typeOfAttackRandomChance = Random.Range(0, 4);
+
+            if (_typeOfAttackRandomChance == 0) LightAttack();
+            else if (_typeOfAttackRandomChance == 1) LightAttackCombo();
+            else if (_typeOfAttackRandomChance == 2) HeavyAttack();
+            else HeavyAttackCombo();
+        }
     }
 
     public override void Sleep()
@@ -37,17 +45,33 @@ public class BearStateAttack : BearState
         _rb.useGravity = true;
     }
 
-    void BasicAttack()
+    void LightAttack()
     {
+        myBear.damage = 10;
+        myBear.GetComponentInChildren<Animation>().Play("LightAttack1");
         myBear.GetComponent<Renderer>().material.color = Color.blue;
-        myBear.DealDamage(10);
+        _time = Time.time;
+    }
+
+    void LightAttackCombo()
+    {
+        myBear.damage = 10;
+        myBear.GetComponentInChildren<Animation>().Play("LightAttack1Combo");
+        myBear.GetComponent<Renderer>().material.color = Color.blue;
         _time = Time.time;
     }
 
     void HeavyAttack()
     {
+        myBear.damage = 25;
         myBear.GetComponent<Renderer>().material.color = Color.yellow;
-        myBear.DealDamage(25);
+        _time = Time.time;
+    }
+
+    void HeavyAttackCombo()
+    {
+        myBear.damage = 25;
+        myBear.GetComponent<Renderer>().material.color = Color.yellow;
         _time = Time.time;
     }
 }

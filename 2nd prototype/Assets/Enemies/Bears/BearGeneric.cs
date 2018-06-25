@@ -27,6 +27,8 @@ public abstract class BearGeneric : MonoBehaviour
     public float knockbackBackForce;
     public float knockbackUpForce;
 
+    public int damage;
+
 
     [HideInInspector]
     public bool playerInSight;
@@ -145,15 +147,9 @@ public abstract class BearGeneric : MonoBehaviour
             playerInRange = false;
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage()
     {
-        RaycastHit raycastInfo;
-
-        if (Physics.Raycast(transform.position, target.transform.position - transform.position, out raycastInfo, 5, Layers.PLAYER))
-        {
-                Debug.Log("hola");
-                playerLives.TakeDamage(damage);
-        }
+        playerLives.TakeDamage(damage);
     }
 
     public void TakeDamage(int damage)
