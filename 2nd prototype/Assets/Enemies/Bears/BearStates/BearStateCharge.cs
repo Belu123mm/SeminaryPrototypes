@@ -11,6 +11,7 @@ public class BearStateCharge : BearState
     {
         Debug.Log("Entró a Charge");
         base.Awake();
+        myBear.GetComponent<Renderer>().material.color = Color.magenta;
     }
 
     public override void Execute()

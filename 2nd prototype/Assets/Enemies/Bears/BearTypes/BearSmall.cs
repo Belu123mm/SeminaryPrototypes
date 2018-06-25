@@ -25,6 +25,6 @@ public class BearSmall : BearGeneric
         base.Update();
 
         _sm.Update();
-        currentTree.HasHp();
+        currentTree.HasHpToLive();
     }
 }

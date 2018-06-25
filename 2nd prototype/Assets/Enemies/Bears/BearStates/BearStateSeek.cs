@@ -6,7 +6,6 @@ public class BearStateSeek : BearState
     private float _seekRotationSpeed = 20f;
     private float _distanceToLastPosition;
     private float _distanceToLastPositionClamp = 1;
-    private float _time;
 
     private Vector3 _playerLastPosition;
     private Vector3 _lookLeft;
@@ -20,6 +19,7 @@ public class BearStateSeek : BearState
     {
         Debug.Log("Entró a Seek");
         base.Awake();
+        myBear.GetComponent<Renderer>().material.color = Color.yellow;
 
         _playerLastPosition = _target.transform.position;
         _distanceToLastPosition = Vector3.Distance(myBear.transform.position, _playerLastPosition);

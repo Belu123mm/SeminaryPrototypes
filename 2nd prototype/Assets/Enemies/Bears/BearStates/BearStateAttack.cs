@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BearStateAttack : BearState
 {
-    private float _time;
-
     public BearStateAttack(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
@@ -13,6 +11,7 @@ public class BearStateAttack : BearState
     {
         Debug.Log("Entró a Attack");
         base.Awake();
+        myBear.GetComponent<Renderer>().material.color = Color.red;
         _rb.useGravity = false;
         _time = Time.time;
     }

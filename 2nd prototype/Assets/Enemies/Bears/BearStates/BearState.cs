@@ -7,10 +7,17 @@ public class BearState : State
 
     protected Rigidbody _rb;
     protected GameObject _target;
+    protected float _time;
     protected float _speed;
     protected float _chargeSpeed;
     protected float _rotationSpeed;
     protected float _timeOfPrediction;
+    protected float _timeIdleToPatrol;
+    protected float _timePatrolToIdle;
+    protected float _knockbackTime;
+    protected float _stunTime;
+    protected float _knockbackBackForce;
+    protected float _knockbackUpForce;
 
     protected Vector3 _predictedPosition = Vector3.zero;
     protected Vector3 _dirToGo;
@@ -24,6 +31,12 @@ public class BearState : State
         _chargeSpeed = myBear.chargeSpeed;
         _rotationSpeed = myBear.rotationSpeed;
         _timeOfPrediction = myBear.timeOfPrediction;
+        _timeIdleToPatrol = myBear.timeIdleToPatrol;
+        _timePatrolToIdle = myBear.timePatrolToIdle;
+        _knockbackTime = myBear.knockbackTime;
+        _stunTime = myBear.stunTime;
+        _knockbackBackForce = myBear.knockbackBackForce;
+        _knockbackUpForce = myBear.knockbackUpForce;
         _predictedPosition = myBear.predictedPosition;
         _dirToGo = myBear.dirToGo;
     }

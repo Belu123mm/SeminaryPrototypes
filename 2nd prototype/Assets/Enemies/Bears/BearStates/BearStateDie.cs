@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BearStateDie : BearState
 {
-    private float _time;
-
     public BearStateDie(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }

@@ -11,6 +11,7 @@ public class BearStateFollow : BearState
     {
         Debug.Log("Entró a Follow");
         base.Awake();
+        myBear.GetComponent<Renderer>().material.color = Color.white;
     }
 
     public override void Execute()

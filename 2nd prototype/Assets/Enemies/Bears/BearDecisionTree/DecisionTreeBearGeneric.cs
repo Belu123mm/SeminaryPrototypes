@@ -4,78 +4,98 @@ using UnityEngine;
 
 public class DecisionTreeBearGeneric : ITree
 {
-    BearGeneric b;
+    BearGeneric _thisBear;
 
     public DecisionTreeBearGeneric(BearGeneric body)
     {
-        b = body;
+        _thisBear = body;
     }
 
-    public void HasHp()
+    public void HasHpToLive()
     {
-        if (b.currentHp > 0) PlayerInSight();
+        if (_thisBear.currentHp > 0) IsKnocked();
 
-        else if (!b._sm.IsActualState<BearStateDie>()) b._sm.SetState<BearStateDie>();
+        else if (!_thisBear._sm.IsActualState<BearStateDie>()) _thisBear._sm.SetState<BearStateDie>();
     }
 
-    public void PlayerInSight()
+    public void IsKnocked()
     {
-        if (b.playerInSight) HpToFight();
+        if (_thisBear.isKnocked)
+        {
+            if (!_thisBear._sm.IsActualState<BearStateKnockback>()) _thisBear._sm.SetState<BearStateKnockback>();
+        }
+
+        else IsStunned();
+    }
+
+    public void IsStunned()
+    {
+        if (_thisBear.isStunned)
+        {
+            if (!_thisBear._sm.IsActualState<BearStateStun>()) _thisBear._sm.SetState<BearStateStun>();
+        }
+
+        else IsPlayerInSight();
+    }
+
+    public void IsPlayerInSight()
+    {
+        if (_thisBear.playerInSight) HasHpToFight();
 
         else IsFleing();
     }
 
-    public void HpToFight()
+    public void HasHpToFight()
     {
-        if (b.currentHp > 25) PlayerInRange();
+        if (_thisBear.currentHp > 25) IsPlayerInRange();
 
-        else if (!b._sm.IsActualState<BearStateFlee>()) b._sm.SetState<BearStateFlee>();
+        else if (!_thisBear._sm.IsActualState<BearStateFlee>()) _thisBear._sm.SetState<BearStateFlee>();
     }
 
-    public void PlayerInRange()
+    public void IsPlayerInRange()
     {
-        if (b.playerInRange)
+        if (_thisBear.playerInRange)
         {
-            if (!b._sm.IsActualState<BearStateAttack>()) b._sm.SetState<BearStateAttack>();
+            if (!_thisBear._sm.IsActualState<BearStateAttack>()) _thisBear._sm.SetState<BearStateAttack>();
         }
 
-        else ToCharge();
+        else IsAbleToCharge();
     }
 
-    public void ToCharge()
+    public void IsAbleToCharge()
     {
-        if (b.toCharge)
+        if (_thisBear.toCharge)
         {
-            if (!b._sm.IsActualState<BearStateCharge>()) b._sm.SetState<BearStateCharge>();
+            if (!_thisBear._sm.IsActualState<BearStateCharge>()) _thisBear._sm.SetState<BearStateCharge>();
         }
 
-        else if (!b._sm.IsActualState<BearStateFollow>()) b._sm.SetState<BearStateFollow>();
+        else if (!_thisBear._sm.IsActualState<BearStateFollow>()) _thisBear._sm.SetState<BearStateFollow>();
     }
 
     public void IsFleing()
     {
-        if (!b._sm.IsActualState<BearStateFlee>()) RecentlySeen();
+        if (!_thisBear._sm.IsActualState<BearStateFlee>()) HasPlayerBeenRecentlySeen();
 
-        else if (!b.playerIsNear) ToPatrol();
+        else if (!_thisBear.playerIsNear) IsGoingToPatrol();
     }
 
-    public void RecentlySeen()
+    public void HasPlayerBeenRecentlySeen()
     {
-        if (b.playerRecentlySeen)
+        if (_thisBear.playerRecentlySeen)
         {
-            if (!b._sm.IsActualState<BearStateSeek>()) b._sm.SetState<BearStateSeek>();
+            if (!_thisBear._sm.IsActualState<BearStateSeek>()) _thisBear._sm.SetState<BearStateSeek>();
         }
 
-        else ToPatrol();
+        else IsGoingToPatrol();
     }
 
-    public void ToPatrol()
+    public void IsGoingToPatrol()
     {
-        if (b.toPatrol)
+        if (_thisBear.toPatrol)
         {
-            if (!b._sm.IsActualState<BearStatePatrol>()) b._sm.SetState<BearStatePatrol>();
+            if (!_thisBear._sm.IsActualState<BearStatePatrol>()) _thisBear._sm.SetState<BearStatePatrol>();
         }
 
-        else if (!b._sm.IsActualState<BearStateIdle>()) b._sm.SetState<BearStateIdle>();
+        else if (!_thisBear._sm.IsActualState<BearStateIdle>()) _thisBear._sm.SetState<BearStateIdle>();
     }
 }

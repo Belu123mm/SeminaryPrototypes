@@ -11,6 +11,7 @@ public class BearStateFlee : BearState
     {
         Debug.Log("Entró a Flee");
         base.Awake();
+        myBear.GetComponent<Renderer>().material.color = Color.gray;
     }
 
     public override void Execute()

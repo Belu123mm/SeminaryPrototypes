@@ -4,11 +4,11 @@ using UnityEngine;
 
 public interface ITree
 {
-    void HasHp();
-    void PlayerInSight();
-    void PlayerInRange();
-    void HpToFight();
-    void ToCharge();
-    void RecentlySeen();
-    void ToPatrol();  
+    void HasHpToLive();
+    void IsPlayerInSight();
+    void IsPlayerInRange();
+    void HasHpToFight();
+    void IsAbleToCharge();
+    void HasPlayerBeenRecentlySeen();
+    void IsGoingToPatrol();  
 }

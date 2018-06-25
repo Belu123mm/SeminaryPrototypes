@@ -16,20 +16,37 @@ public abstract class BearGeneric : MonoBehaviour
     public float chargeSpeed;
     public float rotationSpeed;
     public float timeOfPrediction;
+    public float timeIdleToPatrol;
+    public float timePatrolToIdle;
+    public float knockbackTime;
+    public float stunTime;
     public float currentHp;
     public float maxHp;
     public float timeForSeekingPlayer;
     public float distanceFromPlayerToFlee;
+    public float knockbackBackForce;
+    public float knockbackUpForce;
 
 
+    [HideInInspector]
     public bool playerInSight;
+    [HideInInspector]
     public bool playerInRange;
+    [HideInInspector]
     public bool toCharge;
+    [HideInInspector]
     public bool playerRecentlySeen;
+    [HideInInspector]
     public bool toPatrol;
+    [HideInInspector]
     public bool playerIsNear;
-    public bool targetAdded;
+    [HideInInspector]
+    public bool isKnocked;
+    [HideInInspector]
+    public bool isStunned;
     protected ITree currentTree;
+
+    private bool _targetAdded;
 
     protected Vector3 _directionToTarget;
     protected float _angleToTarget;
@@ -45,7 +62,7 @@ public abstract class BearGeneric : MonoBehaviour
     public Vector3 dirToGo;
 
 
-    public void Start()
+    public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
@@ -56,6 +73,8 @@ public abstract class BearGeneric : MonoBehaviour
         IsPlayerInLOS();
         LineOfSight();
         PlayerInCombatRange();
+
+        // if (Input.GetKeyDown(KeyCode.K)) ApplyKnockback();
     }
 
     void IsPlayerNear()
@@ -66,15 +85,15 @@ public abstract class BearGeneric : MonoBehaviour
 
     void IsPlayerInLOS()
     {
-        if (playerInSight && !targetAdded)
+        if (playerInSight && !_targetAdded)
         {
-            targetAdded = true;
+            _targetAdded = true;
             targetSystem.AddEnemy(this);
         }
-        else if (!playerInSight && targetAdded)
+        else if (!playerInSight && _targetAdded)
         {
             //Debug.Log("Target false");
-            targetAdded = false;
+            _targetAdded = false;
             targetSystem.RemoveEnemy(this);
         }
     }
@@ -140,6 +159,16 @@ public abstract class BearGeneric : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
+    }
+
+    public void ApplyKnockback()
+    {
+        isKnocked = true;
+    }
+
+    public void ApplyStun()
+    {
+        isStunned = true;
     }
 
     IEnumerator PlayerRecentlySeen()
