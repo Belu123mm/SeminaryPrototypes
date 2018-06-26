@@ -15,7 +15,6 @@ public class PlayerBrain : MonoBehaviour {
     //public CameraControl currentCam;
     public Powers powComp;
     public AnimController animC;
-    public bool isCombat;
     public Aim aimComp;
     public bool death;
     public bool combat;
