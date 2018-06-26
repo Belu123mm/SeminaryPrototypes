@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 86946c09f82ea2148bd9a68df512edfe
-timeCreated: 1529863649
+guid: 915086b17d725af478c61cb7588872f6
+timeCreated: 1529978223
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -66,8 +66,8 @@ ModelImporter:
     100116: CATRigSpine5
     100118: Gema
     100120: Hombreras
-    100122: //RootNode
-    100124: Staff
+    100122: Staff
+    100124: //RootNode
     400000: Avatar
     400002: CATRigHead
     400004: CATRigHub004
@@ -129,14 +129,14 @@ ModelImporter:
     400116: CATRigSpine5
     400118: Gema
     400120: Hombreras
-    400122: //RootNode
-    400124: Staff
+    400122: Staff
+    400124: //RootNode
     2100000: No Name
     4300000: Avatar
     4300002: Hombreras
     4300004: Staff
     4300006: Gema
-    7400000: Walk
+    7400000: Take 001
     9500000: //RootNode
     13700000: Avatar
     13700002: Gema
@@ -170,7 +170,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Walk
+      name: Take 001
       takeName: Take 001
       firstFrame: 0
       lastFrame: 32
@@ -180,7 +180,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
