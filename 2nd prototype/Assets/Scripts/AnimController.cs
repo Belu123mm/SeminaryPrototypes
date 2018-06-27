@@ -39,7 +39,10 @@ public class AnimController : MonoBehaviour {
         character.SetFloat("jumpValue", yMov); 
         character.SetBool("combat", combat);
         character.SetBool("walking", walk);
-        character.SetBool("jump", jump);
+        if ( jump ) {
+
+        character.SetTrigger("jump");
+        }
         character.SetBool("run", run);
         character.SetBool("attack",attack);
         character.SetBool("roll", roll);
