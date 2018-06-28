@@ -14,7 +14,7 @@ MonoBehaviour:
   spellName: shield
   particle: {fileID: 198820513502517008, guid: 66ae0d20b1a31da4487a4784d826f4c5, type: 2}
   mesh: {fileID: 0}
-  triggered: 0
+  triggered: 1
   damage: 50
   mana: 100
   spellID: 0

@@ -52,6 +52,7 @@ public class AnimController : MonoBehaviour {
         character.SetInteger("attackValue", atackvalue);
         if (run)
         {
+            
             character.SetFloat("movCombatHor", xMov);
         character.SetFloat("movCombatVer", zMov);
         }

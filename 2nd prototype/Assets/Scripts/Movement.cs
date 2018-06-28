@@ -96,6 +96,15 @@ public class Movement : MonoBehaviour {
         currentStamina -= runValue;
         UIContr.SetStamina(currentStamina);
     }
+    public void RunInCombat(Vector3 direc)
+    {
+        //Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
+        Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * runningSpeed * Time.fixedDeltaTime));
+
+        currentStamina -= runValue;
+        UIContr.SetStamina(currentStamina);
+    }
+
     public void OnCollisionEnter( Collision collision ) {
         if ( collision.gameObject.layer == Layers.WORLD && !ground ) {
             ground = true;

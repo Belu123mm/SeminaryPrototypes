@@ -53,7 +53,8 @@ public class PlayerBrain : MonoBehaviour {
                 if ( Input.GetButton("Fire3") ) {
                     mvComp.running = true;
                     if ( mvComp.runValue < mvComp.currentStamina ) {
-
+                        if (!combat)
+                        {
                         xInput = Input.GetAxis("Horizontal");
                         Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
@@ -61,6 +62,19 @@ public class PlayerBrain : MonoBehaviour {
                         Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
                         mvComp.Running(forw * zInput + rght * xInput);
+
+                        }
+                        else
+                        {
+                            xInput = Input.GetAxis("Horizontal");
+                            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+
+                            zInput = Input.GetAxis("Vertical");
+                            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+
+                            mvComp.RunInCombat(forw * zInput + rght * xInput);
+
+                        }
                         animC.run = true;
                     } else
                         animC.run = false;

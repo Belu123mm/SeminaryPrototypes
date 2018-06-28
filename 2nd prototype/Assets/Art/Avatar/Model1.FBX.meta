@@ -431,7 +431,7 @@ ModelImporter:
     - serializedVersion: 16
       name: AttackShield
       takeName: Take 001
-      firstFrame: 915
+      firstFrame: 918
       lastFrame: 950
       wrapMode: 0
       orientationOffsetY: 0

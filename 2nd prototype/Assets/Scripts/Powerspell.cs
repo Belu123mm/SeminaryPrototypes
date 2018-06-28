@@ -10,20 +10,31 @@ public class Powerspell : MonoBehaviour {
     public Animator animCollider;
     public Animator animMesh;
     public float timer;
+    bool trigger;
         
 	void Start () {
         transform.forward = avatar.forward;
         spellInterface.AvatarTransform(avatar);
         StartCollider();
         StartAnimations();
-        spellInterface.StartSpell(this);
-        spellView.StartVisual(this);
-        StartCoroutine(EndAnimations(spellView.spellcd));
-        Destroy(this.gameObject, spellView.spellcd);
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
+        if (timer < 5)
+        timer += Time.deltaTime;
+
+        print(spellView.triggered);
+        if (timer > 0.4f && trigger == false)
+        {
+            spellInterface.StartSpell(this);
+            spellView.StartVisual(this);
+            StartCoroutine(EndAnimations(spellView.spellcd));
+            Destroy(this.gameObject, spellView.spellcd);
+            trigger = true;
+        }
+
         spellInterface.SpellUpdate(this.gameObject);
 
 
