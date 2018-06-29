@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4903842121996112}
   - component: {fileID: 114316552463662956}
+  - component: {fileID: 65279033113359992}
   m_Layer: 0
   m_Name: Power
   m_TagString: Untagged
@@ -71,6 +72,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &65279033113359992
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1511679689114086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65311018362419390
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -78,7 +91,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1896764516709930}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -116,3 +129,5 @@ MonoBehaviour:
   animCollider: {fileID: 0}
   animMesh: {fileID: 0}
   timer: 0
+  trigger: 0
+  time: 0

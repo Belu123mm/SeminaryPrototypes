@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlantSpell : ISpell {
+public class PlantSpell : ISpell
+{
     Transform avatar;
     Powerspell ps;
-    float delay;
+    float id = 4;
 
-    public void StartSpell( Powerspell _ps ) {
+    public void StartSpell( Powerspell _ps )
+    {
         ps = _ps;
         ps.transform.position = avatar.position + avatar.forward + avatar.up * -1;
         ps.transform.forward = avatar.transform.forward;
@@ -27,11 +29,10 @@ public class PlantSpell : ISpell {
     public IEnumerator EndSpell( float time ) {
         yield return new WaitForSeconds(time);
     }
-
-
-
+    
     public void AvatarTransform( Transform tr ) {
         avatar = tr;
 
     }
+
 }

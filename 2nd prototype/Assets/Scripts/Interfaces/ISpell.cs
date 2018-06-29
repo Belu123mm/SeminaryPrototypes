@@ -9,5 +9,4 @@ public interface ISpell {
     int ReturnSeasonID();
     IEnumerator EndSpell( float time);
     void AvatarTransform(Transform tr );
-
 }

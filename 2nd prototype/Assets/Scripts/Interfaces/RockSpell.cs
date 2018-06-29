@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RockSpell : ISpell {
+public class RockSpell : ISpell
+{
     Transform avatar;
     Powerspell ps;
 
@@ -28,5 +29,6 @@ public void PowerShoot() {
     public void AvatarTransform( Transform tr ) {
         avatar = tr;
     }
+
 }
 

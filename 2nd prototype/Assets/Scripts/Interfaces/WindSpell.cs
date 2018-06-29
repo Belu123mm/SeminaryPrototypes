@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindSpell : ISpell {
+public class WindSpell : MonoBehaviour, ISpell
+{
     Transform avatar;
     Powerspell ps;
 
@@ -31,4 +32,11 @@ public class WindSpell : ISpell {
     public void AvatarTransform( Transform tr ) {
         avatar = tr;
     }
+
+    private void OnTriggerEnter(Collider collidingObject)
+    {
+        if (collidingObject.gameObject.layer == Layers.ENEMY)
+            collidingObject.gameObject.GetComponent<BearGeneric>().ApplyKnockback();
+    }
+
 }

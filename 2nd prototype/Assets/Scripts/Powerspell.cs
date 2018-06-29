@@ -10,6 +10,8 @@ public class Powerspell : MonoBehaviour {
     public Animator animCollider;
     public Animator animMesh;
     public float timer;
+    public bool trigger;
+    public bool time;
         
 	void Start () {
         transform.forward = avatar.forward;
@@ -24,9 +26,25 @@ public class Powerspell : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (!time)        timer += Time.deltaTime;
+
+
+        //Corutine?
+        if (timer > 0.2f)
+        {
+            trigger = true;
+            time = true;
+        }
+
+
+
+        if (trigger == true)
+        {
+            print("hi");
+            trigger = false;
+        }
+
         spellInterface.SpellUpdate(this.gameObject);
-
-
     }
     void StartCollider() {
         animCollider = transform.GetChild(0).GetComponent<Animator>();      //El collider siempre es el 0
@@ -45,7 +63,15 @@ public class Powerspell : MonoBehaviour {
 
     }
 
-    private void OnCollisionEnter( Collision collision ) {
-        //Aca ps pones lo que falta 
+    private void OnTriggerEnter(Collider collidingObject)
+    {
+        if (collidingObject.gameObject.layer == Layers.ENEMY)
+        {
+            if(spellInterface.ReturnSeasonID() == 2)
+            collidingObject.gameObject.GetComponent<BearGeneric>().ApplyKnockback();
+
+            if (spellInterface.ReturnSeasonID() == 3)
+                collidingObject.gameObject.GetComponent<BearGeneric>().ApplyStun();
+        }
     }
 }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldSpell : ISpell {
+public class ShieldSpell : ISpell
+{
 
     Transform avatar;
     Powerspell ps;
@@ -30,4 +31,5 @@ public class ShieldSpell : ISpell {
 
     public void AvatarTransform( Transform tr ) {
         avatar = tr;    }
+
 }
