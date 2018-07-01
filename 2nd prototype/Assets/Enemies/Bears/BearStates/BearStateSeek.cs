@@ -54,7 +54,7 @@ public class BearStateSeek : BearState
 
     void LookLeft()
     {
-        Debug.Log("Turn Left");
+        //tran
         //myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, new Vector3(myBear.transform.position.x + 5, myBear.transform.position.y, myBear.transform.position.z + 5), _seekRotationSpeed * Time.deltaTime);
         //myBear.transform.LookAt(Vector3.Lerp(myBear.transform.forward, myBear.transform.forward * 2, _seekRotationSpeed * Time.deltaTime));
     }
