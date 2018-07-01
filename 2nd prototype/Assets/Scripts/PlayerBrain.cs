@@ -85,6 +85,8 @@ public class PlayerBrain : MonoBehaviour {
 
             }
         }
+        else
+            this.GetComponent<Rigidbody>().freezeRotation = true;
     }
     public void Update() {  //Triggered actions 
         combat = aimComp.aim;
