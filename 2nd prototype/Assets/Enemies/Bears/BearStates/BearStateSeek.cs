@@ -3,13 +3,14 @@ using System.Collections;
 
 public class BearStateSeek : BearState
 {
-    private float _seekRotationSpeed = 20f;
+    private float _seekRotationSpeed = 3f;
     private float _distanceToLastPosition;
     private float _distanceToLastPositionClamp = 1;
 
     private Vector3 _playerLastPosition;
-    private Vector3 _lookLeft;
-    private Vector3 _lookRight;
+    private Vector3 _lookPosition1;
+    private Vector3 _lookPosition2;
+    private Vector3 _lookDirection;
 
     public BearStateSeek(StateMachine sm, BearGeneric b) : base(sm, b)
     {
@@ -17,15 +18,14 @@ public class BearStateSeek : BearState
 
     public override void Awake()
     {
-        Debug.Log("Entró a Seek");
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.yellow;
 
         _playerLastPosition = _target.transform.position;
         _distanceToLastPosition = Vector3.Distance(myBear.transform.position, _playerLastPosition);
         _dirToGo = _playerLastPosition - myBear.transform.position;
-        _lookLeft = _playerLastPosition + new Vector3(-5, 0, 0);
-        _lookRight = _playerLastPosition + new Vector3(5, 0, 0);
+        _lookPosition1 = GameObject.FindObjectOfType<WaypointsManager>().GetRandomWaypoint().position;
+        _lookPosition2 = GameObject.FindObjectOfType<WaypointsManager>().GetRandomWaypoint().position;
     }
 
     public override void Execute()
@@ -54,20 +54,20 @@ public class BearStateSeek : BearState
 
     void LookLeft()
     {
-        //tran
-        //myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, new Vector3(myBear.transform.position.x + 5, myBear.transform.position.y, myBear.transform.position.z + 5), _seekRotationSpeed * Time.deltaTime);
-        //myBear.transform.LookAt(Vector3.Lerp(myBear.transform.forward, myBear.transform.forward * 2, _seekRotationSpeed * Time.deltaTime));
+        _lookDirection = (_lookPosition1 - myBear.transform.position).normalized;
+        _lookDirection.y = 0;
+        myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _lookDirection, _seekRotationSpeed * Time.deltaTime);
     }
 
     void LookRight()
     {
-        Debug.Log("Turn Right");
-        //myBear.transform.Rotate(myBear.transform.up, 135);
+        _lookDirection = (_lookPosition2 - myBear.transform.position).normalized;
+        _lookDirection.y = 0;
+        myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _lookDirection, _seekRotationSpeed * Time.deltaTime);
     }
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Seek");
         base.Sleep();
     }
 }
