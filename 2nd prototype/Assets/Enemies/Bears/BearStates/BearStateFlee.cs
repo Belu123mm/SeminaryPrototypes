@@ -3,23 +3,31 @@ using System.Collections;
 
 public class BearStateFlee : BearState
 {
+    private Transform _waypoint;
+
     public BearStateFlee(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
 
     public override void Awake()
     {
-        Debug.Log("Entró a Flee");
         base.Awake();
-        myBear.GetComponent<Renderer>().material.color = Color.gray;
+        _waypoint = GameObject.FindObjectOfType<WaypointsManager>().GetRandomWaypoint();
+        _dirToGo = (_waypoint.position - myBear.transform.position).normalized;
+        myBear.GetComponent<Renderer>().material.color = Color.magenta;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        //Calculamos la direccion hacia la que tenemos que ir
-        _dirToGo = -(_target.transform.position - myBear.transform.position).normalized;
+        if((_waypoint.position.x - myBear.transform.position.x) < 2 && (_waypoint.position.z - myBear.transform.position.z) < 2)
+        {
+            _waypoint = GameObject.FindObjectOfType<WaypointsManager>().GetRandomWaypoint();
+            _dirToGo = (_waypoint.position - myBear.transform.position).normalized;
+        }
+
+        _dirToGo.y = 0;
         //Vamos ajustando el foward
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         //Avanzamos hacia adelante
@@ -29,7 +37,6 @@ public class BearStateFlee : BearState
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Flee");
         base.Sleep();
     }
 }
