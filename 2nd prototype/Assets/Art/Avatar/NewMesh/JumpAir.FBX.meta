@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7b798e83874d9874f82e532ba732ad91
-timeCreated: 1530241344
+guid: fbc29f967dbc158409dea976663d021b
+timeCreated: 1529863651
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
@@ -132,12 +132,11 @@ ModelImporter:
     400122: //RootNode
     400124: Staff
     2100000: No Name
-    2100002: 'Material #0'
     4300000: Avatar
     4300002: Hombreras
     4300004: Staff
     4300006: Gema
-    7400000: Take 001
+    7400000: JumpAir
     9500000: //RootNode
     13700000: Avatar
     13700002: Gema
@@ -169,7 +168,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: JumpAir
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
