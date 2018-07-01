@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour {
     public Rigidbody Rigidbody;
     [Header("Velocidades")]
     public float movementSpeed;
+    private float _speedAfterJump;
     [Range(1f, 3f)]
     public float runningSpeed;
     [Range(0f, 1f)]
@@ -41,6 +42,8 @@ public class Movement : MonoBehaviour {
         UIContr.SetMaxStamina(maxStamina);
         currentStamina = maxStamina;
         UIContr.SetStamina(currentStamina);
+
+        _speedAfterJump = movementSpeed;
     }
     public void Update() {
         timer += Time.deltaTime;
@@ -71,12 +74,28 @@ public class Movement : MonoBehaviour {
         Rigidbody.AddForce(Vector3.up * jumpForce);
         spammingSpace = true;
 
-        if ( ground ) {
+        if (ground)
+        {
             ground = false;
         }
         currentStamina -= jumpValue;
         UIContr.SetStamina(currentStamina);
+
+        if(Input.GetKey(KeyCode.LeftShift))
+            Invoke("StopSpeed", 0.8f);
     }
+
+    public void StopSpeed()
+    {
+        movementSpeed = 0;
+        Invoke("RestartSpeed", 0.4f);
+    }
+
+    public void RestartSpeed()
+    {
+        movementSpeed = _speedAfterJump;
+    }
+
     public void Roll() { //Esto lo hace una vez asi que no hace falta que se guarde en variablez
         Vector3 _rollVelocity = Vector3.Scale(transform.forward + transform.up, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 1.5f, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
         print(_rollVelocity);
