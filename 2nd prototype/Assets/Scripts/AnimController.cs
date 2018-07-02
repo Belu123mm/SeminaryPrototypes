@@ -44,8 +44,16 @@ public class AnimController : MonoBehaviour {
         character.SetTrigger("jump");
         }
         character.SetBool("run", run);
-        character.SetBool("attack",attack);
-        character.SetBool("roll", roll);
+        if ( attack ) {
+
+        character.SetTrigger("attack");
+        }
+        if ( roll  ) {
+
+        character.SetTrigger("roll");
+        }
+
+
         character.SetBool("hit", getHit);
         character.SetBool("death",death);
         character.SetBool("push",push);

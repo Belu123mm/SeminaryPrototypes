@@ -16,30 +16,27 @@ public class Powerspell : MonoBehaviour {
 	void Start () {
         transform.forward = avatar.forward;
         spellInterface.AvatarTransform(avatar);
-        StartCollider();
-        StartAnimations();
-        spellInterface.StartSpell(this);
-        spellView.StartVisual(this);
-        StartCoroutine(EndAnimations(spellView.spellcd));
-        Destroy(this.gameObject, spellView.spellcd);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (!time)        timer += Time.deltaTime;
-
+        timer += Time.deltaTime;
 
         //Corutine?
-        if (timer > 0.2f)
+        if (timer > 0.3f && !time)
         {
-            trigger = true;
             time = true;
+            trigger = true;
         }
 
-
-
-        if (trigger == true)
+        if (trigger == true && time)
         {
+            StartCollider();
+            StartAnimations();
+            spellInterface.StartSpell(this);
+            spellView.StartVisual(this);
+            StartCoroutine(EndAnimations(spellView.spellcd));
+            Destroy(this.gameObject, spellView.spellcd);
             print("hi");
             trigger = false;
         }

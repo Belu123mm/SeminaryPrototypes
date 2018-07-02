@@ -81,13 +81,13 @@ public class Movement : MonoBehaviour {
         currentStamina -= jumpValue;
         UIContr.SetStamina(currentStamina);
 
-        if(Input.GetKey(KeyCode.LeftShift))
-            Invoke("StopSpeed", 0.8f);
+        //Why xd 
+
     }
 
     public void StopSpeed()
     {
-        movementSpeed = 0;
+        movementSpeed = 1;
         Invoke("RestartSpeed", 0.4f);
     }
 
@@ -118,6 +118,9 @@ public class Movement : MonoBehaviour {
     public void OnCollisionEnter( Collision collision ) {
         if ( collision.gameObject.layer == Layers.WORLD && !ground ) {
             ground = true;
+            if ( Input.GetKey(KeyCode.LeftShift) )
+                Invoke("StopSpeed", 0.001f);
+
             spammingSpace = false;
         }
 
