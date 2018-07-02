@@ -28,12 +28,16 @@ public class AnimController : MonoBehaviour {
         character = transform.GetChild(0).GetComponent<Animator>();
     }
     public void Update() {
+
         if ( Input.anyKey ) {
             idleTimer = 0;
             character.SetFloat("idleTimer", idleTimer);
         } else {
             idleTimer += Time.deltaTime;
             character.SetFloat("idleTimer", idleTimer);
+        }
+        if ( getHit ) {
+            character.SetTrigger("hit");
         }
         combat = aim.aim;
         character.SetFloat("jumpValue", yMov); 
@@ -54,9 +58,12 @@ public class AnimController : MonoBehaviour {
         }
 
 
-        character.SetBool("hit", getHit);
         character.SetBool("death",death);
-        character.SetBool("push",push);
+        if ( push ) {
+
+            character.SetTrigger("push");
+        }
+
         character.SetInteger("attackValue", atackvalue);
         if (run)
         {
@@ -72,8 +79,10 @@ public class AnimController : MonoBehaviour {
 
 
     }
+    /*
     public void LateUpdate() {
         if ( getHit )
             getHit = false;
     }
+    */
 }

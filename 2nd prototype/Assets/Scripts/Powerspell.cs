@@ -35,9 +35,8 @@ public class Powerspell : MonoBehaviour {
             StartAnimations();
             spellInterface.StartSpell(this);
             spellView.StartVisual(this);
-            StartCoroutine(EndAnimations(spellView.spellcd));
-            Destroy(this.gameObject, spellView.spellcd);
-            print("hi");
+            StartCoroutine(EndAnimations(spellView.lifeTime));
+            Destroy(this.gameObject, spellView.lifeTime);
             trigger = false;
         }
 
@@ -53,10 +52,8 @@ public class Powerspell : MonoBehaviour {
         }
     }
     public IEnumerator EndAnimations( float time ) {
-        print("finishing");
         yield return new WaitForSeconds(time - 2);
         animCollider.SetBool("end", true);
-
 
     }
 
@@ -69,6 +66,8 @@ public class Powerspell : MonoBehaviour {
 
             if (spellInterface.ReturnSeasonID() == 3)
                 collidingObject.gameObject.GetComponent<BearGeneric>().ApplyStun();
+
+            //spellView.damage; //Este es el valor del daño que haces al disparar, esto se lo pasas al oso. El valor lo modificas en  el scriptable object
         }
     }
 }

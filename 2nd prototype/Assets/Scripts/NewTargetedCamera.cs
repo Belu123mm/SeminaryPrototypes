@@ -22,13 +22,10 @@ public class NewTargetedCamera : MonoBehaviour {
             float angle = Vector3.Angle(Vector3.right, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
             if ( side < 90 ) {
                 cam.m_XAxis.Value = -angle - 90; //angulo
-                print("Lado1");
             } else if ( side > 90 ) {
                 cam.m_XAxis.Value = angle - 90; //angulo
-                print("Lado2");
 
             }
-            print(side);
 
             cam.m_YAxis.Value = Vector3.Distance(look.position, follow.position) / maxDistance;
         }

@@ -18,4 +18,7 @@ MonoBehaviour:
   damage: 50
   mana: 50
   spellID: 2
-  spellcd: 2
+  yOffset: 0.2
+  shootDistance: 0.5
+  timeToShoot: 0
+  lifeTime: 1

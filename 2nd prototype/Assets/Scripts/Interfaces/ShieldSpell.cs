@@ -13,7 +13,7 @@ public class ShieldSpell : ISpell
 
     public void StartSpell( Powerspell _ps ) {
         ps = _ps;
-        ps.transform.position = avatar.position  + avatar.forward;    }
+        ps.transform.position = avatar.position + avatar.forward * ps.spellView.shootDistance;    }
     public void PowerShoot() {
     }
     public int ReturnSeasonID() {

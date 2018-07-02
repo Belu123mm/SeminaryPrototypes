@@ -20,7 +20,6 @@ public class Aim : MonoBehaviour
 
                 if (enemis.Contains(bear))
                 {
-                    print("Hitted");
                     aim = true;
                     targCam.On(bear.transform,bear.viewDistance);
                 }

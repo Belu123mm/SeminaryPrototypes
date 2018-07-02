@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBrain : MonoBehaviour { 
+public class PlayerBrain : MonoBehaviour {
     //Aca se colocan los inputs y se llama a movement (mvcomp) y se ejecutan esas cosas. 
     [Header("Entradas")]
     public float xInput;
@@ -15,10 +15,10 @@ public class PlayerBrain : MonoBehaviour {
     //public CameraControl currentCam;
     public Powers powComp;
     public AnimController animC;
+    public ParticleController pCont;
     public Aim aimComp;
     public bool death;
     public bool combat;
-
     /*
     //  GASTON IN
 
@@ -36,9 +36,10 @@ public class PlayerBrain : MonoBehaviour {
         animC = GetComponent<AnimController>();
         aimComp = GetComponent<Aim>();
         cam = FindObjectOfType<Camera>();
+        pCont = GetComponent<ParticleController>();
     }
     public void FixedUpdate() { //Input Actions
-        if ( !death ) {
+        if ( !death && !mvComp.hit) {
             if ( !powComp.shoot && !mvComp.rolling ) {
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
                     xInput = Input.GetAxis("Horizontal");
@@ -58,9 +59,6 @@ public class PlayerBrain : MonoBehaviour {
                     animC.xMov = Input.GetAxis("Horizontal");
                     animC.zMov = Input.GetAxis("Vertical");
                 }
-
-
-
                 if ( Input.GetButton("Fire3") ) {
                     mvComp.running = true;
                     if ( mvComp.runValue < mvComp.currentStamina ) {
@@ -81,24 +79,72 @@ public class PlayerBrain : MonoBehaviour {
                         animC.run = false;
                     }
 
-
                 } else
                     animC.run = false;
-
             }
+            //Jump
+            if ( Input.GetButton("Jump") && !mvComp.spammingSpace && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
+            {
+                if ( mvComp.jumpValue < mvComp.currentStamina ) {
+                    //_timeMovement = Time.time;
+                    mvComp.Jump();
+                    pCont.JumpSmoke();
+                    animC.jump = true;
+                }
+            } else {
+                animC.jump = false;
+            }
+            //Roll
+            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown) 
+                {
+                if ( mvComp.rollValue < mvComp.currentStamina ) {
+                    //_timeMovement = Time.time;
+                    mvComp.timer = 0;
+                    mvComp.rolling = true;
+                    animC.roll = true;
+                    mvComp.Roll();
+                    this.GetComponent<Rigidbody>().freezeRotation = true;
+                }
+            } else {
+                animC.roll = false;
+            }
+            //TestPush
+            if ( Input.GetKeyDown(KeyCode.H) ) {
+                mvComp.Push();
+                this.GetComponent<Rigidbody>().freezeRotation = true;
+                animC.push = true;
+            }
+
         } else
             this.GetComponent<Rigidbody>().freezeRotation = true;
-            
+
     }
     public void Update() {  //Triggered actions 
         combat = aimComp.aim;
         death = animC.death;
         animC.yMov = mvComp.Rigidbody.velocity.y;
         mvComp.running = false;
+        animC.push = false;
+        animC.getHit = false;
 
-        if ( !death ) {
+        if ( Input.GetKeyDown(KeyCode.J) ) {
+            pCont.HitSparks();
+            mvComp.hit = true;
+            animC.getHit = true;
+            mvComp.delayHit = 0.5f;
+        }
+
+        if ( mvComp.hit ) {
+            mvComp.delayHit -= Time.deltaTime;
+        }
+        if ( mvComp.delayHit < 0 ) {
+            mvComp.hit = false;
+            //mvComp.StopSpeed();
+        }
+
+        if ( !death && !mvComp.hit ) {
             //Attack
-            if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.spammingSpace && !mvComp.rolling) //&& Time.time > _timePowers + powerCooldown && Time.time > _timeMovement + movementCooldown)
+            if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.spammingSpace && !mvComp.rolling ) //&& Time.time > _timePowers + powerCooldown && Time.time > _timeMovement + movementCooldown)
             {
                 //_timePowers = Time.time;
                 //_timeMovement = Time.time;
@@ -116,41 +162,6 @@ public class PlayerBrain : MonoBehaviour {
             //Target
             if ( Input.GetButtonDown("Click") ) {
                 aimComp.Targeted();
-            }
-            //Jump
-            if ( Input.GetButton("Jump") && !mvComp.spammingSpace  && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
-            {
-                if ( mvComp.jumpValue < mvComp.currentStamina)
-                {
-                    //_timeMovement = Time.time;
-                mvComp.Jump();
-                animC.jump = true;
-                }
-            } else {
-                animC.jump = false;
-            }
-            //Roll
-            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown) {
-                if ( mvComp.rollValue < mvComp.currentStamina )
-                {
-                    //_timeMovement = Time.time;
-                    mvComp.timer = 0;
-                    mvComp.rolling = true;
-                    animC.roll = true;
-                    mvComp.Roll();
-                    this.GetComponent<Rigidbody>().freezeRotation = true;
-                }
-            } else  {
-                animC.roll = false;
-            }
-            //TestPush
-            if ( Input.GetKey(KeyCode.H) ) {
-                mvComp.Push();
-                animC.push = true;
-
-            } else {
-                animC.push = false;
-
             }
             //SetPowers
             if ( Input.GetButton("one") ) {
@@ -173,17 +184,6 @@ public class PlayerBrain : MonoBehaviour {
 
             }
 
-            //AnimationTest
-            if ( Input.GetKeyDown(KeyCode.T) ) {
-                if ( animC.test == true ) {
-                    animC.test = false;
-
-                } else
-                if ( animC.test == false ) {
-                    animC.test = true;
-
-                }
-            }
         }
     }
-
+}

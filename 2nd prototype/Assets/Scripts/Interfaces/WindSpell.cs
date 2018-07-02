@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindSpell : MonoBehaviour, ISpell
+public class WindSpell : ISpell
 {
     Transform avatar;
     Powerspell ps;
 
     public void StartSpell( Powerspell _ps ) {
         ps = _ps;
-        ps.transform.position = avatar.position + avatar.forward * 2 + avatar.up * -0.5f;
+        ps.transform.position = avatar.position + avatar.forward * ps.spellView.shootDistance + avatar.up * ps.spellView.yOffset;
 
     }
 
@@ -33,10 +33,5 @@ public class WindSpell : MonoBehaviour, ISpell
         avatar = tr;
     }
 
-    private void OnTriggerEnter(Collider collidingObject)
-    {
-        if (collidingObject.gameObject.layer == Layers.ENEMY)
-            collidingObject.gameObject.GetComponent<BearGeneric>().ApplyKnockback();
-    }
 
 }

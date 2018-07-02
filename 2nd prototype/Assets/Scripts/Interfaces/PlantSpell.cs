@@ -6,12 +6,15 @@ public class PlantSpell : ISpell
 {
     Transform avatar;
     Powerspell ps;
-    float id = 4;
 
     public void StartSpell( Powerspell _ps )
     {
         ps = _ps;
-        ps.transform.position = avatar.position + avatar.forward + avatar.up * -1;
+        RaycastHit hit;
+
+        if ( Physics.Raycast(avatar.position + avatar.forward * ps.spellView.shootDistance, -avatar.up, out hit, 100) ) {
+            ps.transform.position = hit.point + avatar.up * ps.spellView.yOffset;
+        }
         ps.transform.forward = avatar.transform.forward;
 
     }
@@ -23,6 +26,7 @@ public class PlantSpell : ISpell
     }
 
     public void SpellUpdate( GameObject go ) {
+
         go.transform.position += go.transform.forward * 0.2f;
     }
 

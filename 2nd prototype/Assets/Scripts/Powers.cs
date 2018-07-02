@@ -19,11 +19,13 @@ public class Powers : MonoBehaviour {
     public int spellValue;
     public int fillingValue;
     public bool filling;
+    public ParticleController pCont;
     //Este valor es el que tard en redisparar, que no varia segun el hechizo. Lo que los limita es el mana asi que :3
     public float timeToPow;
 
     public void Start() {
         UIContr = FindObjectOfType<UIController>();
+        pCont = GetComponent<ParticleController>();
         behaviourSpells = new Dictionary<string, ISpell>();
         viewSpells = new Dictionary<string, vSpell>();
         behaviourSpells.Add("shield", new ShieldSpell());
@@ -60,6 +62,7 @@ public class Powers : MonoBehaviour {
     }
 
     public void Shoot() {
+        pCont.StaffShine();
         Powerspell newspell = Instantiate(powerPrefab);
         newspell.avatar = this.transform;
         newspell.spellInterface = _spellsInterface;

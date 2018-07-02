@@ -10,9 +10,12 @@ public class vSpell : ScriptableObject {
     public int damage;
     public int mana;
     public int spellID;
+    public float yOffset;
+    public float shootDistance;
+    public float timeToShoot;
     //En teoria habria un time, pero no se por que lo puse      Ya se por que xd
     //Este time es cuanto tarda el hechizo en morir
-    public int spellcd;
+    public int lifeTime;
 	// Use this for initialization
 	public void StartVisual (Powerspell pw) {
         if ( mesh ) {

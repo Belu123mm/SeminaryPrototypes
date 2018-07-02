@@ -9,8 +9,10 @@ public class RockSpell : ISpell
 
     public void StartSpell( Powerspell _ps ) {
         ps = _ps;
-        ps.transform.position = avatar.position + avatar.forward * 2 + avatar.up * -0.5f;
-    
+        RaycastHit hit;
+
+        if ( Physics.Raycast( avatar.position + avatar.forward * ps.spellView.shootDistance, -avatar.up, out hit, 100) ) {
+            ps.transform.position = hit.point + avatar.up * ps.spellView.yOffset;        }    
 }
 public void PowerShoot() {
         Debug.Log("supersummer");

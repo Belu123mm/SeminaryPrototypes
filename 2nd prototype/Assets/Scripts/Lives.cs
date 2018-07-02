@@ -5,12 +5,16 @@ using UnityEngine;
 public class Lives : MonoBehaviour
 {
     public AnimController animC;
+    public Movement mvComp;
+    public ParticleController pCont;
     public int life;
 
 
     void Start()
     {
         animC = GetComponent<AnimController>();
+        mvComp = GetComponent<Movement>();
+        pCont = GetComponent<ParticleController>();
     }
 
     void Update()
@@ -20,16 +24,17 @@ public class Lives : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Ball>())
-        {
-            life--;
-            animC.getHit = true;
-        }
     }
 
     public void TakeDamage(int damage)
     {
         life -= damage;
+        animC.getHit = true;
+        mvComp.hit = true; 
+        mvComp.delayHit = 0.5f;
+        pCont.HitSparks(); 
+
+
     }
 
     public void GetHeal()
