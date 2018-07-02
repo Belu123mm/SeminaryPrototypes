@@ -54,12 +54,19 @@ public class DecisionTreeBearGeneric : ITree
 
     public void IsPlayerInRange()
     {
-        if (_thisBear.playerInRange)
-        {
-            if (!_thisBear._sm.IsActualState<BearStateAttack>()) _thisBear._sm.SetState<BearStateAttack>();
-        }
+        if (_thisBear.playerInRange) IsAbleToReposition();
 
         else IsAbleToCharge();
+    }
+
+    public void IsAbleToReposition()
+    {
+        if (_thisBear.toReposition)
+        {
+            if (!_thisBear._sm.IsActualState<BearStateRepositioning>()) _thisBear._sm.SetState<BearStateRepositioning>();
+        }
+
+        else if (!_thisBear._sm.IsActualState<BearStateAttack>()) _thisBear._sm.SetState<BearStateAttack>();
     }
 
     public void IsAbleToCharge()
@@ -74,6 +81,8 @@ public class DecisionTreeBearGeneric : ITree
 
     public void IsFleing()
     {
+        if (_thisBear.toReposition) return;
+
         if (!_thisBear._sm.IsActualState<BearStateFlee>()) HasPlayerBeenRecentlySeen();
 
         else if (!_thisBear.playerIsNear) IsGoingToPatrol();

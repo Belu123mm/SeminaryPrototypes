@@ -9,28 +9,24 @@ public class BearStateCharge : BearState
 
     public override void Awake()
     {
-        Debug.Log("Entró a Charge");
         base.Awake();
-        myBear.GetComponent<Renderer>().material.color = Color.magenta;
+        myBear.GetComponent<Renderer>().material.color = Color.red;
+        _dirToGo = (_target.transform.position - myBear.transform.position).normalized;
+        _dirToGo.y = 0;
     }
 
     public override void Execute()
     {
         base.Execute();
 
-        // Obtenemos la posicion a la que debemos apuntar
-        // _predictedPosition = _target.transform.position + _target.transform.forward * _target.movementSpeed * _timeOfPrediction;
-        
-        //Hacemos que se rote hacia esa direccion
-        myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _predictedPosition - myBear.transform.position, _rotationSpeed * Time.deltaTime);
-
-        //Hacemos que avance
-        myBear.transform.position += myBear.transform.forward * _speed * _chargeSpeed * Time.deltaTime;
+        //myBear.transform.Rotate(myBear.transform.position, 180);
+        myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
+        float velY = _rb.velocity.y;
+        _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _chargeSpeed;
     }
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Charge");
         base.Sleep();
     }
 }

@@ -36,7 +36,7 @@ public abstract class BearGeneric : MonoBehaviour
     public bool playerInSight;
     [HideInInspector]
     public bool playerInRange;
-    [HideInInspector]
+    //[HideInInspector]
     public bool toCharge;
     [HideInInspector]
     public bool playerRecentlySeen;
@@ -48,6 +48,8 @@ public abstract class BearGeneric : MonoBehaviour
     public bool isKnocked;
     [HideInInspector]
     public bool isStunned;
+    [HideInInspector]
+    public bool toReposition;
     protected ITree currentTree;
 
     private bool _targetAdded;
