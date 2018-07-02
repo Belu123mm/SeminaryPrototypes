@@ -7,15 +7,22 @@ public class BearStateAttack : BearState
     private int _timeBetweenAttacksRandomChance = 2;
     private float _timeOfNoRotationWhileAttack;
 
+    private float _timeOfReposition;
+    private int _timeOfRepositionRandomChance;
+
     public BearStateAttack(StateMachine sm, BearGeneric b) : base(sm, b)
     {
     }
+
+    // Timer para reposition HACER
 
     public override void Awake()
     {
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.red;
         _rb.useGravity = false;
+        _timeOfReposition = Time.time;
+        _timeOfRepositionRandomChance = Random.Range(3, 12);
     }
 
     public override void Execute()
@@ -40,6 +47,8 @@ public class BearStateAttack : BearState
             else if (_typeOfAttackRandomChance == 2) HeavyAttack();
             else HeavyAttackCombo();
         }
+
+        if (Time.time > _timeOfReposition + _timeOfRepositionRandomChance) myBear.toReposition = true;
     }
 
     public override void Sleep()

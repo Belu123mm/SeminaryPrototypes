@@ -19,6 +19,7 @@ public abstract class BearGeneric : MonoBehaviour
     public float timeIdleToPatrol;
     public float timePatrolToIdle;
     public float knockbackTime;
+    public float repositionTime;
     public float stunTime;
     public float currentHp;
     public float maxHp;
