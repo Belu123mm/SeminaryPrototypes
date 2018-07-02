@@ -3,10 +3,6 @@ using System.Collections;
 
 public class BearCharger : BearGeneric
 {
-    private bool _resetTimer;
-    private float _time;
-    private float _timeToReposition;
-
     public override void Start ()
     {
         base.Start();
@@ -33,33 +29,5 @@ public class BearCharger : BearGeneric
 
         _sm.Update();
         currentTree.HasHpToLive();
-        ActivateReposition();
-    }
-
-    public void ActivateReposition()
-    {
-        if (!toReposition)
-        {
-            if (playerInSight)
-            {
-                //if (Time.time > _time + Random.nge(8, 16)) toReposition = true;
-            }
-
-            else _time = Time.time;
-        }
-
-        else DesactivateReposition();
-    }
-
-    public void DesactivateReposition()
-    {
-
-        if (toReposition)
-        {
-            if (Time.time > _time + 3) toReposition = false;
-        }
-
-        else _time = Time.time;
-
     }
 }

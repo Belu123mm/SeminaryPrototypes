@@ -19,7 +19,6 @@ public class BearStateCharge : BearState
     {
         base.Execute();
 
-        //myBear.transform.Rotate(myBear.transform.position, 180);
         myBear.transform.forward = Vector3.Lerp(myBear.transform.forward, _dirToGo, _rotationSpeed * Time.deltaTime);
         float velY = _rb.velocity.y;
         _rb.velocity = new Vector3(_dirToGo.x, _dirToGo.y * velY, _dirToGo.z) * _chargeSpeed;
@@ -28,5 +27,6 @@ public class BearStateCharge : BearState
     public override void Sleep()
     {
         base.Sleep();
+        myBear.toCharge = false;
     }
 }

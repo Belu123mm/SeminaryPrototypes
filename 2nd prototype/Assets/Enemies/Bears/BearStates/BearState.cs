@@ -16,6 +16,7 @@ public class BearState : State
     protected float _timePatrolToIdle;
     protected float _knockbackTime;
     protected float _stunTime;
+    protected float _repositionTime;
     protected float _knockbackBackForce;
     protected float _knockbackUpForce;
     protected int _lightAttackDamage;
@@ -37,6 +38,7 @@ public class BearState : State
         _timePatrolToIdle = myBear.timePatrolToIdle;
         _knockbackTime = myBear.knockbackTime;
         _stunTime = myBear.stunTime;
+        _repositionTime = myBear.repositionTime;
         _knockbackBackForce = myBear.knockbackBackForce;
         _knockbackUpForce = myBear.knockbackUpForce;
         _lightAttackDamage = myBear.lightAttackDamage;
