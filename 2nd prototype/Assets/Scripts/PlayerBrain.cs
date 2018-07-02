@@ -19,6 +19,7 @@ public class PlayerBrain : MonoBehaviour {
     public bool death;
     public bool combat;
 
+    /*
     //  GASTON IN
 
     public float powerCooldown;
@@ -28,6 +29,7 @@ public class PlayerBrain : MonoBehaviour {
 
     //  GASTON OUT
 
+    */
     public void Awake() {
         mvComp = GetComponent<Movement>();
         powComp = GetComponent<Powers>();
@@ -49,8 +51,7 @@ public class PlayerBrain : MonoBehaviour {
                         mvComp.Move(forw * zInput + rght * xInput);
                     }
                     animC.walk = true;
-                } else 
-                 {
+                } else {
                     animC.walk = false;
                 }
                 if ( combat ) {
@@ -73,20 +74,21 @@ public class PlayerBrain : MonoBehaviour {
                         mvComp.Running(forw * zInput + rght * xInput);
                         animC.run = true;
                         animC.walk = false;
-                    } else
-                    {
+                    } else {
+                        print("walkin");
+
                         animC.walk = true;
                         animC.run = false;
                     }
-                        
+
 
                 } else
                     animC.run = false;
 
             }
-        }
-        else
+        } else
             this.GetComponent<Rigidbody>().freezeRotation = true;
+            
     }
     public void Update() {  //Triggered actions 
         combat = aimComp.aim;
@@ -96,14 +98,16 @@ public class PlayerBrain : MonoBehaviour {
 
         if ( !death ) {
             //Attack
-            if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.spammingSpace && !mvComp.rolling && Time.time > _timePowers + powerCooldown && Time.time > _timeMovement + movementCooldown)
+            if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.spammingSpace && !mvComp.rolling) //&& Time.time > _timePowers + powerCooldown && Time.time > _timeMovement + movementCooldown)
             {
-                _timePowers = Time.time;
-                _timeMovement = Time.time;
+                //_timePowers = Time.time;
+                //_timeMovement = Time.time;
 
                 powComp.timer = 0;
 
                 powComp.Shoot();
+                animC.walk = false;
+                animC.run = false;
                 powComp.shoot = true;
                 animC.attack = true;
             } else {
@@ -114,11 +118,11 @@ public class PlayerBrain : MonoBehaviour {
                 aimComp.Targeted();
             }
             //Jump
-            if ( Input.GetButton("Jump") && !mvComp.spammingSpace  && !mvComp.rolling && !powComp.shoot && Time.time > _timeMovement + movementCooldown)
+            if ( Input.GetButton("Jump") && !mvComp.spammingSpace  && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
             {
                 if ( mvComp.jumpValue < mvComp.currentStamina)
                 {
-                    _timeMovement = Time.time;
+                    //_timeMovement = Time.time;
                 mvComp.Jump();
                 animC.jump = true;
                 }
@@ -126,10 +130,10 @@ public class PlayerBrain : MonoBehaviour {
                 animC.jump = false;
             }
             //Roll
-            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot && Time.time > _timeMovement + movementCooldown) {
+            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown) {
                 if ( mvComp.rollValue < mvComp.currentStamina )
                 {
-                    _timeMovement = Time.time;
+                    //_timeMovement = Time.time;
                     mvComp.timer = 0;
                     mvComp.rolling = true;
                     animC.roll = true;
@@ -182,4 +186,4 @@ public class PlayerBrain : MonoBehaviour {
             }
         }
     }
-}
+
