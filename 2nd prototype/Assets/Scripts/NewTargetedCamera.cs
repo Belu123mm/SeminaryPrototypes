@@ -10,6 +10,7 @@ public class NewTargetedCamera : MonoBehaviour {
     public Transform follow;
     public Transform look;
     public float maxDistance;
+    public float actualDistance;
     public bool active;
 
     public void Start() {
@@ -18,6 +19,7 @@ public class NewTargetedCamera : MonoBehaviour {
     }
     public void Update() {
         if ( active ) {
+            actualDistance = Vector3.Distance(follow.position, look.position);
             float side = Vector3.Angle(Vector3.forward, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
             float angle = Vector3.Angle(Vector3.right, new Vector3(follow.position.x - look.position.x, 0, follow.position.z - look.position.z));
             if ( side < 90 ) {
@@ -27,7 +29,7 @@ public class NewTargetedCamera : MonoBehaviour {
 
             }
 
-            cam.m_YAxis.Value = Vector3.Distance(look.position, follow.position) / maxDistance;
+            cam.m_YAxis.Value = -(actualDistance / maxDistance) + 1;
         }
     }
     public void On( Transform _look, float dist ) {

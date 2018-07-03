@@ -69,7 +69,7 @@ public class PlayerBrain : MonoBehaviour {
                         zInput = Input.GetAxis("Vertical");
                         Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
 
-                        mvComp.Running(forw * zInput + rght * xInput);
+                        mvComp.RunningOnCombat(forw * zInput + rght * xInput);
                         animC.run = true;
                         animC.walk = false;
                     } else {

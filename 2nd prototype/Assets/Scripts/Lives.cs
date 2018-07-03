@@ -8,6 +8,7 @@ public class Lives : MonoBehaviour
     public Movement mvComp;
     public ParticleController pCont;
     public int life;
+    public float fallenTime;
 
 
     void Start()
@@ -20,6 +21,13 @@ public class Lives : MonoBehaviour
     void Update()
     {
         if (life < 1)   animC.death = true;
+        if ( mvComp.ground == false )
+            fallenTime += Time.deltaTime;
+        else
+            fallenTime = 0;
+        if (fallenTime > 6 ) {
+            life = 0;
+        }
     }
 
     public void OnCollisionEnter(Collision collision)
