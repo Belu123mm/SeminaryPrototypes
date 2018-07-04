@@ -52,12 +52,12 @@ public abstract class BearGeneric : MonoBehaviour
     [HideInInspector]
     public bool toReposition;
     protected ITree currentTree;
-
-    private bool _targetAdded;
+    
 
     protected Vector3 _directionToTarget;
     protected float _angleToTarget;
-    protected float _distanceToTarget;
+    [HideInInspector]
+    public float distanceToTarget;
 
     public Aim targetSystem;
     public Lives playerLives;
@@ -72,44 +72,29 @@ public abstract class BearGeneric : MonoBehaviour
     public virtual void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        targetSystem.AddEnemy(this);
+        
     }
 
     public virtual void Update()
     {
         IsPlayerNear();
-        IsPlayerInLOS();
         LineOfSight();
         PlayerInCombatRange();
-
-        // if (Input.GetKeyDown(KeyCode.K)) ApplyKnockback();
     }
 
     void IsPlayerNear()
     {
-        if (_distanceToTarget < distanceFromPlayerToFlee)  playerIsNear = true;
+        if (distanceToTarget < distanceFromPlayerToFlee)  playerIsNear = true;
         else                        playerIsNear = false;
-    }
-
-    void IsPlayerInLOS()
-    {
-        if (playerInSight && !_targetAdded)
-        {
-            _targetAdded = true;
-            targetSystem.AddEnemy(this);
-        }
-        else if (!playerInSight && _targetAdded)
-        {
-            //Debug.Log("Target false");
-            _targetAdded = false;
-            targetSystem.RemoveEnemy(this);
-        }
     }
 
     void LineOfSight()
     {
-        _distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
-        if (_distanceToTarget > viewDistance)
+        if (distanceToTarget > viewDistance)
         {
             if (playerInSight) StartCoroutine(PlayerRecentlySeen());
             playerInSight = false;
@@ -125,7 +110,7 @@ public abstract class BearGeneric : MonoBehaviour
             RaycastHit raycastInfo;
             bool obstaclesBetween = false;
 
-            if (Physics.Raycast(transform.position, _directionToTarget, out raycastInfo, _distanceToTarget))
+            if (Physics.Raycast(transform.position, _directionToTarget, out raycastInfo, distanceToTarget))
                 if (raycastInfo.collider.gameObject.layer == Layers.WORLD)
                     obstaclesBetween = true;
 
@@ -146,7 +131,7 @@ public abstract class BearGeneric : MonoBehaviour
 
     void PlayerInCombatRange()
     {
-        if(playerInSight && _distanceToTarget < combatRange)
+        if(playerInSight && distanceToTarget < combatRange)
             playerInRange = true;
         else
             playerInRange = false;

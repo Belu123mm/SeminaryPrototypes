@@ -42,46 +42,62 @@ public class PlayerBrain : MonoBehaviour {
         if ( !death && !mvComp.hit) {
             if ( !powComp.shoot && !mvComp.rolling ) {
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
-                    xInput = Input.GetAxis("Horizontal");
-                    Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
-                    zInput = Input.GetAxis("Vertical");
-                    Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
-                    if ( combat ) {
-                        mvComp.MoveOnCombat(forw * zInput + rght * xInput);
-                    } else {
-                        mvComp.Move(forw * zInput + rght * xInput);
+                    if (combat)
+                    {
+                        animC.xMov = Input.GetAxis("Horizontal");
+                        animC.zMov = Input.GetAxis("Vertical");
                     }
-                    animC.walk = true;
-                } else {
-                    animC.walk = false;
-                }
-                if ( combat ) {
-                    animC.xMov = Input.GetAxis("Horizontal");
-                    animC.zMov = Input.GetAxis("Vertical");
-                }
-                if ( Input.GetButton("Fire3") ) {
-                    mvComp.running = true;
-                    if ( mvComp.runValue < mvComp.currentStamina ) {
-
+                    if (!mvComp.running)    //Si no esta corriendo
+                    {
                         xInput = Input.GetAxis("Horizontal");
-                        Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
-
+                        Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
                         zInput = Input.GetAxis("Vertical");
-                        Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
-
-                        mvComp.RunningOnCombat(forw * zInput + rght * xInput);
-                        animC.run = true;
-                        animC.walk = false;
-                    } else {
-                        print("walkin");
-
+                        Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
+                        if (combat)
+                        {
+                            mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                        }
+                        else
+                        {
+                            mvComp.Move(forw * zInput + rght * xInput);
+                        }
                         animC.walk = true;
                         animC.run = false;
-                    }
 
-                } else
+
+                    }
+                    else    //Si esta corriendo
+                    {
+                        if (mvComp.runValue < mvComp.currentStamina)
+                        {
+
+                            xInput = Input.GetAxis("Horizontal");
+                            Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+
+                            zInput = Input.GetAxis("Vertical");
+                            Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+                            if (combat)
+                            {
+                            mvComp.RunningOnCombat(forw * zInput + rght * xInput);
+                                
+                            }else
+                            {
+                                mvComp.Running(forw * zInput + rght * xInput);
+
+                            }
+                            animC.run = true;
+                            animC.walk = false;
+                        }
+                    }
+                } 
+                else
+                {
                     animC.run = false;
+                    animC.walk = false;
+                }
             }
+
+            //Ni esto
             //Jump
             if ( Input.GetButton("Jump") && !mvComp.spammingSpace && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
             {
@@ -114,7 +130,8 @@ public class PlayerBrain : MonoBehaviour {
                 this.GetComponent<Rigidbody>().freezeRotation = true;
                 animC.push = true;
             }
-
+            
+            //No touch
         } else
             this.GetComponent<Rigidbody>().freezeRotation = true;
 
@@ -141,8 +158,12 @@ public class PlayerBrain : MonoBehaviour {
             mvComp.hit = false;
             //mvComp.StopSpeed();
         }
+        if (Input.GetButton("Fire3"))
+        {
+            mvComp.running = true;
+        }
 
-        if ( !death && !mvComp.hit ) {
+            if ( !death && !mvComp.hit ) {
             //Attack
             if ( Input.GetButtonDown("Fire2") && !powComp.shoot && !mvComp.spammingSpace && !mvComp.rolling ) //&& Time.time > _timePowers + powerCooldown && Time.time > _timeMovement + movementCooldown)
             {

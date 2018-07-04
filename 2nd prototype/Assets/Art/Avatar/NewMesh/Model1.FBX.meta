@@ -190,9 +190,44 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Avatar Rig Configuration mis-match. Inbetween bone rotation
+      in configuration does not match rotation in animation file:\n\t'CATRigSpine1'
+      : rotation error = 1.294030 deg\n\t'CATRigSpine5' : rotation error = 4.982910
+      deg\n\t'CATRigHub005' : rotation error = 1.154037 deg\n\t'CATRigLArm22' : rotation
+      error = 1.520460 deg\n"
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'CATRigSpine1' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'CATRigSpine5' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'CATRigHub005'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'CATRigLArm22'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'CATRigLArmPalm'
+      has scale animation that will be discarded.\n\t'CATRigLArmDigit11' has scale
+      animation that will be discarded.\n\t'CATRigLArmDigit12' has scale animation
+      that will be discarded.\n\t'CATRigLArmDigit13' has scale animation that will
+      be discarded.\n\t'CATRigLArmDigit21' has scale animation that will be discarded.\n\t'CATRigLArmDigit22'
+      has scale animation that will be discarded.\n\t'CATRigLArmDigit23' has scale
+      animation that will be discarded.\n\t'CATRigLArmDigit31' has scale animation
+      that will be discarded.\n\t'CATRigLArmDigit32' has scale animation that will
+      be discarded.\n\t'CATRigLArmDigit33' has scale animation that will be discarded.\n\t'CATRigLArmDigit41'
+      has scale animation that will be discarded.\n\t'CATRigLArmDigit42' has scale
+      animation that will be discarded.\n\t'CATRigLArmDigit43' has scale animation
+      that will be discarded.\n\t'CATRigLArmDigit52' has scale animation that will
+      be discarded.\n\t'CATRigLArmDigit53' has scale animation that will be discarded.\n\t'CATRigRArm22'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'CATRigRArmPalm'
+      has scale animation that will be discarded.\n\t'CATRigRArmDigit12' has scale
+      animation that will be discarded.\n\t'CATRigRArmDigit13' has scale animation
+      that will be discarded.\n\t'CATRigRArmDigit21' has scale animation that will
+      be discarded.\n\t'CATRigRArmDigit22' has scale animation that will be discarded.\n\t'CATRigRArmDigit23'
+      has scale animation that will be discarded.\n\t'CATRigRArmDigit31' has scale
+      animation that will be discarded.\n\t'CATRigRArmDigit32' has scale animation
+      that will be discarded.\n\t'CATRigRArmDigit33' has scale animation that will
+      be discarded.\n\t'CATRigRArmDigit41' has scale animation that will be discarded.\n\t'CATRigRArmDigit42'
+      has scale animation that will be discarded.\n\t'CATRigRArmDigit43' has scale
+      animation that will be discarded.\n\t'CATRigRArmDigit51' has scale animation
+      that will be discarded.\n\t'CATRigRArmDigit52' has scale animation that will
+      be discarded.\n\t'CATRigRArmDigit53' has scale animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
