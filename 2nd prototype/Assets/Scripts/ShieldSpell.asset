@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: ShieldSpell
   m_EditorClassIdentifier: 
   spellName: shield
-  particle: {fileID: 198820513502517008, guid: 66ae0d20b1a31da4487a4784d826f4c5, type: 2}
+  particle: {fileID: 19800002, guid: e2a2db6605c2ea840aa8fb3cc001bca1, type: 2}
   mesh: {fileID: 0}
   triggered: 0
   damage: 50
