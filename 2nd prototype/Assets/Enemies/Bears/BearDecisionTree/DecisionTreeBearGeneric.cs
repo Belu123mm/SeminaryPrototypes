@@ -81,11 +81,23 @@ public class DecisionTreeBearGeneric : ITree
 
     public void IsFleing()
     {
+        if (_thisBear._sm.IsActualState<BearStateFlee>()) IsPlayerNear();
+
+        else IsRepositioning();
+    }
+
+    public void IsPlayerNear()
+    {
+        if (_thisBear.playerIsNear) return;
+
+        else IsGoingToPatrol();
+    }
+
+    public void IsRepositioning()
+    {
         if (_thisBear.toReposition) return;
 
-        if (!_thisBear._sm.IsActualState<BearStateFlee>()) HasPlayerBeenRecentlySeen();
-
-        else if (!_thisBear.playerIsNear) IsGoingToPatrol();
+        else HasPlayerBeenRecentlySeen();
     }
 
     public void HasPlayerBeenRecentlySeen()

@@ -7,6 +7,8 @@ public class BearFighter : BearGeneric
     {
         base.Start();
 
+        bearType = Bear.FIGHTER;
+
         _sm = new StateMachine();
         _sm.AddState(new BearStateIdle(_sm, this));
         _sm.AddState(new BearStatePatrol(_sm, this));
@@ -17,6 +19,7 @@ public class BearFighter : BearGeneric
         _sm.AddState(new BearStateCharge(_sm, this));
         _sm.AddState(new BearStateKnockback(_sm, this));
         _sm.AddState(new BearStateStun(_sm, this));
+        _sm.AddState(new BearStateRepositioning(_sm, this));
         _sm.AddState(new BearStateDie(_sm, this));
 
         currentTree = new DecisionTreeBearGeneric(this);

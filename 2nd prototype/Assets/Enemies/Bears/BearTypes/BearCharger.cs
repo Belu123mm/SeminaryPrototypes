@@ -7,6 +7,8 @@ public class BearCharger : BearGeneric
     {
         base.Start();
 
+        bearType = Bear.CHARGER;
+
         _sm = new StateMachine();
         _sm.AddState(new BearStateIdle(_sm, this));
         _sm.AddState(new BearStatePatrol(_sm, this));

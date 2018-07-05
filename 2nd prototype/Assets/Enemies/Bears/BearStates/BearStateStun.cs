@@ -9,7 +9,6 @@ public class BearStateStun : BearState
 
     public override void Awake()
     {
-        Debug.Log("Entró a Stun");
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.green;
         _time = Time.time;
@@ -23,7 +22,6 @@ public class BearStateStun : BearState
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Stun");
         base.Sleep();
     }
 }

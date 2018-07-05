@@ -9,11 +9,10 @@ public class BearStateKnockback : BearState
 
     public override void Awake()
     {
-        Debug.Log("Entró a Knockback");
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.cyan;
         _time = Time.time;
-        _rb.AddForce(-myBear.transform.forward * _knockbackBackForce + myBear.transform.up * _knockbackUpForce, ForceMode.Impulse);
+        _rb.AddForce(myBear.knockbackDirection * _knockbackBackForce + myBear.transform.up * _knockbackUpForce, ForceMode.Impulse);
     }
 
     public override void Execute()
@@ -24,7 +23,6 @@ public class BearStateKnockback : BearState
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Knockback");
         base.Sleep();
     }
 }

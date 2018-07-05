@@ -14,15 +14,13 @@ public class BearStateAttack : BearState
     {
     }
 
-    // Timer para reposition HACER
-
     public override void Awake()
     {
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.red;
-        _rb.useGravity = false;
         _timeOfReposition = Time.time;
         _timeOfRepositionRandomChance = Random.Range(3, 12);
+        myBear.viewAngle = myBear.combatViewAngle;
     }
 
     public override void Execute()
@@ -48,20 +46,19 @@ public class BearStateAttack : BearState
             else HeavyAttackCombo();
         }
 
-        if (Time.time > _timeOfReposition + _timeOfRepositionRandomChance) myBear.toReposition = true;
+        if (Time.time > _timeOfReposition + _timeOfRepositionRandomChance && myBear.bearType == Bear.CHARGER) myBear.toReposition = true;
     }
 
     public override void Sleep()
     {
         base.Sleep();
-        _rb.useGravity = true;
+        myBear.viewAngle = myBear.outOfCombatViewAngle;
     }
 
     void LightAttack()
     {
         myBear.AssignCurrentDamageToDeal(_lightAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("LightAttack1");
-        myBear.GetComponent<Renderer>().material.color = Color.blue;
         _timeBetweenAttacksRandomChance = Random.Range(2, 5);
         _time = Time.time;
     }
@@ -70,7 +67,6 @@ public class BearStateAttack : BearState
     {
         myBear.AssignCurrentDamageToDeal(_lightAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("LightAttack1Combo");
-        myBear.GetComponent<Renderer>().material.color = Color.blue;
         _timeBetweenAttacksRandomChance = Random.Range(3, 6);
         _time = Time.time;
     }
@@ -79,7 +75,6 @@ public class BearStateAttack : BearState
     {
         myBear.AssignCurrentDamageToDeal(_heavyAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("HeavyAttack1");
-        myBear.GetComponent<Renderer>().material.color = Color.yellow;
         _timeBetweenAttacksRandomChance = Random.Range(3, 5);
         _time = Time.time;
     }
@@ -88,7 +83,6 @@ public class BearStateAttack : BearState
     {
         myBear.AssignCurrentDamageToDeal(_heavyAttackDamage);
         myBear.GetComponentInChildren<Animation>().Play("HeavyAttack1Combo");
-        myBear.GetComponent<Renderer>().material.color = Color.yellow;
         _timeBetweenAttacksRandomChance = Random.Range(4, 6);
         _time = Time.time;
     }

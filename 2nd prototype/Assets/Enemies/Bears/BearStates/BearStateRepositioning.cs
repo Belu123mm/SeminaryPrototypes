@@ -16,6 +16,9 @@ public class BearStateRepositioning : BearState
         _dirToGo = (_waypoint - myBear.transform.position).normalized;
         myBear.GetComponent<Renderer>().material.color = Color.red;
         _time = Time.time;
+        myBear.viewAngle = myBear.combatViewAngle;
+        myBear.viewDistance = myBear.repositioningViewDistance;
+        myBear.combatRange = myBear.repositionCombatRange;
     }
 
     public override void Execute()
@@ -39,6 +42,7 @@ public class BearStateRepositioning : BearState
         {
             _dirToGo = (_target.transform.position - myBear.transform.position).normalized;
             myBear.transform.forward = _dirToGo;
+            myBear.combatRange = myBear.outOfRepositionCombatRange;
             myBear.toReposition = false;
             myBear.toCharge = true;
         }
@@ -47,5 +51,9 @@ public class BearStateRepositioning : BearState
     public override void Sleep()
     {
         base.Sleep();
+        myBear.viewAngle = myBear.outOfCombatViewAngle;
+        myBear.viewDistance = myBear.outOfRepositioningViewDistance;
+        myBear.combatRange = myBear.outOfRepositionCombatRange;
+        myBear.toReposition = false;
     }
 }

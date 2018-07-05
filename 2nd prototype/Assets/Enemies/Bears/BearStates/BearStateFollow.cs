@@ -9,9 +9,8 @@ public class BearStateFollow : BearState
 
     public override void Awake()
     {
-        Debug.Log("Entró a Follow");
         base.Awake();
-        myBear.GetComponent<Renderer>().material.color = Color.white;
+        myBear.GetComponent<Renderer>().material.color = Color.red;
     }
 
     public override void Execute()
@@ -31,7 +30,6 @@ public class BearStateFollow : BearState
 
     public override void Sleep()
     {
-        Debug.Log("Salió de Follow");
         base.Sleep();
     }
 }

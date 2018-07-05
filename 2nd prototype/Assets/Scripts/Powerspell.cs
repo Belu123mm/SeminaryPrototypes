@@ -62,7 +62,7 @@ public class Powerspell : MonoBehaviour {
         if (collidingObject.gameObject.layer == Layers.ENEMY)
         {
             if(spellInterface.ReturnSeasonID() == 2)
-            collidingObject.gameObject.GetComponent<BearGeneric>().ApplyKnockback();
+            collidingObject.gameObject.GetComponent<BearGeneric>().ApplyKnockback(this.transform.forward);
 
             if (spellInterface.ReturnSeasonID() == 3)
                 collidingObject.gameObject.GetComponent<BearGeneric>().ApplyStun();
