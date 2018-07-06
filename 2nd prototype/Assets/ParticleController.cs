@@ -28,5 +28,9 @@ public class ParticleController : MonoBehaviour {
         ParticleSystem p  = Instantiate(particles [ 0 ], gem.position, Quaternion.identity, gem.transform);
         Destroy(p.gameObject, 5);
     }
+    public void DeathThings() {
+        ParticleSystem p = Instantiate(particles [ 3 ], gem.position, Quaternion.identity, gem.transform);
+    }
+
 
 }

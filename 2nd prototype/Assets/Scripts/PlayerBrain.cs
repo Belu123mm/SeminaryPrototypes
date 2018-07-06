@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerBrain : MonoBehaviour {
     //Aca se colocan los inputs y se llama a movement (mvcomp) y se ejecutan esas cosas. 
@@ -41,15 +42,11 @@ public class PlayerBrain : MonoBehaviour {
     public void FixedUpdate() { //Input Actions
         if ( !death && !mvComp.hit ) {
             if ( !powComp.shoot && !mvComp.rolling ) {
+                xInput = Input.GetAxis("Horizontal");
+                zInput = Input.GetAxis("Vertical");
+
 
                 if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
-
-                    xInput = Input.GetAxis("Horizontal");
-                    zInput = Input.GetAxis("Vertical");
-                    if ( combat ) {
-                        animC.xMov = xInput;
-                        animC.zMov = zInput;
-                    }
 
                     if ( mvComp.running ) {
                         Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
@@ -78,10 +75,16 @@ public class PlayerBrain : MonoBehaviour {
 
                 }
                 else {
+
                     animC.run = false;
                     animC.walk = false;
 
                 }
+                if ( combat ) {
+                    animC.xMov = xInput;
+                    animC.zMov = zInput;
+                }
+
 
                 //Jump
                 if ( Input.GetButton("Jump") && !mvComp.spammingSpace && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
@@ -135,6 +138,9 @@ public class PlayerBrain : MonoBehaviour {
         animC.getHit = false;
         animC.roll = false;
 
+        if (death && Input.GetKeyDown(KeyCode.R) ) {
+
+        }
 
         if ( Input.GetKeyDown(KeyCode.J) ) {
             pCont.HitSparks();
@@ -199,5 +205,10 @@ public class PlayerBrain : MonoBehaviour {
             }
 
         }
+    }
+    public IEnumerator Reload() {
+        SceneManager.LoadScene(0);
+        yield return new WaitForSeconds(7);
+
     }
 }

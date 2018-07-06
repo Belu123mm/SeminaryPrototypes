@@ -9,6 +9,7 @@ public class Lives : MonoBehaviour
     public ParticleController pCont;
     public int life;
     public float fallenTime;
+    public bool deaded;
 
 
     void Start()
@@ -20,7 +21,15 @@ public class Lives : MonoBehaviour
 
     void Update()
     {
-        if (life < 1)   animC.death = true;
+        if ( life < 1 &&  !animC.death ) {
+            animC.death = true;
+            deaded = true;
+        }
+        if (deaded ) {
+            pCont.DeathThings();
+            deaded = false;
+        }
+
         if ( mvComp.ground == false )
             fallenTime += Time.deltaTime;
         else
