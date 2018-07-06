@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: plant
   particle: {fileID: 198389366301025074, guid: b21bd6d08d5ac2e4c9754469ab80d353, type: 2}
-  mesh: {fileID: 1833369043858104, guid: 34e8ddc70e5b7dc498d8f427a1486bbc, type: 2}
+  mesh: {fileID: 1329489626896348, guid: f4311f9011d488d4bb5c100f8b7184c1, type: 2}
   triggered: 0
   damage: 20
   mana: 200

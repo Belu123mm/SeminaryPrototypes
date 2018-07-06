@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: 4778951246016756}
   - component: {fileID: 33698273175909742}
   - component: {fileID: 23957287331948868}
+  - component: {fileID: 136973495319466560}
   m_Layer: 0
   m_Name: Trunk
   m_TagString: Untagged
@@ -99,8 +100,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1451755048974660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1784935, y: 4.37, z: 0.040885925}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4534323327349032}
@@ -109,7 +110,7 @@ Transform:
   - {fileID: 4778951246016756}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 39, z: 0}
 --- !u!4 &4534323327349032
 Transform:
   m_ObjectHideFlags: 1
@@ -176,7 +177,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e56211bfb81fb5d4fad0a25ed250ada7, type: 3}
+  - {fileID: 2100000, guid: c432cba78a4bb684a901d22f5a20d9a9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -210,7 +211,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e56211bfb81fb5d4fad0a25ed250ada7, type: 3}
+  - {fileID: 2100000, guid: 2607400e2b0ae904c919ee5af8053079, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -244,7 +245,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: e56211bfb81fb5d4fad0a25ed250ada7, type: 3}
+  - {fileID: 2100000, guid: ece80412efd064e4a8abd54584b0df3b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -302,3 +303,16 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!136 &136973495319466560
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1150905201909264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.61
+  m_Height: 7.06
+  m_Direction: 2
+  m_Center: {x: -0.26, y: 0.16, z: -1.47}
