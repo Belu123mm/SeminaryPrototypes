@@ -7,6 +7,7 @@ public class Lives : MonoBehaviour
     public AnimController animC;
     public Movement mvComp;
     public ParticleController pCont;
+    public UIController UIController;
     public int life;
     public float fallenTime;
     public bool deaded;
@@ -17,6 +18,9 @@ public class Lives : MonoBehaviour
         animC = GetComponent<AnimController>();
         mvComp = GetComponent<Movement>();
         pCont = GetComponent<ParticleController>();
+        UIController = FindObjectOfType<UIController>();
+        UIController.SetMaxHp(life);
+        UIController.SetHP(life);
     }
 
     void Update()
@@ -48,9 +52,9 @@ public class Lives : MonoBehaviour
         life -= damage;
         animC.getHit = true;
         mvComp.hit = true; 
-        mvComp.delayHit = 0.5f;
-        pCont.HitSparks(); 
-
+        mvComp.delayHit = 0.5f;        
+        pCont.HitSparks();
+        UIController.SetHP(life);
 
     }
 

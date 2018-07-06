@@ -9,7 +9,16 @@ public class Aim : MonoBehaviour
     public List<BearGeneric> enemis = new List<BearGeneric>();
     public bool aim;
     public LayerMask mask;
+    public BearGeneric bear;
 
+    public void Update() {
+        if ( bear ) {
+
+            if ( Vector3.Distance(transform.position, bear.transform.position) > bear.viewDistance ) {
+                Targeted();
+            }
+        }
+    }
     public void CallRay()
     {
         RaycastHit hit;
@@ -22,6 +31,7 @@ public class Aim : MonoBehaviour
                 {
                     aim = true;
                     targCam.On(bear.transform,bear.viewDistance);
+                this.bear = bear;
                 }
         }
 
@@ -36,6 +46,7 @@ public class Aim : MonoBehaviour
         {
             targCam.Off();
             aim = false;
+            bear = null;
         }
     }
 
