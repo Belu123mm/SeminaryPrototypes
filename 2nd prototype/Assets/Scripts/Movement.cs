@@ -121,7 +121,7 @@ public class Movement : MonoBehaviour {
     }
     public void RunningOnCombat( Vector3 direc ) {
 
-        //Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direc), rotationSpeed));
+        Rigidbody.MoveRotation(Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(cam.transform.forward.x, this.transform.forward.y, cam.transform.forward.z)), rotationSpeed));
         Rigidbody.MovePosition(this.transform.position + (direc * movementSpeed * runningSpeed * Time.fixedDeltaTime));
         currentStamina -= runValue;
         UIContr.SetStamina(currentStamina);

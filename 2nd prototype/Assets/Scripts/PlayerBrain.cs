@@ -39,90 +39,92 @@ public class PlayerBrain : MonoBehaviour {
         pCont = GetComponent<ParticleController>();
     }
     public void FixedUpdate() { //Input Actions
-        if ( !death && !mvComp.hit) {
+        if ( !death && !mvComp.hit ) {
             if ( !powComp.shoot && !mvComp.rolling ) {
-                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") && !mvComp.running ) {
-                    xInput = Input.GetAxis("Horizontal");
-                    Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
-                    zInput = Input.GetAxis("Vertical");
-                    Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
-                    if ( combat ) {
-                        mvComp.MoveOnCombat(forw * zInput + rght * xInput);
-                    } else {
-                        mvComp.Move(forw * zInput + rght * xInput);
-                    }
-                    animC.walk = true;
-                } else {
-                    animC.walk = false;
-                }
-                if ( combat ) {
-                    animC.xMov = Input.GetAxis("Horizontal");
-                    animC.zMov = Input.GetAxis("Vertical");
-                }
-                if ( Input.GetButton("Fire3") ) {
-                    mvComp.running = true;
-                    if ( mvComp.runValue < mvComp.currentStamina ) {
 
+                if ( Input.GetButton("Horizontal") || Input.GetButton("Vertical") ) {
+
+                    xInput = Input.GetAxis("Horizontal");
+                    zInput = Input.GetAxis("Vertical");
+                    if ( combat ) {
+                        animC.xMov = xInput;
+                        animC.zMov = zInput;
+                    }
+
+                    if ( mvComp.running ) {
+                        Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+                        Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+                        if ( combat ) {
+                            mvComp.RunningOnCombat(forw * zInput + rght * xInput);
+
+                        } else {
+                            mvComp.Running(forw * zInput + rght * xInput);
+                        }
+                        this.GetComponent<Rigidbody>().freezeRotation = true;
+                        animC.run = true;
+                        animC.walk = false;
+
+                    } else {
+                        Vector3 forw = new Vector3((this.transform.position - cam.transform.position).normalized.x, 0, (this.transform.position - cam.transform.position).normalized.z);
+                        Vector3 rght = Vector3.Cross(this.transform.up, (this.transform.position - cam.transform.position).normalized);
+                        if ( combat ) {
+                            mvComp.MoveOnCombat(forw * zInput + rght * xInput);
+                        } else {
+                            mvComp.Move(forw * zInput + rght * xInput);
+                        }
+                        animC.walk = true;
+                        animC.run = false;
+                    }
+
+                }
+                else {
+                    animC.run = false;
+                    animC.walk = false;
+
+                }
+
+                //Jump
+                if ( Input.GetButton("Jump") && !mvComp.spammingSpace && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
+                {
+                    if ( mvComp.jumpValue < mvComp.currentStamina ) {
+                        //_timeMovement = Time.time;
+                        mvComp.Jump();
+                        pCont.JumpSmoke();
+                        animC.jump = true;
+                    }
+                } else {
+                    animC.jump = false;
+                }
+                //Roll
+                if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown) 
+                    {
+                    if ( mvComp.rollValue < mvComp.currentStamina ) {
+                        //_timeMovement = Time.time;
+                        mvComp.timer = 0;
+                        mvComp.rolling = true;
+                        animC.roll = true;
                         xInput = Input.GetAxis("Horizontal");
                         Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
 
                         zInput = Input.GetAxis("Vertical");
                         Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
-
-                        mvComp.RunningOnCombat(forw * zInput + rght * xInput);
-                        animC.run = true;
-                        animC.walk = false;
-                    } else {
-                        print("walkin");
-
-                        animC.walk = true;
-                        animC.run = false;
+                        mvComp.SideRoll(forw * zInput + rght * xInput);
+                        this.GetComponent<Rigidbody>().freezeRotation = true;
                     }
-
-                } else
-                    animC.run = false;
-            }
-            //Jump
-            if ( Input.GetButton("Jump") && !mvComp.spammingSpace && !mvComp.rolling && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown)
-            {
-                if ( mvComp.jumpValue < mvComp.currentStamina ) {
-                    //_timeMovement = Time.time;
-                    mvComp.Jump();
-                    pCont.JumpSmoke();
-                    animC.jump = true;
+                } else {
+                    animC.roll = false;
                 }
-            } else {
-                animC.jump = false;
-            }
-            //Roll
-            if ( Input.GetButton("Fire1") && !mvComp.rolling && mvComp.ground && !powComp.shoot )//&& Time.time > _timeMovement + movementCooldown) 
-                {
-                if ( mvComp.rollValue < mvComp.currentStamina ) {
-                    //_timeMovement = Time.time;
-                    mvComp.timer = 0;
-                    mvComp.rolling = true;
-                    animC.roll = true;
-                    xInput = Input.GetAxis("Horizontal");
-                    Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
-
-                    zInput = Input.GetAxis("Vertical");
-                    Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
-                    mvComp.SideRoll(forw * zInput + rght * xInput);
+                //TestPush
+                if ( Input.GetKeyDown(KeyCode.H) ) {
+                    mvComp.Push();
                     this.GetComponent<Rigidbody>().freezeRotation = true;
+                    animC.push = true;
                 }
-            } else {
-                animC.roll = false;
-            }
-            //TestPush
-            if ( Input.GetKeyDown(KeyCode.H) ) {
-                mvComp.Push();
+
+            } else
                 this.GetComponent<Rigidbody>().freezeRotation = true;
-                animC.push = true;
-            }
 
-        } else
-            this.GetComponent<Rigidbody>().freezeRotation = true;
-
+        }
     }
     public void Update() {  //Triggered actions 
         combat = aimComp.aim;
@@ -131,6 +133,8 @@ public class PlayerBrain : MonoBehaviour {
         mvComp.running = false;
         animC.push = false;
         animC.getHit = false;
+        animC.roll = false;
+
 
         if ( Input.GetKeyDown(KeyCode.J) ) {
             pCont.HitSparks();
@@ -146,6 +150,11 @@ public class PlayerBrain : MonoBehaviour {
             mvComp.hit = false;
             //mvComp.StopSpeed();
         }
+
+            if ( Input.GetButton("Fire3") )
+                mvComp.running = true;
+            else
+                mvComp.running = false;
 
         if ( !death && !mvComp.hit ) {
             //Attack
