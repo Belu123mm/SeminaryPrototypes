@@ -112,8 +112,8 @@ public abstract class BearGeneric : MonoBehaviour
 
     void IsPlayerNear()
     {
-        if (distanceToTarget < distanceFromPlayerToFlee)  playerIsNear = true;
-        else                        playerIsNear = false;
+        if ( distanceToTarget < distanceFromPlayerToFlee ) playerIsNear = true;
+        else { playerIsNear = false; targetSystem.Targeted(); }
     }
 
     void LineOfSight()
