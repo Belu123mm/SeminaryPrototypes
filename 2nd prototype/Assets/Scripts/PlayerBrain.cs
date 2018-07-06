@@ -118,10 +118,9 @@ public class PlayerBrain : MonoBehaviour {
                     animC.roll = false;
                 }
                 //TestPush
-                if ( Input.GetKeyDown(KeyCode.H) ) {
-                    mvComp.Push();
-                    this.GetComponent<Rigidbody>().freezeRotation = true;
-                    animC.push = true;
+                if ( Input.GetKeyDown(KeyCode.H) )
+                {
+                    
                 }
 
             } else
@@ -206,6 +205,7 @@ public class PlayerBrain : MonoBehaviour {
 
         }
     }
+
     public IEnumerator Reload() {
         SceneManager.LoadScene(0);
         yield return new WaitForSeconds(7);

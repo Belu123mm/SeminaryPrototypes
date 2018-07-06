@@ -52,10 +52,19 @@ public class Lives : MonoBehaviour
         life -= damage;
         animC.getHit = true;
         mvComp.hit = true; 
-        mvComp.delayHit = 0.5f;        
+        mvComp.delayHit = 0.5f;
         pCont.HitSparks();
         UIController.SetHP(life);
+    }
 
+    public void GetCharge(int damage)
+    {
+        life -= damage;
+        animC.push = true;
+        mvComp.Push();
+        pCont.HitSparks();
+        UIController.SetHP(life);
+        this.GetComponent<Rigidbody>().freezeRotation = true;
     }
 
     public void GetHeal()

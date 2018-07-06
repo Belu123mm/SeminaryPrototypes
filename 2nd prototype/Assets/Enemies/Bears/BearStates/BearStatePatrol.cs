@@ -16,6 +16,12 @@ public class BearStatePatrol : BearState
         _dirToGo = (_waypoint - myBear.transform.position).normalized;
         myBear.GetComponent<Renderer>().material.color = Color.blue;
         _time = Time.time;
+
+        if(!myBear.IsPlayerAlive())
+        {
+            _timeIdleToPatrol = 8;
+            _timePatrolToIdle = 4;
+        }
     }
 
     public override void Execute()

@@ -11,8 +11,10 @@ public class BearStateCharge : BearState
     {
         base.Awake();
         myBear.GetComponent<Renderer>().material.color = Color.red;
+        myBear.AssignCurrentDamageToDeal(_chargeDamage);
         _dirToGo = (_target.transform.position - myBear.transform.position).normalized;
         _dirToGo.y = 0;
+        myBear.combatRange = 0.5f;
     }
 
     public override void Execute()
@@ -27,6 +29,7 @@ public class BearStateCharge : BearState
     public override void Sleep()
     {
         base.Sleep();
+        myBear.combatRange = myBear.outOfRepositionCombatRange;
         myBear.toCharge = false;
     }
 }

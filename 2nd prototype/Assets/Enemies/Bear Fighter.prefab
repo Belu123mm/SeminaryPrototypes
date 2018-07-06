@@ -107,8 +107,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1328289127113178}
   m_LocalRotation: {x: -0, y: -0.4577678, z: -0, w: 0.8890719}
-  m_LocalPosition: {x: -35.95, y: 8.64, z: 82.22}
-  m_LocalScale: {x: 1, y: 3, z: 1}
+  m_LocalPosition: {x: -35.948, y: 8.64, z: 82.213}
+  m_LocalScale: {x: 0.90000004, y: 2.7, z: 0.90000004}
   m_Children:
   - {fileID: 4445038811148270}
   m_Father: {fileID: 0}
@@ -386,8 +386,10 @@ MonoBehaviour:
   distanceFromPlayerToFlee: 20
   knockbackBackForce: 12
   knockbackUpForce: 9
+  knockbackDirection: {x: 0, y: 0, z: 0}
   lightAttackDamage: 10
   heavyAttackDamage: 25
+  chargeDamage: 0
   outOfCombatViewAngle: 0
   combatViewAngle: 180
   outOfRepositioningViewDistance: 0

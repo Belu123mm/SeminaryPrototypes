@@ -32,4 +32,9 @@ public class BearCharger : BearGeneric
         _sm.Update();
         currentTree.HasHpToLive();
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (_sm.IsActualState<BearStateCharge>() && collision.gameObject.layer == Layers.PLAYER) DealChargeDamage();
+    }
 }

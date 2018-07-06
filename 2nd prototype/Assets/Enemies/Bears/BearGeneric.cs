@@ -43,6 +43,7 @@ public abstract class BearGeneric : MonoBehaviour
     private int _damage;
     public int lightAttackDamage;
     public int heavyAttackDamage;
+    public int chargeDamage;
 
     [HideInInspector]
     public float outOfCombatViewAngle;
@@ -105,9 +106,24 @@ public abstract class BearGeneric : MonoBehaviour
 
     public virtual void Update()
     {
+        if (!IsPlayerAlive()) return;
+
         IsPlayerNear();
         LineOfSight();
         PlayerInCombatRange();
+    }
+
+    public bool IsPlayerAlive()
+    {
+        if (playerLives.life <= 0)
+        {
+            playerInSight = false;
+            playerInRange = false;
+            playerIsNear = false;
+            toPatrol = true;
+            return false;
+        }
+        else return true;
     }
 
     void IsPlayerNear()
@@ -171,6 +187,11 @@ public abstract class BearGeneric : MonoBehaviour
     public void DealDamage()
     {
         playerLives.TakeDamage(_damage);
+    }
+
+    public void DealChargeDamage()
+    {
+        playerLives.GetCharge(_damage);
     }
 
     public void TakeDamage(int damage)
