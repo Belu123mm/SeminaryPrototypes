@@ -102,7 +102,12 @@ public class PlayerBrain : MonoBehaviour {
                     mvComp.timer = 0;
                     mvComp.rolling = true;
                     animC.roll = true;
-                    mvComp.Roll();
+                    xInput = Input.GetAxis("Horizontal");
+                    Vector3 forw = new Vector3(cam.transform.forward.x, 0, cam.transform.forward.z);
+
+                    zInput = Input.GetAxis("Vertical");
+                    Vector3 rght = new Vector3(cam.transform.right.x, 0, cam.transform.right.z);
+                    mvComp.SideRoll(forw * zInput + rght * xInput);
                     this.GetComponent<Rigidbody>().freezeRotation = true;
                 }
             } else {

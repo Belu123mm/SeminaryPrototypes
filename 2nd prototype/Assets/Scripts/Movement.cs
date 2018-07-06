@@ -91,6 +91,14 @@ public class Movement : MonoBehaviour {
     public void RestartSpeed() {
         movementSpeed = _speedAfterJump;
     }
+    public void SideRoll(Vector3 direc ) {
+        Vector3 _rollVelocity = Vector3.Scale(direc + transform.up, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 1.5f, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
+        Rigidbody.AddForce(_rollVelocity, ForceMode.Impulse);
+        Rigidbody.velocity = Vector3.zero;
+        currentStamina -= rollValue;
+        UIContr.SetStamina(currentStamina);
+
+    }
 
     public void Roll() { //Esto lo hace una vez asi que no hace falta que se guarde en variablez
         Vector3 _rollVelocity = Vector3.Scale(transform.forward + transform.up, rollDistance * new Vector3((Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime), 1.5f, (Mathf.Log(1f / (Time.deltaTime * Rigidbody.drag + 1)) / -Time.deltaTime)));
